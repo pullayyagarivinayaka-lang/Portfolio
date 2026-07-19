@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pullayyagari Vinayaka — Data Analyst</title>
+<meta name="description" content="Portfolio of Pullayyagari Vinayaka, Data Analyst — dashboards, analytics and web projects.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#14181F;
+    --ink-soft:#1D2330;
+    --paper:#F7F5F0;
+    --paper-dim:#EEEAE1;
+    --indigo:#2B3A67;
+    --amber:#E8A33D;
+    --teal:#3E8E8A;
+    --slate:#97A0B3;
+    --slate-dark:#5B6472;
+    --line:rgba(151,160,179,0.18);
+    --line-dark:rgba(43,58,103,0.14);
+    --display:'Space Grotesk',sans-serif;
+    --body:'Inter',sans-serif;
+    --mono:'IBM Plex Mono',monospace;
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important;}
+  }
+  body{
+    background:var(--ink);
+    color:var(--paper);
+    font-family:var(--body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  ::selection{background:var(--amber);color:var(--ink);}
+  :focus-visible{outline:2px solid var(--amber);outline-offset:3px;}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px;}
+  section{position:relative;}
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--amber);
+    display:flex;align-items:center;gap:10px;
+    margin-bottom:18px;
+  }
+  .eyebrow::before{content:'';width:22px;height:1px;background:var(--amber);display:inline-block;}
+  h1,h2,h3,h4{font-family:var(--display);font-weight:600;letter-spacing:-0.01em;}
+  .section-title{font-size:clamp(28px,4vw,40px);color:var(--paper);margin-bottom:14px;}
+  .section-sub{color:var(--slate);max-width:560px;font-size:15.5px;margin-bottom:52px;}
+  .light .section-title{color:var(--indigo);}
+  .light .section-sub{color:var(--slate-dark);}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky;top:0;z-index:100;
+    background:rgba(20,24,31,0.82);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{
+    display:flex;align-items:center;justify-content:space-between;
+    height:72px;
+  }
+  .logo{
+    font-family:var(--display);font-weight:700;font-size:18px;color:var(--paper);
+    display:flex;align-items:center;gap:9px;
+  }
+  .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--amber);}
+  .navlinks{display:flex;gap:30px;list-style:none;}
+  .navlinks a{
+    font-size:14px;color:var(--slate);font-family:var(--body);font-weight:500;
+    transition:color .2s ease;position:relative;
+  }
+  .navlinks a:hover{color:var(--paper);}
+  .nav-cta{
+    font-family:var(--mono);font-size:13px;font-weight:500;
+    color:var(--ink);background:var(--amber);
+    padding:9px 18px;border-radius:3px;
+    transition:transform .18s ease, background .18s ease;
+  }
+  .nav-cta:hover{background:#f2b25a;transform:translateY(-1px);}
+  .navtoggle{display:none;background:none;border:none;color:var(--paper);font-size:24px;cursor:pointer;}
+
+  /* ---------- HERO ---------- */
+  #home{padding:96px 0 110px;overflow:hidden;}
+  .hero-grid{
+    display:grid;grid-template-columns:1.05fr 0.95fr;gap:64px;align-items:center;
+  }
+  .hero-copy h1{
+    font-size:clamp(38px,5.4vw,58px);
+    line-height:1.08;
+    color:var(--paper);
+    margin-bottom:22px;
+  }
+  .hero-copy h1 em{
+    font-style:normal;color:var(--amber);
+  }
+  .hero-copy p{
+    color:var(--slate);font-size:16.5px;max-width:480px;margin-bottom:34px;
+  }
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;}
+  .btn{
+    font-family:var(--mono);font-size:13.5px;font-weight:500;
+    padding:13px 24px;border-radius:3px;border:1px solid transparent;
+    display:inline-flex;align-items:center;gap:8px;
+    transition:transform .18s ease, background .18s ease, border-color .18s ease;
+    cursor:pointer;
+  }
+  .btn-primary{background:var(--amber);color:var(--ink);}
+  .btn-primary:hover{transform:translateY(-2px);background:#f2b25a;}
+  .btn-ghost{border-color:var(--line);color:var(--paper);}
+  .btn-ghost:hover{border-color:var(--amber);color:var(--amber);}
+
+  .hero-meta{
+    display:flex;gap:26px;margin-top:44px;flex-wrap:wrap;
+  }
+  .hero-meta div{font-family:var(--mono);font-size:12px;color:var(--slate);}
+  .hero-meta strong{display:block;color:var(--paper);font-size:13px;margin-bottom:4px;font-weight:500;}
+
+  /* live panel */
+  .panel{
+    background:var(--ink-soft);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:26px 26px 22px;
+    position:relative;
+  }
+  .panel-head{
+    display:flex;justify-content:space-between;align-items:center;
+    margin-bottom:22px;
+    font-family:var(--mono);font-size:11.5px;color:var(--slate);
+    letter-spacing:.06em;text-transform:uppercase;
+  }
+  .panel-head .live{display:flex;align-items:center;gap:7px;color:var(--teal);}
+  .live-dot{width:6px;height:6px;border-radius:50%;background:var(--teal);animation:pulse 1.8s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.25;}}
+
+  .kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;}
+  .kpi{
+    background:var(--ink);border:1px solid var(--line);border-radius:7px;padding:16px 16px 14px;
+  }
+  .kpi .n{font-family:var(--mono);font-size:26px;font-weight:500;color:var(--paper);}
+  .kpi .l{font-size:11.5px;color:var(--slate);margin-top:4px;}
+  .kpi.accent .n{color:var(--amber);}
+
+  .spark-wrap{
+    border:1px solid var(--line);border-radius:7px;padding:16px;background:var(--ink);
+  }
+  .spark-wrap .l{font-family:var(--mono);font-size:11px;color:var(--slate);margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em;}
+  #sparkline path.line{
+    fill:none;stroke:var(--amber);stroke-width:2;
+    stroke-dasharray:600;stroke-dashoffset:600;
+    animation:draw 2.2s ease forwards .4s;
+  }
+  #sparkline path.fill{opacity:0;animation:fadein 1s ease forwards 1.6s;}
+  @keyframes draw{to{stroke-dashoffset:0;}}
+  @keyframes fadein{to{opacity:1;}}
+
+  /* ---------- ABOUT ---------- */
+  #about{background:var(--paper);color:var(--ink);padding:110px 0;}
+  #about .wrap{display:grid;grid-template-columns:0.85fr 1.15fr;gap:70px;}
+  .about-card{
+    background:var(--ink);color:var(--paper);border-radius:10px;padding:30px;
+    align-self:start;
+  }
+  .about-card h4{font-family:var(--mono);font-size:12px;color:var(--amber);text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px;}
+  .about-card ul{list-style:none;}
+  .about-card li{
+    display:flex;justify-content:space-between;gap:12px;
+    font-size:13.5px;padding:10px 0;border-bottom:1px solid var(--line);color:var(--slate);
+  }
+  .about-card li:last-child{border-bottom:none;}
+  .about-card li span:last-child{color:var(--paper);font-family:var(--mono);text-align:right;}
+  .about-body p{color:var(--slate-dark);font-size:16px;margin-bottom:18px;max-width:600px;}
+  .lang-row{display:flex;gap:10px;margin-top:26px;flex-wrap:wrap;}
+  .lang-chip{
+    font-family:var(--mono);font-size:12px;color:var(--indigo);
+    border:1px solid var(--line-dark);padding:7px 13px;border-radius:20px;
+  }
+
+  /* ---------- SKILLS ---------- */
+  #skills{padding:110px 0;background:var(--ink);}
+  .skill-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .skill-card{
+    border:1px solid var(--line);border-radius:9px;padding:26px;
+    transition:border-color .2s ease, transform .2s ease;
+  }
+  .skill-card:hover{border-color:var(--teal);transform:translateY(-3px);}
+  .skill-card h4{font-size:16px;color:var(--paper);margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+  .skill-card h4 .mark{
+    width:9px;height:9px;background:var(--teal);border-radius:2px;display:inline-block;
+  }
+  .skill-card:nth-child(2) h4 .mark{background:var(--amber);}
+  .skill-card:nth-child(4) h4 .mark{background:var(--amber);}
+  .skill-card:nth-child(5) h4 .mark{background:var(--indigo);border:1px solid var(--slate);}
+  .chip-row{display:flex;flex-wrap:wrap;gap:8px;}
+  .chip{
+    font-family:var(--mono);font-size:12px;color:var(--slate);
+    border:1px solid var(--line);padding:6px 11px;border-radius:4px;
+  }
+
+  /* ---------- PROJECTS ---------- */
+  #projects{background:var(--paper);color:var(--ink);padding:110px 0;}
+  .proj-list{display:flex;flex-direction:column;gap:64px;}
+  .proj{
+    display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;
+  }
+  .proj:nth-child(even){direction:rtl;}
+  .proj:nth-child(even) > *{direction:ltr;}
+  .proj-shot{
+    border-radius:8px;overflow:hidden;border:1px solid var(--line-dark);
+    box-shadow:0 24px 48px -24px rgba(43,58,103,0.35);
+  }
+  .proj-shot img{width:100%;height:auto;}
+  .proj-tag{font-family:var(--mono);font-size:11.5px;color:var(--teal);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;}
+  .proj h3{font-size:24px;color:var(--indigo);margin-bottom:12px;}
+  .proj p{color:var(--slate-dark);font-size:15px;margin-bottom:18px;}
+  .proj-stack{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;}
+  .proj-stack span{
+    font-family:var(--mono);font-size:11.5px;color:var(--indigo);
+    background:rgba(43,58,103,0.07);padding:5px 10px;border-radius:4px;
+  }
+  .proj-link{font-family:var(--mono);font-size:13px;color:var(--indigo);font-weight:500;display:inline-flex;align-items:center;gap:6px;border-bottom:1px solid var(--indigo);padding-bottom:2px;}
+  .proj-link:hover{color:var(--amber);border-color:var(--amber);}
+
+  /* ---------- EXPERIENCE ---------- */
+  #experience{padding:110px 0;background:var(--ink);}
+  .timeline{position:relative;max-width:760px;}
+  .timeline::before{
+    content:'';position:absolute;left:7px;top:6px;bottom:6px;width:1px;background:var(--line);
+  }
+  .tl-item{position:relative;padding-left:38px;padding-bottom:44px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{
+    content:'';position:absolute;left:0;top:5px;width:15px;height:15px;border-radius:50%;
+    background:var(--ink);border:2px solid var(--amber);
+  }
+  .tl-date{font-family:var(--mono);font-size:12px;color:var(--amber);margin-bottom:8px;letter-spacing:.04em;}
+  .tl-item h3{font-size:19px;color:var(--paper);margin-bottom:4px;}
+  .tl-item .org{color:var(--slate);font-size:13.5px;margin-bottom:12px;font-family:var(--mono);}
+  .tl-item p{color:var(--slate);font-size:14.5px;max-width:600px;}
+  .badge{
+    display:inline-block;font-family:var(--mono);font-size:11px;color:var(--teal);
+    border:1px solid rgba(62,142,138,0.35);padding:3px 9px;border-radius:20px;margin-top:10px;
+  }
+
+  /* ---------- CERTIFICATES ---------- */
+  #certificates{background:var(--paper);color:var(--ink);padding:110px 0;}
+  .cert-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+  .cert-card{
+    border:1px solid var(--line-dark);border-radius:9px;padding:22px 18px;
+    background:#fff;
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .cert-card:hover{transform:translateY(-4px);box-shadow:0 16px 30px -18px rgba(43,58,103,0.4);}
+  .cert-card .ci{
+    font-family:var(--mono);font-size:11px;color:var(--amber);margin-bottom:12px;
+  }
+  .cert-card h4{font-size:14.5px;color:var(--indigo);line-height:1.35;}
+
+  /* ---------- RESUME ---------- */
+  #resume{padding:100px 0;background:var(--ink);}
+  .resume-card{
+    background:linear-gradient(135deg,var(--indigo),#1e2a4d);
+    border-radius:12px;padding:56px;display:flex;justify-content:space-between;align-items:center;gap:40px;
+    flex-wrap:wrap;
+  }
+  .resume-card h2{color:var(--paper);font-size:28px;margin-bottom:10px;}
+  .resume-card p{color:var(--slate);max-width:420px;font-size:14.5px;}
+  .resume-copy{flex:1;min-width:260px;}
+
+  /* ---------- CONTACT / FOOTER ---------- */
+  #contact{background:var(--paper);color:var(--ink);padding:100px 0 60px;}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;}
+  .contact-list{list-style:none;}
+  .contact-list li{
+    border-bottom:1px solid var(--line-dark);padding:18px 0;
+    display:flex;justify-content:space-between;align-items:center;
+    font-size:15px;
+  }
+  .contact-list li span:first-child{font-family:var(--mono);font-size:12px;color:var(--slate-dark);text-transform:uppercase;letter-spacing:.06em;}
+  .contact-list li a,.contact-list li span.val{color:var(--indigo);font-weight:500;}
+  .contact-list li a:hover{color:var(--amber);}
+  .social-row{display:flex;gap:12px;margin-top:26px;}
+  .social-row a{
+    font-family:var(--mono);font-size:12.5px;border:1px solid var(--line-dark);color:var(--indigo);
+    padding:9px 16px;border-radius:4px;transition:.2s ease;
+  }
+  .social-row a:hover{background:var(--indigo);color:var(--paper);}
+  footer{border-top:1px solid var(--line-dark);margin-top:70px;padding-top:26px;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+    font-family:var(--mono);font-size:12px;color:var(--slate-dark);}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:900px){
+    .navlinks{display:none;}
+    .navtoggle{display:block;}
+    .hero-grid{grid-template-columns:1fr;}
+    #about .wrap{grid-template-columns:1fr;}
+    .about-card{order:2;}
+    .skill-grid{grid-template-columns:repeat(2,1fr);}
+    .proj{grid-template-columns:1fr;direction:ltr !important;}
+    .proj > *{direction:ltr;}
+    .cert-grid{grid-template-columns:repeat(2,1fr);}
+    .contact-grid{grid-template-columns:1fr;}
+    .resume-card{padding:36px;}
+  }
+  @media (max-width:560px){
+    .wrap{padding:0 20px;}
+    .kpi-grid{grid-template-columns:1fr 1fr;}
+    .cert-grid{grid-template-columns:1fr 1fr;}
+    .skill-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a href="#home" class="logo"><span class="dot"></span>Vinayaka</a>
+    <ul class="navlinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#certificates">Certificates</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a class="nav-cta" href="Vinayaka_Resume.pdf" download>Download CV</a>
+  </nav>
+</header>
+
+<main>
+  <!-- HOME -->
+  <section id="home">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <div class="eyebrow">Data Analyst · Hyderabad, India</div>
+        <h1>I turn messy datasets into dashboards people actually <em>trust</em>.</h1>
+        <p>Computer Science (Data Science) undergraduate building interactive dashboards and analytics tools with Python, SQL, Power BI and Tableau — with an eye for the story hiding inside the numbers.</p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary">View Projects →</a>
+          <a href="Vinayaka_Resume.pdf" download class="btn btn-ghost">Download Résumé</a>
+        </div>
+        <div class="hero-meta">
+          <div><strong>Education</strong>B.Tech CSE (Data Science) · CGPA 8.6</div>
+          <div><strong>Focus</strong>Analytics · BI Dashboards · ETL</div>
+          <div><strong>Languages</strong>English · Hindi · Telugu</div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <span>portfolio_metrics.dashboard</span>
+          <span class="live"><span class="live-dot"></span>live</span>
+        </div>
+        <div class="kpi-grid">
+          <div class="kpi accent"><div class="n" data-count="28807">0</div><div class="l">Records analyzed across projects</div></div>
+          <div class="kpi"><div class="n" data-count="2">0</div><div class="l">Public Tableau dashboards shipped</div></div>
+          <div class="kpi"><div class="n" data-count="7">0</div><div class="l">Data &amp; analytics certifications</div></div>
+          <div class="kpi"><div class="n" data-count="2">0</div><div class="l">Internships completed</div></div>
+        </div>
+        <div class="spark-wrap">
+          <div class="l">Skill growth trajectory</div>
+          <svg id="sparkline" viewBox="0 0 340 70" width="100%" height="70" preserveAspectRatio="none">
+            <path class="fill" d="M0,55 C40,52 60,40 90,38 C130,35 150,20 190,22 C230,24 250,10 290,8 L340,4 L340,70 L0,70 Z" fill="url(#g1)"/>
+            <path class="line" d="M0,55 C40,52 60,40 90,38 C130,35 150,20 190,22 C230,24 250,10 290,8 L340,4"/>
+            <defs>
+              <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#E8A33D" stop-opacity="0.35"/>
+                <stop offset="100%" stop-color="#E8A33D" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="light">
+    <div class="wrap">
+      <div class="about-body">
+        <div class="eyebrow" style="color:var(--indigo)">About</div>
+        <h2 class="section-title">A little about how I work</h2>
+        <p>I'm Vinayaka, a Computer Science Engineering (Data Science) undergraduate based in Hyderabad. I like taking a folder of raw CSVs and turning it into something a non-technical stakeholder can read in ten seconds — a KPI card, a clean chart, a dashboard that answers the question before it's asked.</p>
+        <p>My recent work spans two public Tableau dashboards covering more than 28,000 combined records, a from-scratch career guidance website, and internships in both data analysis and web development. I care about clean data as much as clean design — half the job is asking the dataset the right questions before you visualize anything.</p>
+        <div class="lang-row">
+          <span class="lang-chip">English — C2</span>
+          <span class="lang-chip">Hindi — C1</span>
+          <span class="lang-chip">Telugu — C2</span>
+        </div>
+      </div>
+      <div class="about-card">
+        <h4>Education</h4>
+        <ul>
+          <li><span>B.Tech, CSE (Data Science)<br>Avanthi's Scientific Technological &amp; Research Academy</span><span>2027 · 8.6 CGPA</span></li>
+          <li><span>Intermediate<br>Sri Gayathri College</span><span>2023 · 90%</span></li>
+          <li><span>Schooling<br>C.M.R Model High School</span><span>2021 · 10/10</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="wrap">
+      <div class="eyebrow">Skills</div>
+      <h2 class="section-title">Tools I reach for</h2>
+      <p class="section-sub">Grouped by where they show up in a typical project — from cleaning data to shipping a dashboard.</p>
+      <div class="skill-grid">
+        <div class="skill-card">
+          <h4><span class="mark"></span>Programming</h4>
+          <div class="chip-row">
+            <span class="chip">Python</span><span class="chip">SQL</span><span class="chip">R</span>
+            <span class="chip">Java</span><span class="chip">C</span><span class="chip">C++</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h4><span class="mark"></span>Data Analytics &amp; BI</h4>
+          <div class="chip-row">
+            <span class="chip">Power BI</span><span class="chip">Tableau</span><span class="chip">Excel</span>
+            <span class="chip">Data Visualization</span><span class="chip">Data Cleaning</span><span class="chip">Dashboard Design</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h4><span class="mark"></span>Databases</h4>
+          <div class="chip-row">
+            <span class="chip">MySQL</span><span class="chip">MongoDB</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h4><span class="mark"></span>Web Technologies</h4>
+          <div class="chip-row">
+            <span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span><span class="chip">React.js</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h4><span class="mark"></span>Tools &amp; Cloud</h4>
+          <div class="chip-row">
+            <span class="chip">VS Code</span><span class="chip">Git</span><span class="chip">GitHub</span>
+            <span class="chip">Docker</span><span class="chip">AWS</span><span class="chip">Vercel</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="light">
+    <div class="wrap">
+      <div class="eyebrow" style="color:var(--indigo)">Projects</div>
+      <h2 class="section-title">Selected work</h2>
+      <p class="section-sub">Dashboards and applications built end-to-end — from raw dataset to published, interactive result.</p>
+
+      <div class="proj-list">
+        <article class="proj">
+          <div class="proj-shot"><img src="assets/project-netflix.png" alt="Netflix Analytics Dashboard in Tableau, showing KPI cards, release trend and ratings distribution"></div>
+          <div class="proj-copy">
+            <div class="proj-tag">Tableau Public Dashboard</div>
+            <h3>Netflix Analytics Dashboard</h3>
+            <p>An interactive dashboard analyzing 8,807 Netflix titles — KPI cards for movies, TV shows and countries, plus visual breakdowns of ratings, genres, release-year trends and a country-level world map.</p>
+            <div class="proj-stack"><span>Tableau</span><span>Data Cleaning</span><span>Data Viz</span></div>
+            <a class="proj-link" href="#contact">Ask for the live link →</a>
+          </div>
+        </article>
+
+        <article class="proj">
+          <div class="proj-shot"><img src="assets/project-flipkart.png" alt="Flipkart Product Analytics dashboard in Tableau, showing category distribution, pricing and rating charts"></div>
+          <div class="proj-copy">
+            <div class="proj-tag">Tableau Public Dashboard</div>
+            <h3>Flipkart Product Analytics</h3>
+            <p>A dashboard analyzing 20,000 Flipkart products across 6,466 brands — covering category distribution, discount patterns, price-vs-discount relationships and top-rated product categories.</p>
+            <div class="proj-stack"><span>Tableau</span><span>Excel</span><span>Data Viz</span></div>
+            <a class="proj-link" href="#contact">Ask for the live link →</a>
+          </div>
+        </article>
+
+        <article class="proj">
+          <div class="proj-shot"><img src="assets/project-pathwise.png" alt="PathWise student mentorship website homepage with career journey map"></div>
+          <div class="proj-copy">
+            <div class="proj-tag">Live Website · GitHub</div>
+            <h3>Student Mentorship — PathWise</h3>
+            <p>A responsive career-guidance platform for Indian students, built from scratch — free stream, entrance-exam and college guidance with an accessible, step-by-step journey map.</p>
+            <div class="proj-stack"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+            <a class="proj-link" href="#contact">Ask for the live link →</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="wrap">
+      <div class="eyebrow">Experience</div>
+      <h2 class="section-title">Where I've worked</h2>
+      <p class="section-sub">Internships that took me from spreadsheets to shipped dashboards and live web apps.</p>
+
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-date">Feb 2026 — Mar 2026</div>
+          <h3>Data Analysis Intern</h3>
+          <div class="org">Completion Certificate</div>
+          <p>Analyzed datasets using Power BI and Excel to build interactive dashboards, evaluate performance trends and generate actionable business insights.</p>
+          <span class="badge">Completed with certificate</span>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">Aug 2025</div>
+          <h3>Web Development Intern</h3>
+          <div class="org">Oasis Infobyte — Offer Letter</div>
+          <p>Assisted in developing responsive web applications, improved UI/UX and collaborated with the development team.</p>
+          <span class="badge">Offer letter received</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATES -->
+  <section id="certificates" class="light">
+    <div class="wrap">
+      <div class="eyebrow" style="color:var(--indigo)">Certificates</div>
+      <h2 class="section-title">Courses &amp; certifications</h2>
+      <p class="section-sub">Structured learning alongside project work, spanning data fundamentals, visualization and simulated industry experience.</p>
+
+      <div class="cert-grid">
+        <div class="cert-card"><div class="ci">IBM</div><h4>AI Fundamentals</h4></div>
+        <div class="cert-card"><div class="ci">IBM</div><h4>Data Fundamentals</h4></div>
+        <div class="cert-card"><div class="ci">TATA · FORAGE</div><h4>Data Visualization Job Simulation</h4></div>
+        <div class="cert-card"><div class="ci">DELOITTE · FORAGE</div><h4>Data Analytics Virtual Experience</h4></div>
+        <div class="cert-card"><div class="ci">SAP</div><h4>Data Analytics</h4></div>
+        <div class="cert-card"><div class="ci">ICAT</div><h4>ICAT Certificate</h4></div>
+        <div class="cert-card"><div class="ci">HACKATHON</div><h4>Convolve 4.0</h4></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESUME -->
+  <section id="resume">
+    <div class="wrap">
+      <div class="resume-card">
+        <div class="resume-copy">
+          <h2>Want the full picture?</h2>
+          <p>Grab a copy of my résumé for the complete rundown of my education, projects, internships and certifications.</p>
+        </div>
+        <a href="Vinayaka_Resume.pdf" download class="btn btn-primary">Download Résumé (PDF) ↓</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="light">
+    <div class="wrap">
+      <div class="contact-grid">
+        <div>
+          <div class="eyebrow" style="color:var(--indigo)">Contact</div>
+          <h2 class="section-title">Let's talk data</h2>
+          <p class="section-sub" style="margin-bottom:0;">Open to data analyst roles, internships and freelance dashboard work. The fastest way to reach me is email or phone.</p>
+        </div>
+        <div>
+          <ul class="contact-list">
+            <li><span>Email</span><a href="mailto:pullayyagarivinayaka@gmail.com">pullayyagarivinayaka@gmail.com</a></li>
+            <li><span>Phone</span><a href="tel:+919849368027">+91 98493 68027</a></li>
+            <li><span>Location</span><span class="val">Hyderabad, India</span></li>
+          </ul>
+          <div class="social-row">
+            <a href="#" title="Add your LinkedIn URL here">LinkedIn</a>
+            <a href="#" title="Add your GitHub URL here">GitHub</a>
+          </div>
+        </div>
+      </div>
+      <footer>
+        <span>© 2026 Pullayyagari Vinayaka. Built with intent.</span>
+        <span>Hyderabad, India</span>
+      </footer>
+    </div>
+  </section>
+</main>
+
+<script>
+  // Animated count-up for KPI numbers
+  const counters = document.querySelectorAll('.kpi .n[data-count]');
+  const animateCount = (el) => {
+    const target = parseInt(el.getAttribute('data-count'), 10);
+    const duration = 1400;
+    const start = performance.now();
+    const step = (now) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.floor(eased * target).toLocaleString('en-IN');
+      if (progress < 1) requestAnimationFrame(step);
+      else el.textContent = target.toLocaleString('en-IN');
+    };
+    requestAnimationFrame(step);
+  };
+  const kpiObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCount(entry.target);
+        kpiObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.4 });
+  counters.forEach(c => kpiObserver.observe(c));
+
+  // Simple fade-up reveal for sections
+  const revealTargets = document.querySelectorAll('.skill-card, .proj, .cert-card, .tl-item');
+  revealTargets.forEach(el => { el.style.opacity = 0; el.style.transform = 'translateY(16px)'; el.style.transition = 'opacity .6s ease, transform .6s ease'; });
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = 1;
+        entry.target.style.transform = 'translateY(0)';
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealTargets.forEach(el => revealObserver.observe(el));
+</script>
+</body>
+</html>
