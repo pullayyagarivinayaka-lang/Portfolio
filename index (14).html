@@ -1,0 +1,1415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LifeGuide — Your Complete Life Companion</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green: #1a7a4a;
+  --green-light: #e8f5ee;
+  --green-mid: #2ea866;
+  --gold: #c8922a;
+  --gold-light: #fdf3e3;
+  --rose: #c0445a;
+  --rose-light: #fdf0f2;
+  --sky: #1e6fa8;
+  --sky-light: #e8f4fd;
+  --purple: #6b3fa0;
+  --purple-light: #f3eeff;
+  --bg: #fafaf7;
+  --card: #ffffff;
+  --text: #1a1a1a;
+  --muted: #5a6270;
+  --border: #e4e7ec;
+  --radius: 14px;
+  --shadow: 0 2px 12px rgba(0,0,0,0.07);
+  --shadow-lg: 0 8px 40px rgba(0,0,0,0.11);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.65;font-size:16px}
+h1,h2,h3,h4{font-family:'Playfair Display',serif}
+a{text-decoration:none;color:inherit}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:200;background:rgba(250,250,247,0.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:1280px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:66px}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.5rem;color:var(--green);display:flex;align-items:center;gap:8px}
+.logo span{color:var(--gold)}
+.nav-links{display:flex;gap:1.2rem;list-style:none;flex-wrap:wrap}
+.nav-links a{font-size:0.82rem;font-weight:600;color:var(--muted);padding:4px 10px;border-radius:6px;transition:all 0.2s}
+.nav-links a:hover{background:var(--green-light);color:var(--green)}
+.nav-signup{background:var(--green);color:#fff;border:none;border-radius:8px;padding:9px 20px;font-size:0.85rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif}
+.nav-signup:hover{background:#155c38}
+.mobile-menu-btn{display:none;background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--text)}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#0e4d2c 0%,#1a7a4a 50%,#2ea866 100%);color:#fff;padding:5rem 2rem 6rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+.hero-inner{max-width:800px;margin:0 auto;position:relative}
+.hero-badge{display:inline-block;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);border-radius:100px;padding:6px 18px;font-size:0.8rem;font-weight:600;letter-spacing:0.05em;margin-bottom:1.5rem}
+.hero h1{font-size:clamp(2.2rem,6vw,4rem);font-weight:900;line-height:1.15;margin-bottom:1.25rem}
+.hero h1 em{color:#7ee8a8;font-style:normal}
+.hero p{font-size:1.15rem;opacity:0.88;max-width:580px;margin:0 auto 2.5rem;line-height:1.75}
+.hero-buttons{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn-hero{padding:14px 32px;border-radius:10px;font-size:1rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;border:none;transition:all 0.2s}
+.btn-hero-main{background:#fff;color:var(--green)}
+.btn-hero-main:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.2)}
+.btn-hero-out{background:transparent;color:#fff;border:2px solid rgba(255,255,255,0.5)}
+.btn-hero-out:hover{background:rgba(255,255,255,0.1)}
+.hero-stats{display:flex;gap:3rem;justify-content:center;margin-top:3.5rem;flex-wrap:wrap}
+.stat{text-align:center}
+.stat-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900}
+.stat-label{font-size:0.8rem;opacity:0.75;margin-top:2px}
+
+/* SECTION COMMON */
+.section{padding:5rem 2rem}
+.section-inner{max-width:1280px;margin:0 auto}
+.section-label{font-family:'DM Mono',monospace;font-size:0.75rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.75rem}
+.section-title{font-size:clamp(1.7rem,4vw,2.5rem);margin-bottom:1rem;line-height:1.2}
+.section-sub{color:var(--muted);font-size:1.05rem;max-width:600px;line-height:1.7;margin-bottom:3rem}
+
+/* TOPIC GRID */
+.topics-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem}
+.topic-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.75rem;cursor:pointer;transition:all 0.22s;position:relative;overflow:hidden}
+.topic-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;border-radius:var(--radius) var(--radius) 0 0}
+.topic-card.green::before{background:var(--green)}
+.topic-card.gold::before{background:var(--gold)}
+.topic-card.rose::before{background:var(--rose)}
+.topic-card.sky::before{background:var(--sky)}
+.topic-card.purple::before{background:var(--purple)}
+.topic-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.topic-icon{font-size:2.2rem;margin-bottom:0.9rem}
+.topic-card h3{font-size:1.15rem;margin-bottom:0.5rem}
+.topic-card p{font-size:0.875rem;color:var(--muted);line-height:1.6}
+.topic-tag{display:inline-block;font-size:0.7rem;font-weight:600;padding:3px 10px;border-radius:100px;margin-top:1rem}
+.tag-green{background:var(--green-light);color:var(--green)}
+.tag-gold{background:var(--gold-light);color:var(--gold)}
+.tag-rose{background:var(--rose-light);color:var(--rose)}
+.tag-sky{background:var(--sky-light);color:var(--sky)}
+.tag-purple{background:var(--purple-light);color:var(--purple)}
+
+/* CONTENT SECTIONS */
+.content-section{padding:5rem 2rem;border-top:1px solid var(--border)}
+.content-inner{max-width:1280px;margin:0 auto}
+.content-header{display:flex;align-items:flex-start;gap:1.5rem;margin-bottom:3rem;flex-wrap:wrap}
+.content-icon-box{width:64px;height:64px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.75rem;flex-shrink:0}
+.box-green{background:var(--green-light)}
+.box-gold{background:var(--gold-light)}
+.box-rose{background:var(--rose-light)}
+.box-sky{background:var(--sky-light)}
+.box-purple{background:var(--purple-light)}
+.content-header-text h2{font-size:1.9rem;margin-bottom:0.4rem}
+.content-header-text p{color:var(--muted);font-size:1rem;max-width:550px}
+
+/* GUIDE CARDS */
+.guide-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.25rem}
+.guide-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;transition:box-shadow 0.2s}
+.guide-card:hover{box-shadow:var(--shadow)}
+.guide-card h4{font-family:'DM Sans',sans-serif;font-weight:600;font-size:1rem;margin-bottom:0.6rem;display:flex;align-items:center;gap:8px}
+.guide-card ul{list-style:none;padding:0}
+.guide-card ul li{font-size:0.875rem;color:var(--muted);padding:5px 0;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:8px;line-height:1.5}
+.guide-card ul li:last-child{border-bottom:none}
+.guide-card ul li::before{content:'→';color:var(--green);flex-shrink:0;margin-top:1px}
+
+/* STEP TIMELINE */
+.timeline{position:relative;padding-left:2rem}
+.timeline::before{content:'';position:absolute;left:12px;top:0;bottom:0;width:2px;background:var(--border)}
+.step{position:relative;margin-bottom:2rem;padding-left:1.5rem}
+.step::before{content:'';position:absolute;left:-1.9rem;top:6px;width:12px;height:12px;border-radius:50%;background:var(--green);border:3px solid var(--bg)}
+.step h4{font-family:'DM Sans',sans-serif;font-weight:600;font-size:0.95rem;margin-bottom:0.3rem}
+.step p{font-size:0.875rem;color:var(--muted)}
+
+/* TABLE */
+.data-table{width:100%;border-collapse:collapse;font-size:0.875rem}
+.data-table th{background:var(--green-light);color:var(--green);font-weight:600;padding:10px 14px;text-align:left;border-bottom:2px solid var(--green)}
+.data-table td{padding:10px 14px;border-bottom:1px solid var(--border)}
+.data-table tr:hover td{background:#fafff7}
+
+/* ACCORDION */
+.accordion{border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:0.75rem}
+.accordion-header{padding:1rem 1.5rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:0.95rem;background:var(--card);user-select:none}
+.accordion-header:hover{background:#f8faf8}
+.accordion-arrow{transition:transform 0.2s;font-size:0.85rem}
+.accordion.open .accordion-arrow{transform:rotate(180deg)}
+.accordion-body{display:none;padding:1rem 1.5rem 1.5rem;background:var(--card);border-top:1px solid var(--border);font-size:0.875rem;color:var(--muted);line-height:1.75}
+.accordion.open .accordion-body{display:block}
+
+/* RECIPE CARDS */
+.recipe-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.25rem}
+.recipe-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:transform 0.2s,box-shadow 0.2s}
+.recipe-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.recipe-img{height:140px;display:flex;align-items:center;justify-content:center;font-size:3.5rem}
+.recipe-body{padding:1.25rem}
+.recipe-body h4{font-family:'DM Sans',sans-serif;font-weight:600;font-size:0.95rem;margin-bottom:0.3rem}
+.recipe-body p{font-size:0.8rem;color:var(--muted)}
+.recipe-meta{display:flex;gap:0.75rem;margin-top:0.75rem;flex-wrap:wrap}
+.recipe-tag{background:var(--gold-light);color:var(--gold);font-size:0.7rem;font-weight:600;padding:3px 9px;border-radius:100px}
+
+/* SCHEDULE TABLE */
+.schedule{display:grid;gap:0.6rem}
+.schedule-row{display:flex;gap:1rem;align-items:flex-start;padding:0.85rem 1.1rem;background:var(--card);border:1px solid var(--border);border-radius:10px}
+.schedule-time{font-family:'DM Mono',monospace;font-size:0.75rem;font-weight:500;color:var(--green);min-width:75px;padding-top:2px}
+.schedule-content{flex:1}
+.schedule-content strong{font-size:0.875rem;display:block;margin-bottom:2px}
+.schedule-content span{font-size:0.8rem;color:var(--muted)}
+
+/* BEAUTY TIPS */
+.tips-tabs{display:flex;gap:0.5rem;margin-bottom:2rem;flex-wrap:wrap}
+.tab-btn{padding:8px 20px;border-radius:100px;border:1.5px solid var(--border);background:var(--card);font-size:0.85rem;font-weight:600;cursor:pointer;transition:all 0.2s;font-family:'DM Sans',sans-serif;color:var(--muted)}
+.tab-btn.active{background:var(--rose);border-color:var(--rose);color:#fff}
+.tab-content{display:none}
+.tab-content.active{display:block}
+
+/* JOB SECTION */
+.job-tabs{display:flex;gap:0.5rem;margin-bottom:2rem;flex-wrap:wrap}
+.job-tab{padding:8px 20px;border-radius:100px;border:1.5px solid var(--border);background:var(--card);font-size:0.85rem;font-weight:600;cursor:pointer;transition:all 0.2s;font-family:'DM Sans',sans-serif;color:var(--muted)}
+.job-tab.active{background:var(--sky);border-color:var(--sky);color:#fff}
+.job-panel{display:none}
+.job-panel.active{display:block}
+
+/* CALLOUT */
+.callout{border-radius:var(--radius);padding:1.5rem 1.75rem;margin:2rem 0;display:flex;gap:1rem;align-items:flex-start}
+.callout-green{background:var(--green-light);border-left:4px solid var(--green)}
+.callout-gold{background:var(--gold-light);border-left:4px solid var(--gold)}
+.callout-rose{background:var(--rose-light);border-left:4px solid var(--rose)}
+.callout-sky{background:var(--sky-light);border-left:4px solid var(--sky)}
+.callout-icon{font-size:1.3rem;flex-shrink:0;margin-top:2px}
+.callout-text h4{font-family:'DM Sans',sans-serif;font-weight:600;margin-bottom:0.3rem}
+.callout-text p{font-size:0.875rem;color:var(--muted);line-height:1.7}
+
+/* CTA SECTION */
+.cta-section{background:linear-gradient(135deg,#1a7a4a,#0e4d2c);color:#fff;padding:5rem 2rem;text-align:center}
+.cta-section h2{font-size:2.2rem;margin-bottom:1rem}
+.cta-section p{opacity:0.85;font-size:1.05rem;margin-bottom:2rem}
+.cta-form{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;max-width:500px;margin:0 auto}
+.cta-input{flex:1;min-width:220px;padding:12px 18px;border-radius:10px;border:none;font-size:1rem;font-family:'DM Sans',sans-serif;outline:none}
+.cta-btn{background:var(--gold);color:#fff;border:none;border-radius:10px;padding:12px 28px;font-size:1rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif}
+.cta-btn:hover{background:#b07820}
+
+/* FOOTER */
+footer{background:#0e1a0f;color:#c8d4c9;padding:4rem 2rem 2rem}
+.footer-inner{max-width:1280px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+.footer-brand .logo{color:#7ee8a8;margin-bottom:0.75rem}
+.footer-brand p{font-size:0.875rem;line-height:1.7;opacity:0.7}
+.footer-col h4{font-family:'DM Sans',sans-serif;font-weight:600;color:#fff;margin-bottom:1rem;font-size:0.9rem}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:0.5rem}
+.footer-col ul li a{font-size:0.85rem;opacity:0.65;transition:opacity 0.2s}
+.footer-col ul li a:hover{opacity:1}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.1);padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:gap;font-size:0.8rem;opacity:0.55;flex-wrap:wrap;gap:0.5rem}
+
+/* PROFIT BANNER */
+.profit-bar{background:#0e4d2c;color:#7ee8a8;text-align:center;padding:10px;font-size:0.8rem;font-weight:600;letter-spacing:0.03em}
+.profit-bar a{color:#c8f2d8;text-decoration:underline}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .hero h1{font-size:2rem}
+}
+@media(max-width:680px){
+  .nav-links{display:none}
+  .mobile-menu-btn{display:block}
+  .footer-grid{grid-template-columns:1fr}
+  .hero{padding:3rem 1.5rem 4rem}
+  .section{padding:3.5rem 1.5rem}
+  .hero-stats{gap:1.5rem}
+}
+
+/* HIGHLIGHT PILL */
+.pill{display:inline-block;padding:3px 12px;border-radius:100px;font-size:0.72rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase}
+.pill-green{background:var(--green-light);color:var(--green)}
+.pill-gold{background:var(--gold-light);color:var(--gold)}
+.pill-rose{background:var(--rose-light);color:var(--rose)}
+.pill-sky{background:var(--sky-light);color:var(--sky)}
+
+/* EXERCISE GRID */
+.exercise-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem}
+.exercise-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.25rem;text-align:center}
+.exercise-card .ex-icon{font-size:2.5rem;margin-bottom:0.5rem}
+.exercise-card h4{font-family:'DM Sans',sans-serif;font-weight:600;font-size:0.9rem;margin-bottom:0.25rem}
+.exercise-card p{font-size:0.78rem;color:var(--muted)}
+.exercise-card .ex-sets{font-family:'DM Mono',monospace;font-size:0.75rem;color:var(--green);font-weight:500;margin-top:0.5rem}
+
+/* COUNTRY FLAG TABS */
+.country-tabs{display:flex;gap:0.5rem;margin-bottom:2rem;flex-wrap:wrap}
+.country-tab{padding:7px 18px;border-radius:8px;border:1.5px solid var(--border);background:var(--card);font-size:0.82rem;font-weight:600;cursor:pointer;transition:all 0.2s;font-family:'DM Sans',sans-serif;color:var(--muted)}
+.country-tab.active{background:var(--gold);border-color:var(--gold);color:#fff}
+.country-panel{display:none}
+.country-panel.active{display:block}
+
+/* SINGING/DANCING */
+.skill-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1.25rem}
+.skill-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem}
+.skill-card .sk-level{font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.5rem}
+.skill-card h4{font-family:'DM Sans',sans-serif;font-weight:600;margin-bottom:0.6rem}
+.skill-card ol{padding-left:1.25rem;font-size:0.875rem;color:var(--muted);line-height:1.75}
+
+/* CRAFT SECTION */
+.craft-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1.25rem}
+.craft-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;transition:box-shadow 0.2s}
+.craft-card:hover{box-shadow:var(--shadow)}
+.craft-emoji{font-size:2rem;margin-bottom:0.6rem}
+.craft-card h4{font-family:'DM Sans',sans-serif;font-weight:600;font-size:0.95rem;margin-bottom:0.4rem}
+.craft-card p{font-size:0.82rem;color:var(--muted);line-height:1.6}
+
+/* PERSONALITY SECTION */
+.personality-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.p-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.75rem}
+.p-card h4{font-family:'DM Sans',sans-serif;font-weight:600;margin-bottom:1rem;display:flex;align-items:center;gap:10px}
+.p-list{list-style:none}
+.p-list li{font-size:0.875rem;color:var(--muted);padding:6px 0;border-bottom:1px solid var(--border);display:flex;gap:10px;align-items:flex-start;line-height:1.5}
+.p-list li:last-child{border-bottom:none}
+.p-list li::before{content:'✓';color:var(--green);font-weight:700;flex-shrink:0}
+@media(max-width:640px){.personality-grid{grid-template-columns:1fr}}
+
+/* STICKY SIDEBAR NAV */
+.page-nav{position:fixed;left:1rem;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:6px;z-index:100}
+@media(max-width:1400px){.page-nav{display:none}}
+.page-nav-dot{width:10px;height:10px;border-radius:50%;background:var(--border);cursor:pointer;transition:all 0.2s;border:none}
+.page-nav-dot:hover,.page-nav-dot.active{background:var(--green);transform:scale(1.3)}
+.page-nav-dot::after{content:attr(data-label);position:absolute;left:18px;font-size:0.72rem;font-weight:600;color:var(--text);white-space:nowrap;opacity:0;pointer-events:none;transition:opacity 0.2s;background:var(--card);padding:2px 8px;border-radius:4px;border:1px solid var(--border)}
+.page-nav-dot:hover::after{opacity:1}
+</style>
+</head>
+<body>
+
+<!-- PROFIT BANNER -->
+<div class="profit-bar">
+  🌱 Free to explore · Premium membership unlocks AI-powered plans, ad-free experience & expert sessions → <a href="#signup">Get started free</a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">Life<span>Guide</span></a>
+    <ul class="nav-links">
+      <li><a href="#agriculture">🌾 Farming</a></li>
+      <li><a href="#careers">💼 Careers</a></li>
+      <li><a href="#arts">🎵 Arts</a></li>
+      <li><a href="#cooking">🍳 Cooking</a></li>
+      <li><a href="#fitness">💪 Fitness</a></li>
+      <li><a href="#beauty">✨ Beauty</a></li>
+      <li><a href="#crafts">🎨 Crafts</a></li>
+      <li><a href="#daily">📅 Daily</a></li>
+    </ul>
+    <button class="nav-signup" id="signup">Join Free</button>
+    <button class="mobile-menu-btn">☰</button>
+  </div>
+</nav>
+
+<!-- PAGE NAV DOTS -->
+<div class="page-nav" id="pageNav">
+  <button class="page-nav-dot" data-target="hero" data-label="Home" onclick="scrollTo('hero')"></button>
+  <button class="page-nav-dot" data-target="agriculture" data-label="Agriculture" onclick="scrollTo('agriculture')"></button>
+  <button class="page-nav-dot" data-target="careers" data-label="Careers" onclick="scrollTo('careers')"></button>
+  <button class="page-nav-dot" data-target="arts" data-label="Arts" onclick="scrollTo('arts')"></button>
+  <button class="page-nav-dot" data-target="cooking" data-label="Cooking" onclick="scrollTo('cooking')"></button>
+  <button class="page-nav-dot" data-target="fitness" data-label="Fitness" onclick="scrollTo('fitness')"></button>
+  <button class="page-nav-dot" data-target="beauty" data-label="Beauty" onclick="scrollTo('beauty')"></button>
+  <button class="page-nav-dot" data-target="crafts" data-label="Crafts" onclick="scrollTo('crafts')"></button>
+  <button class="page-nav-dot" data-target="daily" data-label="Daily Routine" onclick="scrollTo('daily')"></button>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">🌍 Your Complete Life Companion — 10 World-Changing Categories</div>
+    <h1>Everything You Need to<br><em>Live Your Best Life</em></h1>
+    <p>From the farm to the boardroom, from the kitchen to the stage — LifeGuide is your single source of expert knowledge for a truly fulfilling life.</p>
+    <div class="hero-buttons">
+      <button class="btn-hero btn-hero-main" onclick="document.getElementById('topics').scrollIntoView({behavior:'smooth'})">Explore All Topics ↓</button>
+      <button class="btn-hero btn-hero-out" onclick="document.getElementById('signup').click()">Get Free Premium Trial</button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">10+</div><div class="stat-label">Life Categories</div></div>
+      <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Guides & Tips</div></div>
+      <div class="stat"><div class="stat-num">100+</div><div class="stat-label">Country Recipes</div></div>
+      <div class="stat"><div class="stat-num">Free</div><div class="stat-label">To Get Started</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TOPICS OVERVIEW -->
+<section class="section" id="topics">
+  <div class="section-inner">
+    <div class="section-label" style="color:var(--green)">What's Inside</div>
+    <h2 class="section-title">Everything, All in One Place</h2>
+    <p class="section-sub">Tap any topic to jump straight to comprehensive guidance — built for real life, real results.</p>
+    <div class="topics-grid">
+      <div class="topic-card green" onclick="document.getElementById('agriculture').scrollIntoView({behavior:'smooth'})">
+        <div class="topic-icon">🌾</div>
+        <h3>Agriculture & Farming</h3>
+        <p>From soil preparation to harvest, organic farming, crop cycles, livestock care & modern agri-tech.</p>
+        <span class="topic-tag tag-green">Field to Table</span>
+      </div>
+      <div class="topic-card sky" onclick="document.getElementById('careers').scrollIntoView({behavior:'smooth'})">
+        <div class="topic-icon">💼</div>
+        <h3>IT & Non-IT Careers</h3>
+        <p>Job roles, skill roadmaps, resume tips, interview prep, salary insights for all career paths.</p>
+        <span class="topic-tag tag-sky">Career Ready</span>
+      </div>
+      <div class="topic-card purple" onclick="document.getElementById('arts').scrollIntoView({behavior:'smooth'})">
+        <div class="topic-icon">🎵</div>
+        <h3>Singing & Dancing</h3>
+        <p>Vocal warm-ups, breath control, dance styles, choreography tips for all levels from beginner to pro.</p>
+        <span class="topic-tag tag-purple">Beginner to Pro</span>
+      </div>
+      <div class="topic-card gold" onclick="document.getElementById('cooking').scrollIntoView({behavior:'smooth'})">
+        <div class="topic-icon">🍳</div>
+        <h3>World Cooking & Recipes</h3>
+        <p>Authentic dishes from India, Italy, Japan, Mexico, USA, Middle East & more — with full instructions.</p>
+        <span class="topic-tag tag-gold">100+ Dishes</span>
+      </div>
+      <div class="topic-card green" onclick="document.getElementById('fitness').scrollIntoView({behavior:'smooth'})">
+        <div class="topic-icon">💪</div>
+        <h3>Gym & Fitness</h3>
+        <p>Workout plans, exercise guides, muscle groups, cardio, flexibility & home workout alternatives.</p>
+        <span class="topic-tag tag-green">All Levels</span>
+      </div>
+      <div class="topic-card rose" onclick="document.getElementById('beauty').scrollIntoView({behavior:'smooth'})">
+        <div class="topic-icon">✨</div>
+        <h3>Beauty — Hair, Skin & Body</h3>
+        <p>Science-backed routines for men and women. Natural remedies, product guidance, & lifestyle tips.</p>
+        <span class="topic-tag tag-rose">Men & Women</span>
+      </div>
+      <div class="topic-card purple" onclick="document.getElementById('crafts').scrollIntoView({behavior:'smooth'})">
+        <div class="topic-icon">🎨</div>
+        <h3>Crafts & Future Skills</h3>
+        <p>DIY crafts, sustainable making, tech skills, and creative projects with real-world applications.</p>
+        <span class="topic-tag tag-purple">Future Proof</span>
+      </div>
+      <div class="topic-card sky" onclick="document.getElementById('daily').scrollIntoView({behavior:'smooth'})">
+        <div class="topic-icon">📅</div>
+        <h3>Daily Routine & Wellness</h3>
+        <p>Morning to night schedules, nutrition, sleep, mindset, healthy habits for peak performance.</p>
+        <span class="topic-tag tag-sky">Daily Plan</span>
+      </div>
+      <div class="topic-card gold" onclick="document.getElementById('personality').scrollIntoView({behavior:'smooth'})">
+        <div class="topic-icon">🌟</div>
+        <h3>Personality Development</h3>
+        <p>Communication, confidence, etiquette, grooming, social skills — build a magnetic personality.</p>
+        <span class="topic-tag tag-gold">Life Skill</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== AGRICULTURE ===== -->
+<section class="content-section" id="agriculture">
+  <div class="content-inner">
+    <div class="content-header">
+      <div class="content-icon-box box-green">🌾</div>
+      <div class="content-header-text">
+        <h2>Agriculture — From Field to Harvest</h2>
+        <p>Complete farming guide covering soil, seeds, cultivation, irrigation, pest control, modern techniques and post-harvest management.</p>
+      </div>
+    </div>
+
+    <div class="callout callout-green">
+      <span class="callout-icon">💡</span>
+      <div class="callout-text">
+        <h4>Why Agriculture Matters</h4>
+        <p>Agriculture employs over 50% of India's workforce and feeds billions globally. Understanding modern farming techniques can dramatically increase yield while reducing costs and environmental impact.</p>
+      </div>
+    </div>
+
+    <h3 style="margin-bottom:1.25rem;font-size:1.3rem">Complete Farming Timeline</h3>
+    <div class="timeline" style="margin-bottom:3rem">
+      <div class="step">
+        <h4>1. Land Preparation & Soil Testing</h4>
+        <p>Test soil pH (ideal: 6.0–7.5), check nutrients (N, P, K), remove weeds, till to 6–8 inches depth. Add organic compost or vermicompost. Deep ploughing before Kharif season.</p>
+      </div>
+      <div class="step">
+        <h4>2. Seed Selection & Treatment</h4>
+        <p>Choose certified, disease-resistant varieties suited to your region. Treat seeds with Trichoderma or Pseudomonas for 24 hrs before sowing. Use hybrid seeds for higher yield.</p>
+      </div>
+      <div class="step">
+        <h4>3. Sowing & Transplanting</h4>
+        <p>Follow correct spacing (rice: 20×15 cm, maize: 60×25 cm). Maintain proper depth (2–3× seed diameter). Ensure soil moisture at time of sowing. Use dibbling method for large seeds.</p>
+      </div>
+      <div class="step">
+        <h4>4. Irrigation Management</h4>
+        <p>Drip irrigation saves 40–60% water. Sprinkler ideal for vegetables. Flood irrigation for paddy. Critical irrigation stages: germination, flowering, grain filling.</p>
+      </div>
+      <div class="step">
+        <h4>5. Fertilizer & Nutrient Management</h4>
+        <p>Apply NPK as per soil test. Urea at tillering & heading stage. Use foliar spray of micronutrients. Organic: green manure, FYM (15–20 tons/ha), bio-fertilizers.</p>
+      </div>
+      <div class="step">
+        <h4>6. Pest & Disease Control</h4>
+        <p>IPM approach: neem-based pesticides, pheromone traps, yellow sticky traps. Chemical: last resort. Spray Chlorpyrifos for stem borers, Mancozeb for fungal diseases.</p>
+      </div>
+      <div class="step">
+        <h4>7. Harvesting & Post-Harvest</h4>
+        <p>Harvest at physiological maturity. Minimize field losses (target &lt;3%). Use proper threshing, drying to 14% moisture. Store in warehouses with fumigation to prevent grain losses.</p>
+      </div>
+    </div>
+
+    <h3 style="margin-bottom:1.25rem;font-size:1.3rem">Key Crops — Season & Care Guide</h3>
+    <div style="overflow-x:auto;margin-bottom:2.5rem">
+      <table class="data-table">
+        <tr><th>Crop</th><th>Season</th><th>Sowing Time</th><th>Water Need</th><th>Avg Yield/Acre</th><th>Key Tips</th></tr>
+        <tr><td>🌾 Paddy (Rice)</td><td>Kharif</td><td>June–July</td><td>High</td><td>25–30 qtl</td><td>SRI method increases yield 20–30%</td></tr>
+        <tr><td>🌽 Maize</td><td>Kharif/Rabi</td><td>June/Nov</td><td>Medium</td><td>20–30 qtl</td><td>Needs well-drained soil</td></tr>
+        <tr><td>🌿 Cotton</td><td>Kharif</td><td>May–June</td><td>Medium</td><td>8–12 qtl</td><td>Bt cotton for pest resistance</td></tr>
+        <tr><td>🟡 Sunflower</td><td>Kharif/Rabi</td><td>Sep–Oct</td><td>Low–Medium</td><td>6–8 qtl</td><td>Good rotation crop</td></tr>
+        <tr><td>🍅 Tomato</td><td>Year-round</td><td>Oct–Nov (best)</td><td>Medium</td><td>80–120 qtl</td><td>Stake plants; drip irrigation ideal</td></tr>
+        <tr><td>🧅 Onion</td><td>Rabi</td><td>Oct–Nov</td><td>Low–Medium</td><td>60–80 qtl</td><td>Raised beds for good drainage</td></tr>
+        <tr><td>🫘 Soybean</td><td>Kharif</td><td>June–July</td><td>Medium</td><td>10–15 qtl</td><td>Rhizobium inoculation essential</td></tr>
+        <tr><td>🥜 Groundnut</td><td>Kharif</td><td>June–July</td><td>Low–Medium</td><td>12–18 qtl</td><td>Sandy loam soil best</td></tr>
+      </table>
+    </div>
+
+    <h3 style="margin-bottom:1.25rem;font-size:1.3rem">Modern Farming Techniques</h3>
+    <div class="guide-grid">
+      <div class="guide-card">
+        <h4>🚁 Precision Agriculture</h4>
+        <ul>
+          <li>Drone spraying reduces pesticide use by 30%</li>
+          <li>Soil sensors for real-time moisture monitoring</li>
+          <li>GPS-guided tractors for accurate row spacing</li>
+          <li>Satellite imaging to identify stressed crop areas</li>
+          <li>Apps: Farmerz.in, AgroStar, DeHaat for advisory</li>
+        </ul>
+      </div>
+      <div class="guide-card">
+        <h4>🌱 Organic Farming</h4>
+        <ul>
+          <li>Use only approved organic inputs (India: NPOP standards)</li>
+          <li>Vermicomposting: 5 kg earthworms + 50 kg FYM = 25 kg vermicompost in 60 days</li>
+          <li>Cover crops (dhaincha, sunhemp) enrich soil nitrogen</li>
+          <li>Certification: APEDA organic certification opens export markets</li>
+          <li>Organic premium: 30–100% higher price than conventional</li>
+        </ul>
+      </div>
+      <div class="guide-card">
+        <h4>💧 Water Conservation</h4>
+        <ul>
+          <li>Farm ponds: store 5–7 ML water per acre for dry season</li>
+          <li>Mulching reduces evaporation by 60%</li>
+          <li>Contour bunding prevents runoff on slopes</li>
+          <li>Drip + fertigation: feed nutrients with water</li>
+          <li>Rainwater harvesting: collect 1 mm rain = 1,000 liters/1000 sq ft</li>
+        </ul>
+      </div>
+      <div class="guide-card">
+        <h4>🐄 Integrated Farming</h4>
+        <ul>
+          <li>Combine crops + poultry + fish for multiple income streams</li>
+          <li>Poultry waste → biogas → electricity + manure for crops</li>
+          <li>Duck-rice farming: ducks eat pests, fertilize paddies</li>
+          <li>Vermicompost from kitchen waste + crop residue</li>
+          <li>Azolla: dual-purpose feed + bio-fertilizer for paddy</li>
+        </ul>
+      </div>
+      <div class="guide-card">
+        <h4>📱 Agri-Tech Tools</h4>
+        <ul>
+          <li>PM Kisan portal: track subsidy & scheme payments</li>
+          <li>eNAM: online mandi platform for fair pricing</li>
+          <li>Kisan Call Centre: free advisory at 1800-180-1551</li>
+          <li>mKisan SMS advisory: weather, pest alerts</li>
+          <li>IFFCO Kisan app: soil, crop, market data</li>
+        </ul>
+      </div>
+      <div class="guide-card">
+        <h4>🏪 Marketing & Income</h4>
+        <ul>
+          <li>FPO (Farmer Producer Org): collective bargaining for better prices</li>
+          <li>Direct-to-consumer: farmers markets, WhatsApp groups</li>
+          <li>Agri-tourism: invite city visitors for farm experiences</li>
+          <li>Value addition: drying, packaging, branding adds 50–200% margin</li>
+          <li>Export: register with APEDA, target spices, rice, fruits</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CAREERS ===== -->
+<section class="content-section" id="careers">
+  <div class="content-inner">
+    <div class="content-header">
+      <div class="content-icon-box box-sky">💼</div>
+      <div class="content-header-text">
+        <h2>IT & Non-IT Career Preparation</h2>
+        <p>Complete roadmaps for software, engineering, healthcare, government, banking, and creative careers — with skill guides and interview prep.</p>
+      </div>
+    </div>
+
+    <div class="job-tabs">
+      <button class="job-tab active" onclick="showJobTab('it')">💻 IT & Software</button>
+      <button class="job-tab" onclick="showJobTab('engineering')">⚙️ Engineering</button>
+      <button class="job-tab" onclick="showJobTab('health')">🏥 Healthcare</button>
+      <button class="job-tab" onclick="showJobTab('govt')">🏛️ Government</button>
+      <button class="job-tab" onclick="showJobTab('banking')">🏦 Banking & Finance</button>
+      <button class="job-tab" onclick="showJobTab('creative')">🎨 Creative</button>
+    </div>
+
+    <div class="job-panel active" id="job-it">
+      <div class="guide-grid">
+        <div class="guide-card">
+          <h4>💻 Software Developer</h4>
+          <ul>
+            <li>Learn: Python/JavaScript as first language (3–6 months)</li>
+            <li>Master DSA (Data Structures & Algorithms) — LeetCode 300+ problems</li>
+            <li>Build 3–5 projects on GitHub with documentation</li>
+            <li>Learn Git, REST APIs, SQL databases fundamentals</li>
+            <li>Entry salary: ₹4–8 LPA | Senior: ₹15–35 LPA</li>
+          </ul>
+        </div>
+        <div class="guide-card">
+          <h4>🤖 AI/ML Engineer</h4>
+          <ul>
+            <li>Prerequisites: Python, Math (Linear Algebra, Statistics), NumPy/Pandas</li>
+            <li>Learn: Scikit-learn → TensorFlow/PyTorch</li>
+            <li>Kaggle competitions for portfolio building</li>
+            <li>Specializations: NLP, Computer Vision, Reinforcement Learning</li>
+            <li>Salary: ₹8–25 LPA | Hot field in 2024–2030</li>
+          </ul>
+        </div>
+        <div class="guide-card">
+          <h4>🔐 Cybersecurity Analyst</h4>
+          <ul>
+            <li>Certifications: CEH, CompTIA Security+, OSCP for advanced</li>
+            <li>Learn: Networking, Linux, Python scripting, Ethical hacking</li>
+            <li>Practice: HackTheBox, TryHackMe platforms</li>
+            <li>Build: Home lab with VMs, practice CTF challenges</li>
+            <li>Salary: ₹5–20 LPA | Massive demand globally</li>
+          </ul>
+        </div>
+        <div class="guide-card">
+          <h4>☁️ Cloud & DevOps</h4>
+          <ul>
+            <li>Certifications: AWS Solutions Architect, GCP, Azure Fundamentals</li>
+            <li>Learn: Docker, Kubernetes, CI/CD pipelines, Terraform</li>
+            <li>Hands-on: Build & deploy apps on AWS Free Tier</li>
+            <li>DevOps loop: Plan → Code → Build → Test → Deploy → Monitor</li>
+            <li>Salary: ₹8–30 LPA | Remote-friendly roles</li>
+          </ul>
+        </div>
+        <div class="guide-card">
+          <h4>📊 Data Analyst</h4>
+          <ul>
+            <li>Tools: Excel → SQL → Python → Tableau/Power BI</li>
+            <li>Certifications: Google Data Analytics (Coursera), Microsoft DA-100</li>
+            <li>Portfolio: 5 real-world analysis projects with insights</li>
+            <li>Key skills: storytelling with data, business understanding</li>
+            <li>Salary: ₹4–15 LPA | Great entry into tech</li>
+          </ul>
+        </div>
+        <div class="guide-card">
+          <h4>📝 Interview Preparation</h4>
+          <ul>
+            <li>Technical: DSA, System Design, Language-specific concepts</li>
+            <li>Behavioral: STAR method (Situation, Task, Action, Result)</li>
+            <li>Resume: 1 page, ATS-friendly, quantify achievements</li>
+            <li>Platforms: LinkedIn, Naukri, AngelList for jobs</li>
+            <li>Mock interviews: Pramp, Interviewing.io, Peers</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="job-panel" id="job-engineering">
+      <div class="guide-grid">
+        <div class="guide-card"><h4>⚙️ Mechanical Engineer</h4><ul><li>Core: CAD (AutoCAD, SolidWorks), Manufacturing processes, Thermodynamics</li><li>Certifications: CATIA, ANSYS, Six Sigma (Green Belt)</li><li>Sectors: Automotive, Aerospace, HVAC, Oil & Gas</li><li>Gateway exams: GATE for PSU jobs (BHEL, ONGC, HAL)</li><li>Salary: ₹3.5–12 LPA | PSU: ₹8–15 LPA</li></ul></div>
+        <div class="guide-card"><h4>🏗️ Civil Engineer</h4><ul><li>Tools: AutoCAD, STAAD Pro, Revit BIM, PrimaveraP6</li><li>Specializations: Structural, Transportation, Geotechnical, Environmental</li><li>Government: SSC JE, State PWD, Railways (RRB JE)</li><li>Private: L&T, Tata Projects, Shapoorji Pallonji</li><li>Salary: ₹3–10 LPA | Govt JE: ₹5–8 LPA</li></ul></div>
+        <div class="guide-card"><h4>⚡ Electrical Engineer</h4><ul><li>Specializations: Power systems, Automation, Embedded systems, Renewable energy</li><li>Certifications: PLC/SCADA, Electrical PE license, ETAP</li><li>High demand: EV industry, solar, smart grid</li><li>PSU: NTPC, PGCIL, BSES — via GATE score</li><li>Salary: ₹3.5–12 LPA | Solar sector growing fast</li></ul></div>
+      </div>
+    </div>
+
+    <div class="job-panel" id="job-health">
+      <div class="guide-grid">
+        <div class="guide-card"><h4>🩺 MBBS → Doctor</h4><ul><li>Route: BiPC Inter → NEET → MBBS (5.5 yr) → MD/MS</li><li>NEET target: 650+ for government medical college</li><li>Govt MBBS fees: ₹20,000–₹80,000/year</li><li>Specializations: General Medicine, Surgery, Pediatrics, Radiology</li><li>Salary: ₹8–50 LPA depending on specialty & experience</li></ul></div>
+        <div class="guide-card"><h4>💊 Pharmacy Career</h4><ul><li>D.Pharm (2yr) or B.Pharm (4yr) or M.Pharm → PhD</li><li>Career paths: QA/QC, R&D, Medical Representative, Drug Inspector</li><li>Own medical shop license: Drug License A+B</li><li>Top companies: Dr. Reddy's, Aurobindo, Hetero, Cipla</li><li>Salary: ₹2.5–10 LPA | Own shop: highly variable</li></ul></div>
+        <div class="guide-card"><h4>🏥 Nursing & Allied Health</h4><ul><li>BSc Nursing (4yr) → Staff Nurse → Nursing Officer (AIIMS exam)</li><li>Physiotherapy: BPT (4.5yr) — excellent scope in sports, geriatrics</li><li>Medical Lab: BMLT → DMLT for diagnostic lab roles</li><li>Radiology: BSc Radiology → MRI/CT technologist</li><li>Salary: ₹2.5–8 LPA | Abroad: ₹25–60 LPA (Middle East, Canada)</li></ul></div>
+      </div>
+    </div>
+
+    <div class="job-panel" id="job-govt">
+      <div class="guide-grid">
+        <div class="guide-card"><h4>🏛️ Civil Services (UPSC)</h4><ul><li>3 stages: Prelims → Mains (9 papers) → Interview</li><li>Timeline: 1–3 years dedicated preparation</li><li>Key subjects: GS, CSAT, Optional subject of choice</li><li>Resources: NCERT (6–12), The Hindu newspaper, Vision IAS</li><li>IAS salary: ₹56,100 + DA + allowances; total ~₹1–1.5 lakh/month</li></ul></div>
+        <div class="guide-card"><h4>🚂 Railway Jobs (RRB)</h4><ul><li>RRB NTPC: 10th/12th pass → Clerk, ASM, Goods Guard</li><li>RRB JE: Diploma/B.Tech → Junior Engineer</li><li>RRB Group D: 10th pass → Helper, Trackman</li><li>Selection: CBT 1 → CBT 2 → Skill Test/Medical</li><li>Salary: ₹18,000–₹56,900/month + free railway pass</li></ul></div>
+        <div class="guide-card"><h4>👮 Police & Defense</h4><ul><li>Indian Army: 10th+2 → NDA (Officer) or Soldier GD</li><li>State Police: 10th/12th → Written → Physical → Medical</li><li>CRPF/BSF/CISF: Central armed police forces</li><li>Physical standards: Height, weight, chest, running time vary by force</li><li>Salary: ₹21,700–₹69,100 + housing + medical benefits</li></ul></div>
+        <div class="guide-card"><h4>🏦 SSC Exams</h4><ul><li>SSC CGL: Graduation → Inspector, Auditor, Tax Assistant</li><li>SSC CHSL: 12th pass → LDC, DEO, PA/SA</li><li>SSC MTS: 10th pass → Multi-Tasking Staff</li><li>Preparation: Quantitative Aptitude, English, Reasoning, GK</li><li>Books: R.S. Aggarwal, Lucent GK, Previous year papers</li></ul></div>
+      </div>
+    </div>
+
+    <div class="job-panel" id="job-banking">
+      <div class="guide-grid">
+        <div class="guide-card"><h4>🏦 Banking (IBPS/SBI)</h4><ul><li>IBPS PO/Clerk: Graduation → Prelims → Mains → Interview</li><li>SBI PO: Premier banking job, high competition</li><li>Subjects: Reasoning, Quant, English, GK, Computer</li><li>Study plan: 6–12 months, 6–8 hrs/day</li><li>Salary: PO ₹23,700–₹42,000/month + perks</li></ul></div>
+        <div class="guide-card"><h4>📈 Chartered Accountant</h4><ul><li>Route: 12th → CA Foundation → CA Inter → CA Final</li><li>Total duration: 4.5–5 years minimum</li><li>Articleship: 3 years mandatory practical training under a CA</li><li>Pass rate: ~10–15% — needs serious dedication</li><li>Salary: ₹8–25 LPA fresh; Big 4 firms pay premium</li></ul></div>
+        <div class="guide-card"><h4>💰 Stock Market & Finance</h4><ul><li>Certifications: NISM Series VIII, CFA Level 1, FRM</li><li>Roles: Equity Analyst, Wealth Manager, Trader, Risk Manager</li><li>Platforms: Zerodha, Groww, Upstox for learning while trading</li><li>Key skills: Financial modeling, Excel, Python for quant roles</li><li>Salary: ₹5–40 LPA | Trading: unlimited potential</li></ul></div>
+      </div>
+    </div>
+
+    <div class="job-panel" id="job-creative">
+      <div class="guide-grid">
+        <div class="guide-card"><h4>🎨 Graphic Designer</h4><ul><li>Tools: Adobe Photoshop, Illustrator, Figma, Canva</li><li>Build: Portfolio on Behance, Dribbble with 10+ pieces</li><li>Freelance platforms: Fiverr, Upwork, 99designs</li><li>Specializations: Logo, UI/UX, Motion graphics, Brand identity</li><li>Salary: ₹2.5–8 LPA | Freelance: ₹500–₹5,000/project</li></ul></div>
+        <div class="guide-card"><h4>📸 Photography & Videography</h4><ul><li>Camera: Start with entry-level DSLR (Canon 1500D, Nikon D3500)</li><li>Learn: Rule of thirds, exposure triangle (ISO, aperture, shutter)</li><li>Editing: Lightroom for photos, Premiere Pro/DaVinci Resolve for video</li><li>Niches: Wedding, product, portrait, real estate photography</li><li>Income: ₹15,000–₹1 lakh per wedding event</li></ul></div>
+        <div class="guide-card"><h4>✍️ Content Creator</h4><ul><li>Platforms: YouTube, Instagram, LinkedIn, Medium, newsletter</li><li>Niche down: Pick one topic and be the best resource for it</li><li>Monetization: AdSense, brand deals, courses, digital products</li><li>Consistency beats perfection: 3× week minimum for growth</li><li>Income: ₹0–unlimited; top creators earn ₹10–100 lakh/month</li></ul></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SINGING & DANCING ===== -->
+<section class="content-section" id="arts">
+  <div class="content-inner">
+    <div class="content-header">
+      <div class="content-icon-box box-purple">🎵</div>
+      <div class="content-header-text">
+        <h2>Singing & Dancing — Find Your Voice & Movement</h2>
+        <p>Structured tips for all levels. Whether you're an absolute beginner or looking to go professional, these science-backed techniques will transform your performance.</p>
+      </div>
+    </div>
+
+    <div class="tips-tabs" id="artsTabs">
+      <button class="tab-btn active" onclick="showArtsTab('singing')">🎤 Singing</button>
+      <button class="tab-btn" onclick="showArtsTab('dancing')">💃 Dancing</button>
+    </div>
+
+    <div class="tab-content active" id="art-singing">
+      <div class="callout callout-sky">
+        <span class="callout-icon">🎙️</span>
+        <div class="callout-text">
+          <h4>The Golden Rule of Singing</h4>
+          <p>Singing is 70% breath control and 30% vocal mechanics. Before trying any song, master diaphragmatic breathing. Every great singer — from A.R. Rahman to Beyoncé — trained their breath first.</p>
+        </div>
+      </div>
+      <div class="skill-cards">
+        <div class="skill-card">
+          <div class="sk-level pill pill-green">Beginner</div>
+          <h4>Foundation Training (Month 1–3)</h4>
+          <ol>
+            <li>Posture: Stand tall, shoulders relaxed, chin level. Good posture = good airflow.</li>
+            <li>Diaphragm breathing: Place hand on belly. Inhale 4 counts — belly pushes out. Exhale 8 counts — belly pulls in. Practice 10 minutes daily.</li>
+            <li>Humming: Hum "mmm" on one note, feel vibration in lips/nose. Start vocal warm-ups.</li>
+            <li>Lip trills: "brrr" sound while going up & down a scale. Relaxes vocal cords.</li>
+            <li>Match pitch: Use a piano app. Sing "Aaa" matching each note. Train for 15 min/day.</li>
+            <li>Sirens: Slide from your lowest to highest note like a siren. Builds range gradually.</li>
+          </ol>
+        </div>
+        <div class="skill-card">
+          <div class="sk-level pill pill-sky">Intermediate</div>
+          <h4>Building Your Voice (Month 3–9)</h4>
+          <ol>
+            <li>Scale exercises: Do-Re-Mi up and down 3× daily. Expand range by half-steps weekly.</li>
+            <li>Vowel shaping: Sing "Ah, Eh, Ee, Oh, Oo" on scales. Shape mouth consistently for each vowel.</li>
+            <li>Chest vs head voice: Chest voice is lower, fuller. Head voice is higher, lighter. Practice bridging (mixing) them smoothly.</li>
+            <li>Resonance: Sing into your mask (nose/cheekbones). Feel the buzz. Adds brightness and power.</li>
+            <li>Dynamics: Practice forte (loud) and piano (soft) on same note. Control is more impressive than volume.</li>
+            <li>Song interpretation: Don't just hit notes — feel the emotion. Slight volume changes and pacing create storytelling.</li>
+          </ol>
+        </div>
+        <div class="skill-card">
+          <div class="sk-level pill pill-purple">Advanced</div>
+          <h4>Performance Skills (Month 9+)</h4>
+          <ol>
+            <li>Mixed voice mastery: Blend chest and head voice seamlessly across your entire range.</li>
+            <li>Vibrato: Natural oscillation from the diaphragm. Don't force it — it comes with relaxed jaw and good breath support after months of practice.</li>
+            <li>Runs & riffs: Practice by slowing down famous runs (e.g., Whitney Houston) and building up speed over weeks.</li>
+            <li>Microphone technique: Work with the mic angle and distance to shape your sound. 45° angle reduces plosives.</li>
+            <li>Stage presence: Eye contact, facial expression, movement. Record yourself and review honestly.</li>
+            <li>Ear training: Learn to harmonize by ear. Apps: Functional Ear Trainer, Perfect Ear.</li>
+          </ol>
+        </div>
+        <div class="skill-card">
+          <div class="sk-level pill pill-green">Daily Routine</div>
+          <h4>10-Minute Daily Vocal Routine</h4>
+          <ol>
+            <li><strong>2 min:</strong> Facial massage, yawn-sighs, jaw loosening</li>
+            <li><strong>2 min:</strong> Humming scales (C major up and down)</li>
+            <li><strong>2 min:</strong> Lip trills through full range</li>
+            <li><strong>2 min:</strong> Vowel scales (Ah–Ee–Oo patterns)</li>
+            <li><strong>2 min:</strong> Sing one phrase of your current song with full emotion</li>
+            <li>Never sing for &gt;2 hours without a break. Stay hydrated (room temp water).</li>
+          </ol>
+        </div>
+        <div class="skill-card">
+          <div class="sk-level pill pill-sky">Voice Health</div>
+          <h4>Protecting Your Voice</h4>
+          <ol>
+            <li>Hydrate: 8–10 glasses of water daily. Steam inhalation weekly.</li>
+            <li>Avoid: Alcohol, smoking, excessive caffeine — they dry vocal cords.</li>
+            <li>Rest: If you feel hoarseness, rest for 24–48 hours completely.</li>
+            <li>Reflux: Acid reflux damages vocal cords. Avoid heavy meals before singing.</li>
+            <li>Sleep: 7–9 hours — voice heals and recovers during sleep.</li>
+            <li>Don't whisper! Whispering strains cords more than normal speech.</li>
+          </ol>
+        </div>
+        <div class="skill-card">
+          <div class="sk-level pill pill-purple">Career Path</div>
+          <h4>From Hobbyist to Professional</h4>
+          <ol>
+            <li>Local: Join choirs, cultural events, school/college competitions first.</li>
+            <li>Record: Home studio (Audacity + basic mic ₹2,000–₹5,000) to build demo tracks.</li>
+            <li>Online: Post covers on YouTube, Instagram Reels, SoundCloud.</li>
+            <li>Reality shows: Sa Re Ga Ma Pa, Indian Idol, Rising Star — great platforms.</li>
+            <li>Music apps: Raaga, JioSaavn — artists can upload original music.</li>
+            <li>Collaboration: Work with local musicians, DJs, event organizers.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-content" id="art-dancing">
+      <div class="callout callout-sky">
+        <span class="callout-icon">💃</span>
+        <div class="callout-text">
+          <h4>Dance is a Language Your Body Speaks</h4>
+          <p>Flexibility, rhythm, and confidence all improve together. Start with 20 minutes daily — consistent practice beats occasional marathon sessions every time. The goal: move authentically, not perfectly.</p>
+        </div>
+      </div>
+      <div class="skill-cards">
+        <div class="skill-card">
+          <div class="sk-level pill pill-green">Foundation</div>
+          <h4>Rhythm & Body Basics</h4>
+          <ol>
+            <li>Clap to the beat: Listen to a song, clap on every beat (1-2-3-4). This trains your internal rhythm.</li>
+            <li>Weight shifts: Simply shift weight from foot to foot with the music. This IS dancing at its core.</li>
+            <li>Isolation exercises: Move ONLY your head, then only shoulders, then only hips — while the rest stays still. This is the secret to fluid dance.</li>
+            <li>Step-touch: Step right + bring left to meet it. Step left + bring right. Add arms naturally.</li>
+            <li>Mirror practice: Dance in front of a mirror or record yourself. Self-correction is the fastest teacher.</li>
+          </ol>
+        </div>
+        <div class="skill-card">
+          <div class="sk-level pill pill-sky">Styles Guide</div>
+          <h4>Choose Your Dance Style</h4>
+          <ol>
+            <li><strong>Bollywood:</strong> Expressions + steps + energy. Learn to Zubia (eye expressions), hand mudras. Watch Shiamak Davar tutorials.</li>
+            <li><strong>Hip-Hop:</strong> Groove, freestyle, breaking. Learn basics: pop, lock, wave. YouTube: BodaTV, Chrisbrown official.</li>
+            <li><strong>Classical (Bharatanatyam):</strong> 9 basic foot positions (adavus), 108 karanas, mudras. Needs a guru/teacher for proper form.</li>
+            <li><strong>Salsa/Ballroom:</strong> Partner dance; basic 1-2-3, 5-6-7 count. Take classes — partner dances need in-person guidance.</li>
+            <li><strong>Contemporary:</strong> Fuses ballet, jazz, modern. Floor work, improvisation, emotion-driven. Most expressive form.</li>
+          </ol>
+        </div>
+        <div class="skill-card">
+          <div class="sk-level pill pill-purple">Flexibility</div>
+          <h4>Stretching for Dancers</h4>
+          <ol>
+            <li>Warm up FIRST: 5 min light cardio before stretching or you risk injury.</li>
+            <li>Hip flexors: Lunge stretch, hold 30 sec each side. Essential for all dance styles.</li>
+            <li>Hamstrings: Seated forward fold, hold 45 sec. Improves kicks and leg extensions.</li>
+            <li>Spine: Cat-cow stretches, seated twists. Crucial for contemporary and classical.</li>
+            <li>Goal: Work toward splits over 3–6 months. Never force — progress is gradual.</li>
+            <li>Cool down: Always stretch after dancing to prevent soreness.</li>
+          </ol>
+        </div>
+        <div class="skill-card">
+          <div class="sk-level pill pill-green">Choreography</div>
+          <h4>How to Choreograph a Routine</h4>
+          <ol>
+            <li>Choose music: Pick a song that makes you FEEL something — emotions drive movement.</li>
+            <li>Count the beats: Mark intro, verses, chorus, bridge. Map out your structure.</li>
+            <li>Assign moves: Start with your strongest moves for the chorus (climax), simpler footwork for verses.</li>
+            <li>Transitions: How you get from move A to move B is as important as the moves themselves.</li>
+            <li>Formations (group): Plan positions from a bird's-eye view. Variety = visual interest.</li>
+            <li>Rehearse in sections: 8 counts at a time, then connect them. Muscle memory takes repetition.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== COOKING ===== -->
+<section class="content-section" id="cooking">
+  <div class="content-inner">
+    <div class="content-header">
+      <div class="content-icon-box box-gold">🍳</div>
+      <div class="content-header-text">
+        <h2>World Cooking — 100+ Authentic Dishes</h2>
+        <p>Master the kitchen with dishes from every corner of the globe — from South Indian classics to Italian pasta, Japanese ramen to Mexican tacos, and beyond.</p>
+      </div>
+    </div>
+
+    <div class="country-tabs">
+      <button class="country-tab active" onclick="showCountry('india')">🇮🇳 Indian</button>
+      <button class="country-tab" onclick="showCountry('italian')">🇮🇹 Italian</button>
+      <button class="country-tab" onclick="showCountry('japanese')">🇯🇵 Japanese</button>
+      <button class="country-tab" onclick="showCountry('mexican')">🇲🇽 Mexican</button>
+      <button class="country-tab" onclick="showCountry('chinese')">🇨🇳 Chinese</button>
+      <button class="country-tab" onclick="showCountry('middleeast')">🌙 Middle East</button>
+    </div>
+
+    <div class="country-panel active" id="country-india">
+      <div class="recipe-grid">
+        <div class="recipe-card"><div class="recipe-img" style="background:#fef9ee">🍛</div><div class="recipe-body"><h4>Chicken Biryani (Hyderabadi)</h4><p>Marinate chicken 2 hrs in yogurt, spices, mint. Layer with half-cooked basmati rice. Dum cook 25 min. Saffron water on top for color. Serve with raita.</p><div class="recipe-meta"><span class="recipe-tag">60 min</span><span class="recipe-tag">Medium</span><span class="recipe-tag">4 servings</span></div></div></div>
+        <div class="recipe-card"><div class="recipe-img" style="background:#fff4f4">🧆</div><div class="recipe-body"><h4>Masala Dosa (South Indian)</h4><p>Ferment rice-urad batter 8 hrs. Spread thin on tawa. Fill with spiced potato masala. Serve with coconut chutney and sambar. Crispy bottom is the mark of perfection.</p><div class="recipe-meta"><span class="recipe-tag">8hrs+30min</span><span class="recipe-tag">Easy</span><span class="recipe-tag">Vegetarian</span></div></div></div>
+        <div class="recipe-card"><div class="recipe-img" style="background:#f5fff8">🥘</div><div class="recipe-body"><h4>Dal Makhani (Punjabi)</h4><p>Soak urad dal + rajma overnight. Pressure cook 8 whistles. Slow cook with tomatoes, cream, butter 2+ hours on low heat. The slow cooking is non-negotiable for authentic taste.</p><div class="recipe-meta"><span class="recipe-tag">3 hrs</span><span class="recipe-tag">Easy</span><span class="recipe-tag">Vegetarian</span></div></div></div>
+        <div class="recipe-card"><div class="recipe-img" style="background:#fef9ee">🫓</div><div class="recipe-body"><h4>Butter Naan (Tandoor-style)</h4><p>Maida + yeast + yogurt dough, rest 2 hrs. Roll teardrop shape. Cook on high-heat flat iron tawa, flip with tongs, char slightly. Brush with butter and garlic. Perfection.</p><div class="recipe-meta"><span class="recipe-tag">2.5 hrs</span><span class="recipe-tag">Medium</span><span class="recipe-tag">Bread</span></div></div></div>
+        <div class="recipe-card"><div class="recipe-img" style="background:#fff8f5">🍢</div><div class="recipe-body"><h4>Samosa (Street Style)</h4><p>Stiff maida dough rested 30 min. Filling: boiled potato + peas + spices. Fold into cones, fill, seal. Fry on medium heat — low heat first 3 min for crispy flaky crust then high heat.</p><div class="recipe-meta"><span class="recipe-tag">45 min</span><span class="recipe-tag">Medium</span><span class="recipe-tag">Snack</span></div></div></div>
+        <div class="recipe-card"><div class="recipe-img" style="background:#f9f5ff">🍰</div><div class="recipe-body"><h4>Gulab Jamun</h4><p>Mawa + maida + pinch baking soda. Form smooth balls (no cracks). Fry on very low heat until golden. Soak in sugar syrup with cardamom and rose water for 30 min before serving.</p><div class="recipe-meta"><span class="recipe-tag">45 min</span><span class="recipe-tag">Medium</span><span class="recipe-tag">Dessert</span></div></div></div>
+      </div>
+      <div class="callout callout-gold" style="margin-top:1.5rem">
+        <span class="callout-icon">🌶️</span>
+        <div class="callout-text"><h4>Indian Cooking Secrets</h4><p>The "tempering" (tadka/chaunk) is the soul of Indian cooking — hot oil + mustard seeds + curry leaves + dried chilli added LAST creates the flavor base. Always add spices to fat, not water. Fresh ginger-garlic paste beats store-bought every time.</p></div>
+      </div>
+    </div>
+
+    <div class="country-panel" id="country-italian">
+      <div class="recipe-grid">
+        <div class="recipe-card"><div class="recipe-img" style="background:#fff8f0">🍝</div><div class="recipe-body"><h4>Spaghetti Carbonara (Authentic)</h4><p>Guanciale (or pancetta) rendered crispy. Egg yolks + Pecorino Romano off heat (no cream — ever!). Pasta water is your sauce. Toss off heat. Silky not scrambled is the goal.</p><div class="recipe-meta"><span class="recipe-tag">20 min</span><span class="recipe-tag">Medium</span><span class="recipe-tag">Roman</span></div></div></div>
+        <div class="recipe-card"><div class="recipe-img" style="background:#fff5f5">🍕</div><div class="recipe-body"><h4>Neapolitan Pizza (Naples-style)</h4><p>Tipo 00 flour + water + salt + yeast. Cold ferment 24–72 hrs. Stretch by hand (no rolling). Top with San Marzano tomato, fresh mozzarella. Bake 450°C for 90 seconds in wood oven (or oven max + pizza stone).</p><div class="recipe-meta"><span class="recipe-tag">72 hrs prep</span><span class="recipe-tag">Advanced</span><span class="recipe-tag">Naples</span></div></div></div>
+        <div class="recipe-card"><div class="recipe-img" style="background:#f5fff8">🥗</div><div class="recipe-body"><h4>Risotto ai Funghi</h4><p>Toast Arborio rice in butter. Add white wine. Add warm mushroom broth ladle by ladle, stirring constantly 18–20 min. Finish with butter + Parmesan. The stir is what releases the starch.</p><div class="recipe-meta"><span class="recipe-tag">35 min</span><span class="recipe-tag">Medium</span><span class="recipe-tag">Northern Italy</span></div></div></div>
+        <div class="recipe-card"><div class="recipe-img" style="background:#fef9ee">☕</div><div class="recipe-body"><h4>Tiramisu (Classic)</h4><p>Savoiardi biscuits dipped (not soaked!) in espresso. Layer with mascarpone + egg yolk + sugar cream. Refrigerate overnight. Dust cocoa powder before serving. No shortcuts on the overnight rest.</p><div class="recipe-meta"><span class="recipe-tag">Overnight</span><span class="recipe-tag">Easy</span><span class="recipe-tag">Dessert</span></div></div></div>
+      </div>
+    </div>
+
+    <div class="country-panel" id="country-japanese">
+      <div class="recipe-grid">
+        <div class="recipe-card"><div class="recipe-img" style="background:#f5f5ff">🍜</div><div class="recipe-body"><h4>Tonkotsu Ramen</h4><p>Pork bones roasted then simmered 12+ hours for cloudy, creamy broth. Tare (seasoning sauce) added per bowl. Toppings: chashu pork, soft-boiled marinated egg, nori, green onion.</p><div class="recipe-meta"><span class="recipe-tag">12 hrs</span><span class="recipe-tag">Advanced</span><span class="recipe-tag">Fukuoka</span></div></div></div>
+        <div class="recipe-card"><div class="recipe-img" style="background:#fff8f5">🍣</div><div class="recipe-body"><h4>Sushi Rice + Nigiri</h4><p>Japanese short-grain rice. Season with rice vinegar + sugar + salt while hot, fold (don't stir). Form rice 5g logs with wet hands. Top with slice of salmon/tuna at room temperature. Wasabi between fish and rice.</p><div class="recipe-meta"><span class="recipe-tag">45 min</span><span class="recipe-tag">Medium</span><span class="recipe-tag">Classic</span></div></div></div>
+        <div class="recipe-card"><div class="recipe-img" style="background:#f5fff8">🥟</div><div class="recipe-body"><h4>Gyoza (Pan-fried Dumplings)</h4><p>Pork + cabbage + ginger + garlic filling. Fold wrappers into pleated half-moons. Pan-fry flat side 2 min. Add 50ml water, cover, steam 3 min. Uncover for crispy bottom. Serve with dipping sauce.</p><div class="recipe-meta"><span class="recipe-tag">40 min</span><span class="recipe-tag">Medium</span><span class="recipe-tag">Japanese-Chinese</span></div></div></div>
+      </div>
+    </div>
+
+    <div class="country-panel" id="country-mexican">
+      <div class="recipe-grid">
+        <div class="recipe-card"><div class="recipe-img" style="background:#fff8ee">🌮</div><div class="recipe-body"><h4>Al Pastor Tacos</h4><p>Marinate pork in achiote + dried chillies + pineapple. Grill on vertical spit or in oven. Serve on corn tortillas with diced onion, cilantro, pineapple. Salsa verde on the side.</p><div class="recipe-meta"><span class="recipe-tag">3 hrs</span><span class="recipe-tag">Medium</span><span class="recipe-tag">Mexico City</span></div></div></div>
+        <div class="recipe-card"><div class="recipe-img" style="background:#f5fff8">🥑</div><div class="recipe-body"><h4>Guacamole (Authentic)</h4><p>Ripe Hass avocados only. Mash with mortar (not blender). Lime juice, white onion, cilantro, serrano chilli, salt. No garlic in traditional guacamole. Serve immediately — it oxidizes fast.</p><div class="recipe-meta"><span class="recipe-tag">10 min</span><span class="recipe-tag">Easy</span><span class="recipe-tag">Dip</span></div></div></div>
+        <div class="recipe-card"><div class="recipe-img" style="background:#fff4f4">🫔</div><div class="recipe-body"><h4>Enchiladas Rojas</h4><p>Dried ancho + guajillo chillies toasted, soaked, blended with tomatoes for red sauce. Corn tortillas dipped in sauce, filled with chicken, rolled. Bake covered 20 min. Top with crema, queso fresco.</p><div class="recipe-meta"><span class="recipe-tag">50 min</span><span class="recipe-tag">Medium</span><span class="recipe-tag">Puebla</span></div></div></div>
+      </div>
+    </div>
+
+    <div class="country-panel" id="country-chinese">
+      <div class="recipe-grid">
+        <div class="recipe-card"><div class="recipe-img" style="background:#fff8f0">🥡</div><div class="recipe-body"><h4>Kung Pao Chicken</h4><p>Velveted chicken (cornstarch + egg white marinade). Stir fry on screaming hot wok. Dried Sichuan chillies + Sichuan peppercorns + peanuts + green onion. Sauce: soy, vinegar, sugar. High heat is non-negotiable.</p><div class="recipe-meta"><span class="recipe-tag">25 min</span><span class="recipe-tag">Medium</span><span class="recipe-tag">Sichuan</span></div></div></div>
+        <div class="recipe-card"><div class="recipe-img" style="background:#f5fff8">🥢</div><div class="recipe-body"><h4>Dim Sum: Har Gow (Shrimp Dumplings)</h4><p>Wheat starch + tapioca starch wrapper (translucent when cooked). Shrimp + bamboo shoots + sesame oil filling. Fold with 7–9 pleats. Steam 6 min. The wrapper texture is everything — silky not gummy.</p><div class="recipe-meta"><span class="recipe-tag">60 min</span><span class="recipe-tag">Advanced</span><span class="recipe-tag">Cantonese</span></div></div></div>
+        <div class="recipe-card"><div class="recipe-img" style="background:#f9f9ff">🍚</div><div class="recipe-body"><h4>Egg Fried Rice</h4><p>Day-old cold rice only (fresh is too wet). Oil smoking hot, add rice, spread, don't stir 2 min. Push aside, scramble eggs, mix. Add soy, oyster sauce, sesame oil. Spring onions at end.</p><div class="recipe-meta"><span class="recipe-tag">10 min</span><span class="recipe-tag">Easy</span><span class="recipe-tag">Comfort Food</span></div></div></div>
+      </div>
+    </div>
+
+    <div class="country-panel" id="country-middleeast">
+      <div class="recipe-grid">
+        <div class="recipe-card"><div class="recipe-img" style="background:#fef9ee">🥙</div><div class="recipe-body"><h4>Shawarma (Chicken)</h4><p>Marinate chicken in yogurt, 7-spice blend, garlic, lemon 4+ hrs. Roast on vertical spit or oven stack. Serve in pita with garlic sauce (toum), pickled turnips, tomato, parsley.</p><div class="recipe-meta"><span class="recipe-tag">5 hrs</span><span class="recipe-tag">Medium</span><span class="recipe-tag">Levant</span></div></div></div>
+        <div class="recipe-card"><div class="recipe-img" style="background:#f5fff8">🫘</div><div class="recipe-body"><h4>Hummus (Lebanese)</h4><p>Dried chickpeas soaked overnight, cooked with baking soda until very soft. Blend while hot with generous tahini, ice water, lemon, garlic. Hot chickpeas + cold water = ultra-creamy texture. Drizzle olive oil + paprika.</p><div class="recipe-meta"><span class="recipe-tag">Overnight+30min</span><span class="recipe-tag">Easy</span><span class="recipe-tag">Dip</span></div></div></div>
+        <div class="recipe-card"><div class="recipe-img" style="background:#fff8f5">🍮</div><div class="recipe-body"><h4>Baklava</h4><p>Layer 20 sheets filo pastry with melted butter. Every 2–3 layers add walnut + cinnamon filling. Score diamond shapes before baking. Bake 50 min at 165°C until golden. Pour cold syrup on hot baklava — this is the crucial trick for crispiness.</p><div class="recipe-meta"><span class="recipe-tag">90 min</span><span class="recipe-tag">Medium</span><span class="recipe-tag">Dessert</span></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FITNESS ===== -->
+<section class="content-section" id="fitness">
+  <div class="content-inner">
+    <div class="content-header">
+      <div class="content-icon-box box-green">💪</div>
+      <div class="content-header-text">
+        <h2>Gym & Fitness — Build Your Best Body</h2>
+        <p>Complete workout programs for beginners, intermediate and advanced — including gym workouts, home exercises, cardio, nutrition, and recovery.</p>
+      </div>
+    </div>
+
+    <div class="callout callout-green">
+      <span class="callout-icon">🏋️</span>
+      <div class="callout-text"><h4>The 3 Pillars of Fitness</h4><p><strong>Training:</strong> Progressive overload — add weight/reps every week. <strong>Nutrition:</strong> You can't out-train a bad diet. <strong>Recovery:</strong> Muscles grow during sleep and rest, not during workouts. All three matter equally.</p></div>
+    </div>
+
+    <h3 style="margin-bottom:1.5rem;font-size:1.3rem">6-Day Gym Split (Beginner to Intermediate)</h3>
+    <div style="overflow-x:auto;margin-bottom:2.5rem">
+      <table class="data-table">
+        <tr><th>Day</th><th>Focus</th><th>Main Exercises</th><th>Sets × Reps</th></tr>
+        <tr><td>Monday</td><td>🦵 Legs</td><td>Squat, Leg Press, Romanian Deadlift, Leg Curl, Calf Raise</td><td>4×8–12</td></tr>
+        <tr><td>Tuesday</td><td>💪 Push (Chest, Shoulders, Triceps)</td><td>Bench Press, Overhead Press, Lateral Raise, Tricep Pushdown, Dips</td><td>4×8–12</td></tr>
+        <tr><td>Wednesday</td><td>🔙 Pull (Back, Biceps)</td><td>Deadlift, Pull-ups, Cable Row, Face Pull, Barbell Curl</td><td>4×8–12</td></tr>
+        <tr><td>Thursday</td><td>🦵 Legs (Volume)</td><td>Front Squat, Hack Squat, Walking Lunge, Hip Thrust, Seated Calf</td><td>3×10–15</td></tr>
+        <tr><td>Friday</td><td>💪 Push (Volume)</td><td>Incline Press, Dumbbell Fly, Arnold Press, Cable Crossover, Close-Grip Bench</td><td>3×10–15</td></tr>
+        <tr><td>Saturday</td><td>🔙 Pull (Volume)</td><td>T-Bar Row, Lat Pulldown, Rear Delt Fly, Hammer Curl, Shrug</td><td>3×10–15</td></tr>
+        <tr><td>Sunday</td><td>🧘 Rest / Active Recovery</td><td>Light walking 30 min, stretching, foam rolling</td><td>—</td></tr>
+      </table>
+    </div>
+
+    <h3 style="margin-bottom:1.25rem;font-size:1.3rem">Home Workout (No Equipment)</h3>
+    <div class="exercise-grid">
+      <div class="exercise-card"><div class="ex-icon">🤸</div><h4>Push-ups</h4><p>Chest, shoulders, triceps. Progress: incline → standard → diamond → archer push-ups</p><div class="ex-sets">4 × 12–20 reps</div></div>
+      <div class="exercise-card"><div class="ex-icon">🏃</div><h4>Bodyweight Squats</h4><p>Quads, glutes, hamstrings. Feet shoulder-width, toes out 30°. Full depth.</p><div class="ex-sets">4 × 20–30 reps</div></div>
+      <div class="exercise-card"><div class="ex-icon">🦵</div><h4>Lunges</h4><p>Unilateral leg strength. Walking or stationary. Keep front knee over ankle.</p><div class="ex-sets">3 × 12 each leg</div></div>
+      <div class="exercise-card"><div class="ex-icon">💪</div><h4>Pike Push-ups</h4><p>Targets shoulders. Inverted-V position. Head toward floor. Builds overhead strength.</p><div class="ex-sets">3 × 10–15 reps</div></div>
+      <div class="exercise-card"><div class="ex-icon">🧘</div><h4>Plank</h4><p>Core, stability, total body tension. Squeeze everything — glutes, abs, fists.</p><div class="ex-sets">3 × 45–90 seconds</div></div>
+      <div class="exercise-card"><div class="ex-icon">🏋️</div><h4>Glute Bridge</h4><p>Glutes, hamstrings, lower back. Progress to single-leg or hip thrust with backpack.</p><div class="ex-sets">4 × 20 reps</div></div>
+      <div class="exercise-card"><div class="ex-icon">⚡</div><h4>Burpees</h4><p>Full body cardio+strength combo. 10 burpees = 1 minute intense cardio. Best fat-burner.</p><div class="ex-sets">3 × 10–15 reps</div></div>
+      <div class="exercise-card"><div class="ex-icon">🎽</div><h4>Mountain Climbers</h4><p>Core + cardio. Drive knees to chest alternating fast. Keep hips level and low.</p><div class="ex-sets">3 × 30 seconds</div></div>
+    </div>
+
+    <h3 style="margin:2.5rem 0 1.25rem;font-size:1.3rem">Nutrition for Fitness Goals</h3>
+    <div class="guide-grid">
+      <div class="guide-card">
+        <h4>🥩 For Muscle Building</h4>
+        <ul>
+          <li>Protein: 1.6–2.2g per kg bodyweight per day</li>
+          <li>Calorie surplus: +300–500 cal above maintenance</li>
+          <li>Best protein sources: eggs, chicken, paneer, lentils, Greek yogurt, whey</li>
+          <li>Pre-workout: Carbs + small protein 1–2 hrs before (rice + chicken or banana + peanut butter)</li>
+          <li>Post-workout: 30–40g protein within 2 hrs (whey shake or dal + rice)</li>
+        </ul>
+      </div>
+      <div class="guide-card">
+        <h4>🥗 For Fat Loss</h4>
+        <ul>
+          <li>Calorie deficit: 300–500 cal below maintenance (don't crash diet)</li>
+          <li>Prioritize protein to preserve muscle while cutting</li>
+          <li>Fill half your plate with vegetables at every meal</li>
+          <li>Fiber keeps you full: oats, vegetables, legumes, psyllium husk</li>
+          <li>Intermittent fasting 16:8 works well for many — not mandatory but effective</li>
+        </ul>
+      </div>
+      <div class="guide-card">
+        <h4>💊 Supplements (Evidence-Based Only)</h4>
+        <ul>
+          <li>Creatine monohydrate: 5g/day — proven muscle & strength boost, very safe</li>
+          <li>Whey protein: Only if diet protein is insufficient (expensive, not magic)</li>
+          <li>Vitamin D3: Most Indians are deficient — take 1000–2000 IU daily with K2</li>
+          <li>Omega-3 fish oil: 1–2g EPA+DHA/day for inflammation and heart health</li>
+          <li>Avoid: Pre-workouts with too much caffeine, fat-burners, most "muscle-gain" powders</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BEAUTY ===== -->
+<section class="content-section" id="beauty">
+  <div class="content-inner">
+    <div class="content-header">
+      <div class="content-icon-box box-rose">✨</div>
+      <div class="content-header-text">
+        <h2>Beauty — Hair, Skin & Body Care</h2>
+        <p>Science-backed routines and natural remedies for men and women. Build a sustainable routine that works with your lifestyle and budget.</p>
+      </div>
+    </div>
+
+    <div class="tips-tabs" id="beautyTabs">
+      <button class="tab-btn active" onclick="showBeautyTab('women')">👩 Women</button>
+      <button class="tab-btn" onclick="showBeautyTab('men')">👨 Men</button>
+      <button class="tab-btn" onclick="showBeautyTab('natural')">🌿 Natural Remedies</button>
+    </div>
+
+    <div class="tab-content active" id="beauty-women">
+      <div class="guide-grid">
+        <div class="guide-card">
+          <h4>👩 Skincare Routine (Women)</h4>
+          <ul>
+            <li><strong>Morning:</strong> Gentle cleanser → Vitamin C serum → Moisturizer → SPF 30+ (non-negotiable!)</li>
+            <li><strong>Evening:</strong> Double cleanse (oil first, then foam) → Retinol/AHA → Moisturizer</li>
+            <li><strong>Weekly:</strong> Exfoliate 2×/week, clay mask 1×/week, facial massage with gua sha</li>
+            <li>Sunscreen is THE most anti-aging product. Start at 18.</li>
+            <li>Drink 8–10 glasses water daily — it shows on your skin within weeks</li>
+          </ul>
+        </div>
+        <div class="guide-card">
+          <h4>💆‍♀️ Haircare Routine (Women)</h4>
+          <ul>
+            <li>Wash 2–3×/week (not daily — strips natural oils)</li>
+            <li>Oil massage (coconut, castor, or argan) 1–2 hr before wash weekly</li>
+            <li>Condition after every wash; deep condition monthly</li>
+            <li>Air dry when possible; heat tools max 2×/week with heat protectant</li>
+            <li>Trim every 8–12 weeks to prevent split ends from traveling up hair shaft</li>
+          </ul>
+        </div>
+        <div class="guide-card">
+          <h4>💅 Nail & Hand Care</h4>
+          <ul>
+            <li>Push cuticles back gently after shower when soft — never cut them</li>
+            <li>Moisturize hands and cuticles daily with a rich cream or petroleum jelly overnight</li>
+            <li>Biotin supplements (5000–10000 mcg) strengthen brittle nails over 3–6 months</li>
+            <li>File nails in one direction only (not back and forth — it weakens them)</li>
+            <li>Always wear gloves when cleaning with chemicals or washing dishes</li>
+          </ul>
+        </div>
+        <div class="guide-card">
+          <h4>👄 Lip Care</h4>
+          <ul>
+            <li>Exfoliate lips weekly: mix sugar + honey, gentle circular scrub, rinse</li>
+            <li>Apply thick lip balm (Vaseline, shea butter) every night before sleep</li>
+            <li>Never lick dry lips — it worsens dryness as saliva evaporates</li>
+            <li>Stay hydrated: lip dryness is often systemic dehydration</li>
+            <li>Vitamin E oil applied nightly promotes healing and plumpness</li>
+          </ul>
+        </div>
+        <div class="guide-card">
+          <h4>👁️ Eye Area Care</h4>
+          <ul>
+            <li>Apply eye cream with ring finger (gentlest) in tapping motion — never rubbing</li>
+            <li>Caffeine eye cream for puffiness and dark circles</li>
+            <li>Cold spoons or cooled cucumber slices reduce morning puffiness in 10 min</li>
+            <li>Remove makeup gently with micellar water and soft cotton pad — no aggressive rubbing</li>
+            <li>Sleep on silk pillowcase to reduce friction and crow's feet formation</li>
+          </ul>
+        </div>
+        <div class="guide-card">
+          <h4>🌸 Body Care Routine</h4>
+          <ul>
+            <li>Body scrub 1–2×/week in shower (sugar + coconut oil DIY works perfectly)</li>
+            <li>Apply body lotion within 3 min of shower while skin is still damp (locks moisture)</li>
+            <li>Dry brushing before shower: improves circulation, reduces cellulite appearance</li>
+            <li>Body SPF for arms and exposed areas during the day</li>
+            <li>Stretch marks: Bio-oil or rosehip oil daily on damp skin, consistent use over months</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-content" id="beauty-men">
+      <div class="guide-grid">
+        <div class="guide-card">
+          <h4>👨 Men's Skincare (Simple & Effective)</h4>
+          <ul>
+            <li><strong>Morning:</strong> Face wash (salicylic acid if oily skin) → Moisturizer with SPF → Done</li>
+            <li><strong>Evening:</strong> Face wash → Moisturizer (niacinamide for oily/acne-prone)</li>
+            <li>Exfoliate 2×/week (a basic physical or chemical scrub)</li>
+            <li>Sunscreen: most overlooked men's product. Use it daily — it prevents aging and dark spots</li>
+            <li>If acne: Benzoyl peroxide 2.5% spot treatment + Salicylic acid cleanser</li>
+          </ul>
+        </div>
+        <div class="guide-card">
+          <h4>💈 Men's Grooming</h4>
+          <ul>
+            <li>Beard: Oil daily (jojoba or argan oil), trim with beard trimmer weekly, comb direction of growth</li>
+            <li>Clean shave: Prep with hot water, shave with grain first, across grain if needed — never against</li>
+            <li>Aftershave: Alcohol-free toner or aloe vera to close pores, reduce razor burn</li>
+            <li>Eyebrows: Clean up stray hairs with precision trimmer — don't over-shape</li>
+            <li>Ear/nose hair: Trim with dedicated trimmer. Often forgotten, always noticed.</li>
+          </ul>
+        </div>
+        <div class="guide-card">
+          <h4>💇 Men's Hair Care</h4>
+          <ul>
+            <li>Wash 2–3×/week with shampoo suited to your hair type</li>
+            <li>Hair fall prevention: Minoxidil (Rogaine) proven at 5% for androgenic alopecia — start early</li>
+            <li>Scalp massage 5 min daily with castor/coconut oil promotes growth</li>
+            <li>Style: Matte clay for natural look, pomade for slick, texturizing spray for volume</li>
+            <li>Get a fresh haircut every 3–4 weeks — nothing upgrades your look faster or cheaper</li>
+          </ul>
+        </div>
+        <div class="guide-card">
+          <h4>🦷 Oral Care (Men & Women)</h4>
+          <ul>
+            <li>Brush 2 min, twice daily with fluoride toothpaste + soft bristle brush</li>
+            <li>Floss daily — most people skip this and it causes gum disease + bad breath</li>
+            <li>Tongue scraper: morning use dramatically reduces bad breath</li>
+            <li>Mouthwash: CPC or alcohol-free chlorhexidine for gum health</li>
+            <li>Dentist: Every 6 months for cleaning and checkup</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-content" id="beauty-natural">
+      <div class="guide-grid">
+        <div class="guide-card">
+          <h4>🌿 Natural Face Masks (Proven Ingredients)</h4>
+          <ul>
+            <li><strong>Oily/Acne skin:</strong> Multani mitti + rose water + turmeric. Apply 15 min, rinse. 1–2×/week.</li>
+            <li><strong>Dry skin:</strong> Honey + milk cream + aloe vera gel. Nourishing, hydrating mask.</li>
+            <li><strong>Brightening:</strong> Besan + turmeric + yogurt + a few drops lemon. Classic Indian ubtan.</li>
+            <li><strong>Anti-aging:</strong> Egg white + honey + few drops vitamin E oil. Tightens skin temporarily.</li>
+            <li><strong>Dark circles:</strong> Cold raw potato slices on eyes 15 min OR cucumber slices.</li>
+          </ul>
+        </div>
+        <div class="guide-card">
+          <h4>🥥 Natural Hair Treatments</h4>
+          <ul>
+            <li><strong>Hair growth:</strong> Onion juice applied to scalp 30 min before wash (science-backed!)</li>
+            <li><strong>Deep conditioning:</strong> Warm coconut oil + honey + egg yolk mask 1 hr before wash</li>
+            <li><strong>Dandruff:</strong> Apple cider vinegar diluted 1:2 with water, scalp rinse after shampoo</li>
+            <li><strong>Frizz control:</strong> Aloe vera gel applied to damp hair before air drying</li>
+            <li><strong>Shine:</strong> Cold water rinse after conditioning locks hair cuticle, adds gloss</li>
+          </ul>
+        </div>
+        <div class="guide-card">
+          <h4>🫚 DIY Body Recipes</h4>
+          <ul>
+            <li><strong>Body scrub:</strong> 1 cup sugar + ½ cup coconut oil + 10 drops essential oil</li>
+            <li><strong>Tan removal:</strong> Lemon + baking soda paste, massage 5 min (avoid sensitive skin)</li>
+            <li><strong>Dry heel fix:</strong> Vaseline + thick socks overnight — works in 3–5 nights</li>
+            <li><strong>Stretch mark oil:</strong> Vitamin E oil + rosehip oil + few drops lavender, daily massage</li>
+            <li><strong>Lip scrub:</strong> Brown sugar + honey + coconut oil. 2 min massage, lick off!</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CRAFTS ===== -->
+<section class="content-section" id="crafts">
+  <div class="content-inner">
+    <div class="content-header">
+      <div class="content-icon-box box-purple">🎨</div>
+      <div class="content-header-text">
+        <h2>Crafts & Future Skills — Create Things That Matter</h2>
+        <p>Hands-on projects that build real-world value, marketable skills, and creative confidence for the future economy.</p>
+      </div>
+    </div>
+
+    <div class="craft-grid">
+      <div class="craft-card"><div class="craft-emoji">🌱</div><h4>Upcycled Paper Crafts</h4><p>Transform newspaper, cardboard, and paper waste into bowls, lampshades, and decorative items. Paper-mache technique: shredded paper + flour paste + acrylic paint. Zero cost, high-value sell items.</p></div>
+      <div class="craft-card"><div class="craft-emoji">🧵</div><h4>Macramé & Knotting</h4><p>Cotton rope + basic knots (square, spiral, half hitch) = wall hangings, plant hangers, bags. One wall hanging sells for ₹500–₹2,000. YouTube tutorials → start in one day.</p></div>
+      <div class="craft-card"><div class="craft-emoji">🪡</div><h4>Embroidery & Fabric Art</h4><p>Hand embroidery on clothing, bags, cushions — high resale value. Indian styles: Kantha, Phulkari, Chikankari. International: cross-stitch, crewelwork. Hoop art for modern aesthetic.</p></div>
+      <div class="craft-card"><div class="craft-emoji">🏺</div><h4>Clay Pottery & Sculpting</h4><p>Air-dry clay (₹200/kg) for decorative items without a kiln. Air-dry + acrylic paint + varnish = professional finish. Plant pots, jewelry dishes, figurines. Great income from craft fairs.</p></div>
+      <div class="craft-card"><div class="craft-emoji">🕯️</div><h4>Candle & Soap Making</h4><p>Soy wax + fragrance oil + wicks = scented candles costing ₹80 that sell for ₹300–₹500. Cold-process soap: lye + oils + fragrance. Great small business opportunity from home.</p></div>
+      <div class="craft-card"><div class="craft-emoji">🖨️</div><h4>3D Printing & Digital Crafts</h4><p>Beginner CAD: Tinkercad (free, browser-based). Print small accessories, custom gifts, phone cases. Many libraries and maker spaces offer free printer access. A key skill for the future economy.</p></div>
+      <div class="craft-card"><div class="craft-emoji">📿</div><h4>Jewelry Making</h4><p>Wire wrapping: copper wire + gemstones = pendants and rings. No tools beyond pliers needed. Resin jewelry: embed flowers/glitter in resin molds. High-margin Etsy/Instagram business potential.</p></div>
+      <div class="craft-card"><div class="craft-emoji">🎒</div><h4>Leather Craft & Bookbinding</h4><p>Hand-stitch leather wallets, card holders, journal covers. Saddle stitch technique is durable and beautiful. Bookbinding: Coptic stitch for handmade notebooks. Premium gift-giving market.</p></div>
+      <div class="craft-card"><div class="craft-emoji">💡</div><h4>Electronics & Arduino Projects</h4><p>Arduino Uno (₹600) + sensors = smart plant watering system, weather station, light controllers. These projects build firmware/IoT skills that are directly applicable to high-paying tech jobs.</p></div>
+    </div>
+    <div class="callout callout-sky" style="margin-top:2rem">
+      <span class="callout-icon">💰</span>
+      <div class="callout-text"><h4>Turn Craft Into Income</h4><p>Instagram + Etsy + local craft markets = a viable side income. Start with one product you love making. Document your process on Reels — the "making of" content gets enormous engagement. Batch-produce on weekends to build inventory. Price at 3–5× material cost minimum.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DAILY ROUTINE ===== -->
+<section class="content-section" id="daily">
+  <div class="content-inner">
+    <div class="content-header">
+      <div class="content-icon-box box-sky">📅</div>
+      <div class="content-header-text">
+        <h2>Daily Routine — Morning to Night Perfection</h2>
+        <p>An evidence-based schedule that optimizes your energy, productivity, nutrition, and recovery across the full day.</p>
+      </div>
+    </div>
+
+    <div class="schedule">
+      <div class="schedule-row"><div class="schedule-time">5:00 AM</div><div class="schedule-content"><strong>🌅 Wake Up & Hydrate</strong><span>Drink 500ml water immediately (add lemon for alkalinity). Don't check phone for first 30 minutes — protect your morning mindset.</span></div></div>
+      <div class="schedule-row"><div class="schedule-time">5:15 AM</div><div class="schedule-content"><strong>🧘 Mindfulness / Prayer / Journaling</strong><span>10 min meditation or prayer, 5 min gratitude journal (write 3 things you're grateful for). Sets positive tone for entire day.</span></div></div>
+      <div class="schedule-row"><div class="schedule-time">5:30 AM</div><div class="schedule-content"><strong>🏃 Exercise</strong><span>30–60 min workout (gym, run, yoga, or home exercises). Morning exercise boosts cortisol naturally, sharpens focus, and builds discipline.</span></div></div>
+      <div class="schedule-row"><div class="schedule-time">6:30 AM</div><div class="schedule-content"><strong>🚿 Cold Shower + Grooming</strong><span>Cold shower (start warm, end cold 30–60 sec) boosts alertness, improves circulation, builds mental resilience. Complete grooming routine.</span></div></div>
+      <div class="schedule-row"><div class="schedule-time">7:00 AM</div><div class="schedule-content"><strong>🥗 Breakfast (High-Protein)</strong><span>Eggs (3) + oats OR idli + sambar + fruit. Aim for 30–40g protein. Skip sugar-heavy breakfasts — they cause energy crash by 10am.</span></div></div>
+      <div class="schedule-row"><div class="schedule-time">7:30 AM</div><div class="schedule-content"><strong>📚 Learning Block #1</strong><span>30–60 min of focused skill-building (language, coding, subject study, reading). Morning brain is sharpest — use it for hardest tasks.</span></div></div>
+      <div class="schedule-row"><div class="schedule-time">9:00 AM</div><div class="schedule-content"><strong>💼 Work / Study — Deep Work</strong><span>Most productive hours. Focus on highest-priority tasks. Use Pomodoro (25 min work + 5 min break). No social media until noon.</span></div></div>
+      <div class="schedule-row"><div class="schedule-time">1:00 PM</div><div class="schedule-content"><strong>🍱 Lunch (Balanced)</strong><span>Dal + rice + vegetables + curd OR whole grain + protein + salad. Don't skip — lunch skipping causes overeating at dinner. Walk 10 min after eating.</span></div></div>
+      <div class="schedule-row"><div class="schedule-time">2:00 PM</div><div class="schedule-content"><strong>💻 Work / Study Continues</strong><span>If afternoon energy dips, power nap 20 min MAX (set alarm). A 20-min nap restores focus better than caffeine without disrupting night sleep.</span></div></div>
+      <div class="schedule-row"><div class="schedule-time">4:30 PM</div><div class="schedule-content"><strong>🍎 Healthy Snack</strong><span>Fruits + nuts + yogurt OR roasted chana + green tea. Avoid chips, biscuits, fried snacks at this time — you're most likely to overeat junk.</span></div></div>
+      <div class="schedule-row"><div class="schedule-time">5:00 PM</div><div class="schedule-content"><strong>🎯 Hobby / Creative Time</strong><span>Dedicate 1 hour to a passion project: music, craft, sport, creative writing, cooking. This is your recharge — protect this time fiercely.</span></div></div>
+      <div class="schedule-row"><div class="schedule-time">7:00 PM</div><div class="schedule-content"><strong>🍽️ Dinner (Light)</strong><span>Soup + rotis + vegetables, or light dal + minimal rice. Eat 2–3 hours before sleep. Heavy dinner → poor sleep → weight gain → poor energy next day.</span></div></div>
+      <div class="schedule-row"><div class="schedule-time">8:00 PM</div><div class="schedule-content"><strong>👨‍👩‍👧 Family / Social Time</strong><span>Phone-free quality time with family, friends, or partner. Strong relationships are the single greatest predictor of long-term happiness.</span></div></div>
+      <div class="schedule-row"><div class="schedule-time">9:00 PM</div><div class="schedule-content"><strong>📖 Wind Down — Reading</strong><span>Read physical book 30–45 min. No screens 1 hr before bed. Screens suppress melatonin and delay sleep onset by 60–90 min.</span></div></div>
+      <div class="schedule-row"><div class="schedule-time">9:30 PM</div><div class="schedule-content"><strong>🌙 Sleep Preparation</strong><span>Skincare routine, tomorrow's planning (write top 3 priorities), room temperature 18–22°C for optimal sleep. Dark, cool, quiet = perfect sleep environment.</span></div></div>
+      <div class="schedule-row"><div class="schedule-time">10:00 PM</div><div class="schedule-content"><strong>😴 Sleep (8 Hours)</strong><span>7–9 hours is non-negotiable. Sleep deprivation impairs memory, judgment, metabolism, immunity and emotional regulation. Treat sleep as a performance tool.</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PERSONALITY ===== -->
+<section class="content-section" id="personality">
+  <div class="content-inner">
+    <div class="content-header">
+      <div class="content-icon-box box-gold">🌟</div>
+      <div class="content-header-text">
+        <h2>Personality Development — Build Your Best Self</h2>
+        <p>Communication, confidence, etiquette, emotional intelligence and social skills — the qualities that open every door in life.</p>
+      </div>
+    </div>
+
+    <div class="personality-grid">
+      <div class="p-card">
+        <h4>🗣️ Communication Skills</h4>
+        <ul class="p-list">
+          <li>Speak slowly and clearly — most people rush when nervous. Slower = more confident-sounding.</li>
+          <li>Active listening: don't plan what to say next while they're talking. Listen to understand.</li>
+          <li>Eye contact: 60–70% during conversation (sustained, not a stare) builds trust.</li>
+          <li>Avoid filler words: "um," "like," "basically" — pause with silence instead. Silence is powerful.</li>
+          <li>Storytelling: Lead with the point, then the context. People engage with stories not lectures.</li>
+          <li>Public speaking: Join Toastmasters or speak at every opportunity — you improve only by doing.</li>
+        </ul>
+      </div>
+      <div class="p-card">
+        <h4>💪 Confidence Building</h4>
+        <ul class="p-list">
+          <li>Posture first: Shoulders back, chin level, take up space. Confidence posture triggers confident feelings.</li>
+          <li>Competence → Confidence. Get very good at something (anything) and confidence follows naturally.</li>
+          <li>Act before you feel ready. Confidence comes from doing, not from waiting until you feel brave.</li>
+          <li>Dress intentionally. Clothing affects your own psychology significantly. Look the part first.</li>
+          <li>Complete small commitments to yourself daily. Self-trust is the foundation of confidence.</li>
+          <li>Eliminate comparisons to others. You're on your own timeline. Progress is personal.</li>
+        </ul>
+      </div>
+      <div class="p-card">
+        <h4>🤝 Social Skills & Etiquette</h4>
+        <ul class="p-list">
+          <li>Remember names: repeat a new person's name 3× in the first conversation. Names matter enormously.</li>
+          <li>The FORD technique for conversation: Family, Occupation, Recreation, Dreams — never runs dry.</li>
+          <li>Table manners: elbows off table, wait for elders to start, cut food then eat, phone face-down.</li>
+          <li>Thank you notes/messages: A habit of following up sets you apart in any professional context.</li>
+          <li>Punctuality: Being on time says everything about how you value others. Arrive 5 min early always.</li>
+          <li>Handshake: firm but not crushing, 2–3 pumps, brief eye contact, warm smile.</li>
+        </ul>
+      </div>
+      <div class="p-card">
+        <h4>🧠 Emotional Intelligence</h4>
+        <ul class="p-list">
+          <li>Name your emotions: "I feel frustrated, not angry." Precision in labeling emotions reduces their intensity.</li>
+          <li>Pause before reacting: 6-second rule when triggered. Long enough for the amygdala to calm.</li>
+          <li>Empathy practice: Before responding, ask yourself "how would I feel in their position?"</li>
+          <li>Feedback: Give feedback on behavior, not character. "You were late" not "you're disrespectful."</li>
+          <li>Manage up: Understand what your boss/teacher/parent needs and help them get it. Win-win.</li>
+          <li>Conflict resolution: State your perspective + invite theirs + look for middle ground. Don't win arguments, win relationships.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HEALTHY DIET SECTION (intake) -->
+<section class="content-section" id="nutrition">
+  <div class="content-inner">
+    <div class="content-header">
+      <div class="content-icon-box box-green">🥦</div>
+      <div class="content-header-text">
+        <h2>Healthy Eating — Complete Nutrition Guide</h2>
+        <p>What to eat, when to eat, and how much to eat for lasting health, energy, and longevity — based on current nutritional science.</p>
+      </div>
+    </div>
+    <div class="guide-grid">
+      <div class="guide-card"><h4>🌅 Ideal Breakfast (7–9 AM)</h4><ul><li>Protein-led start: eggs, Greek yogurt, paneer, or protein shake</li><li>Complex carbs: oats, whole grain bread, brown rice flakes, idli (fermented)</li><li>Healthy fat: 1 tbsp nut butter, handful of soaked almonds/walnuts</li><li>Fruit: one serving (berries, banana, papaya) for natural sugar + fiber</li><li>Avoid: packaged cereals, white bread, flavored yogurt, fruit juices</li></ul></div>
+      <div class="guide-card"><h4>☀️ Ideal Lunch (12–2 PM)</h4><ul><li>Half plate: colorful vegetables (roasted, steamed, or raw salad)</li><li>Quarter plate: whole grain carb (brown rice, roti, quinoa)</li><li>Quarter plate: protein (lentils, chicken, fish, tofu, legumes)</li><li>Add: 1 tbsp healthy fat (ghee on roti, olive oil in salad)</li><li>Curd/probiotic: aids digestion, supports gut microbiome</li></ul></div>
+      <div class="guide-card"><h4>🌙 Ideal Dinner (7–8 PM)</h4><ul><li>Lighter than lunch — digestion slows at night</li><li>High vegetable ratio with moderate protein</li><li>Reduce carb portion: smaller rice/roti than at lunch</li><li>Avoid: fried food, heavy desserts, alcohol at night</li><li>Finish 2–3 hours before sleep for better sleep quality</li></ul></div>
+      <div class="guide-card"><h4>💧 Hydration Guide</h4><ul><li>Target: 35ml per kg bodyweight per day (70kg person = 2.45L)</li><li>Morning: 500ml water on empty stomach (best detox)</li><li>Before meals: 200ml water 20 min before reduces overeating</li><li>Signs of dehydration: dark yellow urine, headache, fatigue, cravings</li><li>Herbal teas count: green tea, hibiscus, chamomile all hydrate</li></ul></div>
+      <div class="guide-card"><h4>🚫 Foods to Limit/Avoid</h4><ul><li>Ultra-processed foods: packaged snacks, fast food, instant noodles</li><li>Refined sugars: sodas, candy, packaged juices — empty calories + insulin spikes</li><li>Trans fats: vanaspati, partially hydrogenated oils in cheap baked goods</li><li>Excess salt: limit to 5g/day — most packaged foods are loaded with sodium</li><li>Alcohol: zero nutritional value, disrupts sleep, metabolism, and hormones</li></ul></div>
+      <div class="guide-card"><h4>🌾 Superfoods Worth Adding</h4><ul><li>Turmeric + black pepper: anti-inflammatory; 1 tsp in warm milk daily</li><li>Flaxseeds: omega-3, fiber, lignans; 1 tbsp ground daily in meals</li><li>Moringa (drumstick leaves): highest plant protein, iron, calcium</li><li>Fermented foods: idli, dosa, curd, kimchi, kefir for gut health</li><li>Sprouts: germination multiplies nutrition 300–500% over raw seeds</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA SECTION -->
+<section class="cta-section" id="join">
+  <div style="max-width:700px;margin:0 auto">
+    <h2>Start Your LifeGuide Journey Today</h2>
+    <p>Join thousands of people who use LifeGuide every day to improve their skills, health, career, and quality of life. 100% free to start.</p>
+    <div class="cta-form">
+      <input class="cta-input" type="email" placeholder="Enter your email address" id="ctaEmail">
+      <button class="cta-btn" onclick="subscribeCTA()">Get Free Access →</button>
+    </div>
+    <p style="font-size:0.8rem;opacity:0.6;margin-top:1rem">No spam. No credit card. Cancel anytime. Your privacy is respected.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">Life<span style="color:#c8922a">Guide</span></div>
+        <p>Your complete companion for farming, careers, cooking, fitness, beauty, arts, crafts, and daily wellness. Built to help you live fully.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Topics</h4>
+        <ul>
+          <li><a href="#agriculture">🌾 Agriculture</a></li>
+          <li><a href="#careers">💼 Careers</a></li>
+          <li><a href="#arts">🎵 Singing & Dance</a></li>
+          <li><a href="#cooking">🍳 World Cooking</a></li>
+          <li><a href="#fitness">💪 Fitness</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Wellness</h4>
+        <ul>
+          <li><a href="#beauty">✨ Beauty & Grooming</a></li>
+          <li><a href="#crafts">🎨 Crafts</a></li>
+          <li><a href="#daily">📅 Daily Routine</a></li>
+          <li><a href="#personality">🌟 Personality</a></li>
+          <li><a href="#nutrition">🥦 Nutrition</a></li>
+        </ul>
+      </div>
+
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 LifeGuide. All content for educational purposes.</span>
+      <span>Made with ❤️ for life improvement</span>
+    </div>
+    <div style="text-align:center;padding:1rem 0 0.5rem;font-size:0.82rem;color:#a0a8b0;border-top:1px solid rgba(255,255,255,0.08);margin-top:0.75rem">
+      Made with ❤️ by Pullayyagari Vinayaka
+    </div>
+  </div>
+</footer>
+
+<script>
+// Tab systems
+function showJobTab(id) {
+  document.querySelectorAll('.job-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.job-panel').forEach(p => p.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('job-' + id).classList.add('active');
+}
+function showArtsTab(id) {
+  document.querySelectorAll('#artsTabs .tab-btn').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(p => p.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('art-' + id).classList.add('active');
+}
+function showBeautyTab(id) {
+  document.querySelectorAll('#beautyTabs .tab-btn').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('#beauty .tab-content').forEach(p => p.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('beauty-' + id).classList.add('active');
+}
+function showCountry(id) {
+  document.querySelectorAll('.country-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.country-panel').forEach(p => p.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('country-' + id).classList.add('active');
+}
+
+// Accordion
+document.querySelectorAll('.accordion-header').forEach(h => {
+  h.addEventListener('click', function() {
+    this.closest('.accordion').classList.toggle('open');
+  });
+});
+
+// CTA
+function subscribeCTA() {
+  const email = document.getElementById('ctaEmail').value.trim();
+  if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
+  alert('🎉 Welcome to LifeGuide! Check your inbox for your free starter guide. \n\nEmail: ' + email);
+  document.getElementById('ctaEmail').value = '';
+}
+
+// Signup button
+document.getElementById('signup').addEventListener('click', function() {
+  document.getElementById('join').scrollIntoView({behavior:'smooth'});
+});
+
+// Page nav dots - highlight current section
+const sections = ['hero','agriculture','careers','arts','cooking','fitness','beauty','crafts','daily'];
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      document.querySelectorAll('.page-nav-dot').forEach(d => d.classList.remove('active'));
+      const dot = document.querySelector(`.page-nav-dot[data-target="${e.target.id}"]`);
+      if (dot) dot.classList.add('active');
+    }
+  });
+}, {threshold: 0.4});
+sections.forEach(id => {
+  const el = document.getElementById(id);
+  if (el) observer.observe(el);
+});
+
+function scrollTo(id) {
+  document.getElementById(id)?.scrollIntoView({behavior:'smooth'});
+}
+
+// Mobile menu (simple)
+document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+  const navLinks = document.querySelector('.nav-links');
+  if (navLinks.style.display === 'flex') {
+    navLinks.style.display = 'none';
+  } else {
+    navLinks.style.cssText = 'display:flex;flex-direction:column;position:absolute;top:66px;left:0;right:0;background:white;padding:1rem 2rem;border-bottom:1px solid #e4e7ec;gap:0.5rem;z-index:150;';
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PathWise — India's #1 Free Student Career Mentorship Platform</title>
+<meta name="description" content="Free career guidance for every Indian student after 10th. B.Tech, MBBS, Pharmacy, Polytechnic, Arts — find your path with AI mentor and real experts.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #1a56e8;
+  --primary-dark: #1240c0;
+  --accent: #f97316;
+  --accent-light: #fff7ed;
+  --bg: #f8faff;
+  --bg-card: #ffffff;
+  --text: #0f172a;
+  --text-muted: #64748b;
+  --text-light: #94a3b8;
+  --border: #e2e8f0;
+  --success: #16a34a;
+  --success-bg: #f0fdf4;
+  --warning: #d97706;
+  --warning-bg: #fffbeb;
+  --info: #0369a1;
+  --info-bg: #f0f9ff;
+  --radius: 12px;
+  --radius-lg: 20px;
+  --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.06);
+  --shadow-lg: 0 8px 32px rgba(26,86,232,0.12);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; font-size: 16px; }
+h1,h2,h3,h4 { font-family: 'Sora', sans-serif; font-weight: 700; line-height: 1.25; }
+
+/* NAV */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+}
+.nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.nav-logo { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 1.35rem; color: var(--primary); text-decoration: none; display: flex; align-items: center; gap: 8px; }
+.nav-logo span { color: var(--accent); }
+.nav-links { display: flex; gap: 1.5rem; list-style: none; }
+.nav-links a { text-decoration: none; color: var(--text-muted); font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+.nav-links a:hover { color: var(--primary); }
+.nav-cta { background: var(--primary); color: #fff; border: none; border-radius: 8px; padding: 10px 22px; font-size: 0.9rem; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; text-decoration: none; transition: background 0.2s; }
+.nav-cta:hover { background: var(--primary-dark); }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+.hamburger span { width: 24px; height: 2px; background: var(--text); border-radius: 2px; transition: all 0.3s; }
+
+/* HERO */
+.hero { max-width: 1200px; margin: 0 auto; padding: 5rem 2rem 4rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+.hero-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--info-bg); color: var(--info); border: 1px solid #bae6fd; border-radius: 100px; padding: 6px 14px; font-size: 0.8rem; font-weight: 600; margin-bottom: 1.25rem; }
+.hero-badge .dot { width: 7px; height: 7px; background: var(--primary); border-radius: 50%; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+.hero h1 { font-size: 3rem; color: var(--text); margin-bottom: 1.25rem; }
+.hero h1 em { color: var(--primary); font-style: normal; }
+.hero p { color: var(--text-muted); font-size: 1.1rem; line-height: 1.75; margin-bottom: 2rem; }
+.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn-primary { background: var(--primary); color: #fff; border: none; border-radius: var(--radius); padding: 14px 28px; font-size: 1rem; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; text-decoration: none; transition: background 0.2s, transform 0.15s; display: inline-flex; align-items: center; gap: 8px; }
+.btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
+.btn-secondary { background: transparent; color: var(--primary); border: 1.5px solid var(--primary); border-radius: var(--radius); padding: 14px 28px; font-size: 1rem; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; text-decoration: none; transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px; }
+.btn-secondary:hover { background: #eff6ff; }
+
+/* HERO VISUAL */
+.hero-visual { background: white; border-radius: var(--radius-lg); border: 1px solid var(--border); box-shadow: var(--shadow-lg); overflow: hidden; }
+.hero-visual-header { background: var(--primary); color: white; padding: 1rem 1.25rem; font-size: 0.85rem; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+.hero-visual-body { padding: 1.25rem; }
+.path-step { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); }
+.path-step:last-child { border-bottom: none; }
+.step-num { width: 28px; height: 28px; border-radius: 50%; background: var(--primary); color: white; font-size: 0.75rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+.step-num.accent { background: var(--accent); }
+.path-step h4 { font-size: 0.85rem; font-family: 'Inter', sans-serif; font-weight: 600; }
+.path-step p { font-size: 0.78rem; color: var(--text-muted); margin-top: 2px; }
+
+/* STATS */
+.stats-bar { background: var(--primary); padding: 2.5rem 2rem; }
+.stats-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; text-align: center; }
+.stat-item { color: white; }
+.stat-item .num { font-family: 'Sora', sans-serif; font-size: 2.25rem; font-weight: 700; }
+.stat-item .label { font-size: 0.85rem; opacity: 0.8; margin-top: 4px; }
+
+/* SECTIONS */
+.section { padding: 5rem 2rem; }
+.section-inner { max-width: 1200px; margin: 0 auto; }
+.section-label { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
+.section-title { font-size: 2.25rem; margin-bottom: 1rem; }
+.section-sub { color: var(--text-muted); font-size: 1.05rem; max-width: 560px; line-height: 1.7; }
+
+/* STATE & DEGREE SELECTOR */
+.state-selector-section { background: linear-gradient(135deg, #1a56e8 0%, #7c3aed 100%); padding: 3rem 2rem; }
+.state-selector-inner { max-width: 1200px; margin: 0 auto; text-align: center; }
+.state-selector-inner h2 { color: white; font-size: 1.75rem; margin-bottom: 0.75rem; }
+.state-selector-inner p { color: rgba(255,255,255,0.85); margin-bottom: 1.5rem; font-size: 1rem; }
+.selector-row { display: flex; gap: 12px; max-width: 760px; margin: 0 auto; justify-content: center; flex-wrap: wrap; }
+.selector-row select { flex: 1; padding: 12px 16px; border-radius: 10px; border: none; font-size: 0.95rem; font-family: 'Inter', sans-serif; outline: none; min-width: 220px; }
+.selector-row button { background: var(--accent); color: white; border: none; border-radius: 10px; padding: 12px 24px; font-size: 0.95rem; font-weight: 700; cursor: pointer; font-family: 'Inter', sans-serif; transition: background 0.2s; white-space: nowrap; }
+.selector-row button:hover { background: #ea6c00; }
+.state-info-box { background: white; border-radius: var(--radius-lg); padding: 1.5rem 2rem; max-width: 900px; margin: 1.5rem auto 0; display: none; text-align: left; }
+.state-info-box.visible { display: block; }
+.state-info-box h3 { font-size: 1.1rem; color: var(--primary); margin-bottom: 0.5rem; }
+.state-info-box .sdesc { font-size: 0.875rem; color: var(--text-muted); margin-bottom: 1rem; line-height: 1.65; }
+.state-info-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 0.75rem; }
+.state-link { font-size: 0.8rem; padding: 6px 14px; background: var(--info-bg); color: var(--info); border-radius: 100px; text-decoration: none; font-weight: 600; border: 1px solid #bae6fd; transition: all 0.2s; white-space: nowrap; }
+.state-link:hover { background: var(--primary); color: white; border-color: var(--primary); }
+.seats-box { margin-top: 1rem; background: var(--success-bg); border: 1px solid #bbf7d0; border-radius: var(--radius); padding: 1rem 1.25rem; }
+.seats-box h4 { color: var(--success); font-size: 0.9rem; margin-bottom: 0.5rem; }
+.seats-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; margin-top: 0.5rem; }
+.seats-table th { background: #d1fae5; color: var(--success); padding: 6px 10px; text-align: left; font-weight: 700; }
+.seats-table td { padding: 6px 10px; border-bottom: 1px solid #bbf7d0; color: var(--text-muted); }
+.seats-table tr:last-child td { border-bottom: none; }
+.degree-box { margin-top: 1rem; background: var(--info-bg); border: 1px solid #bae6fd; border-radius: var(--radius); padding: 1rem 1.25rem; }
+.degree-box h4 { color: var(--info); font-size: 0.9rem; margin-bottom: 0.5rem; }
+.degree-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 0.5rem; }
+.degree-tag { font-size: 0.75rem; font-weight: 600; padding: 4px 12px; border-radius: 100px; background: #dbeafe; color: #1e40af; border: 1px solid #bfdbfe; cursor: pointer; transition: all 0.2s; }
+.degree-tag:hover, .degree-tag.active { background: var(--primary); color: white; border-color: var(--primary); }
+.degree-info-panel { display: none; margin-top: 1rem; background: white; border-radius: 10px; border: 1px solid var(--border); padding: 1rem 1.25rem; }
+.degree-info-panel.show { display: block; }
+
+/* PATHWAY SECTION */
+.pathway-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+.pathway-card { background: white; border-radius: var(--radius-lg); border: 1px solid var(--border); box-shadow: var(--shadow); overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; }
+.pathway-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+.pathway-card-header { padding: 1.5rem 1.5rem 1rem; display: flex; align-items: center; gap: 12px; }
+.pathway-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+.pathway-card h3 { font-size: 1.05rem; }
+.pathway-card p { font-size: 0.85rem; color: var(--text-muted); margin-top: 4px; }
+.pathway-card-body { padding: 0 1.5rem 1.5rem; }
+.career-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1rem; }
+.tag { font-size: 0.75rem; font-weight: 500; padding: 4px 10px; border-radius: 100px; border: 1px solid; }
+.tag-blue { background: #eff6ff; color: #1d4ed8; border-color: #bfdbfe; }
+.tag-green { background: #f0fdf4; color: #15803d; border-color: #bbf7d0; }
+.tag-orange { background: #fff7ed; color: #c2410c; border-color: #fed7aa; }
+.tag-purple { background: #faf5ff; color: #7c3aed; border-color: #e9d5ff; }
+.tag-red { background: #fff1f2; color: #be123c; border-color: #fecdd3; }
+.explore-btn { width: 100%; padding: 10px; background: transparent; color: var(--primary); border: 1.5px solid var(--primary); border-radius: 8px; font-size: 0.85rem; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.2s; }
+.explore-btn:hover { background: var(--primary); color: white; }
+
+/* COLLEGES SECTION */
+.colleges-section { background: white; }
+.colleges-filter { display: flex; gap: 8px; flex-wrap: wrap; margin: 1.5rem 0; }
+.filter-btn { padding: 8px 18px; border-radius: 8px; border: 1.5px solid var(--border); background: white; color: var(--text-muted); font-size: 0.85rem; font-weight: 500; cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.2s; }
+.filter-btn.active, .filter-btn:hover { background: var(--primary); color: white; border-color: var(--primary); }
+.colleges-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; margin-top: 1.5rem; }
+.college-card { background: var(--bg); border-radius: var(--radius); border: 1px solid var(--border); padding: 1.25rem 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+.college-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); background: white; }
+.college-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 0.75rem; }
+.college-rank { background: var(--primary); color: white; font-size: 0.7rem; font-weight: 700; padding: 3px 10px; border-radius: 100px; white-space: nowrap; flex-shrink: 0; }
+.college-card h4 { font-size: 0.95rem; color: var(--text); line-height: 1.35; }
+.college-card .college-loc { font-size: 0.78rem; color: var(--text-muted); margin: 3px 0 8px; }
+.college-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 0.75rem; }
+.cmeta { font-size: 0.72rem; font-weight: 600; padding: 3px 9px; border-radius: 100px; }
+.cmeta-type { background: #eff6ff; color: #1d4ed8; }
+.cmeta-nirf { background: #fdf4ff; color: #7c3aed; }
+.cmeta-fee { background: #f0fdf4; color: #15803d; }
+.college-placements { background: white; border-radius: 8px; border: 1px solid var(--border); padding: 0.75rem 1rem; font-size: 0.78rem; }
+.college-placements .plabel { font-weight: 700; color: var(--text); margin-bottom: 4px; font-size: 0.8rem; }
+.p-row { display: flex; justify-content: space-between; color: var(--text-muted); margin-top: 3px; }
+.p-val { font-weight: 700; color: var(--success); }
+.p-val.high { color: var(--primary); }
+.college-courses { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem; }
+.college-courses strong { color: var(--text); }
+.college-website { display: inline-flex; align-items: center; gap: 4px; font-size: 0.78rem; color: var(--primary); font-weight: 600; text-decoration: none; margin-top: 0.5rem; }
+.college-website:hover { text-decoration: underline; }
+
+/* ROADMAP SECTION */
+.roadmap-section { background: white; }
+.roadmap-tabs { display: flex; gap: 8px; margin: 2rem 0; flex-wrap: wrap; }
+.tab-btn { padding: 10px 20px; border-radius: 8px; border: 1.5px solid var(--border); background: white; color: var(--text-muted); font-size: 0.875rem; font-weight: 500; cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.2s; }
+.tab-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+.roadmap-timeline { position: relative; padding-left: 3rem; }
+.roadmap-timeline::before { content: ''; position: absolute; left: 1.1rem; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--primary), #e2e8f0); border-radius: 2px; }
+.timeline-item { position: relative; margin-bottom: 2rem; }
+.timeline-dot { position: absolute; left: -2.3rem; top: 0.3rem; width: 20px; height: 20px; border-radius: 50%; background: var(--primary); border: 3px solid white; box-shadow: 0 0 0 2px var(--primary); }
+.timeline-item h4 { font-size: 1rem; font-family: 'Inter', sans-serif; font-weight: 600; }
+.timeline-item .timeline-meta { display: flex; gap: 12px; margin: 6px 0; flex-wrap: wrap; }
+.meta-pill { font-size: 0.75rem; font-weight: 600; padding: 3px 10px; border-radius: 100px; }
+.meta-time { background: #eff6ff; color: #1d4ed8; }
+.meta-type { background: #f0fdf4; color: #15803d; }
+.timeline-item p { font-size: 0.875rem; color: var(--text-muted); line-height: 1.65; }
+.timeline-item ul { margin-top: 8px; padding-left: 1rem; font-size: 0.875rem; color: var(--text-muted); line-height: 1.9; }
+.compare-box { background: #fffbeb; border: 1px solid #fcd34d; border-radius: var(--radius); padding: 1.25rem; margin-top: 2rem; }
+.compare-box h4 { color: #92400e; font-size: 0.95rem; margin-bottom: 0.75rem; }
+.compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 0.75rem; }
+.compare-col h5 { font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem; font-family: 'Inter', sans-serif; }
+.compare-col ul { padding-left: 1rem; font-size: 0.82rem; color: var(--text-muted); line-height: 1.8; }
+
+/* AI CHAT SECTION */
+.ai-section { background: linear-gradient(135deg, #f0f7ff 0%, #faf5ff 100%); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.ai-layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem; align-items: start; margin-top: 3rem; }
+.ai-feature-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem; }
+.ai-feature { display: flex; align-items: flex-start; gap: 12px; background: white; border-radius: var(--radius); border: 1px solid var(--border); padding: 1rem; box-shadow: var(--shadow); }
+.ai-feature-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--info-bg); color: var(--info); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+.ai-feature h4 { font-size: 0.875rem; font-weight: 600; font-family: 'Inter', sans-serif; }
+.ai-feature p { font-size: 0.8rem; color: var(--text-muted); margin-top: 2px; }
+
+/* CHAT WIDGET */
+.chat-widget { background: white; border-radius: var(--radius-lg); border: 1px solid var(--border); box-shadow: var(--shadow-lg); overflow: hidden; display: flex; flex-direction: column; height: 560px; }
+.chat-header { background: var(--primary); padding: 1rem 1.25rem; display: flex; align-items: center; gap: 12px; }
+.chat-avatar { width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; }
+.chat-header-info h4 { color: white; font-size: 0.95rem; font-family: 'Inter', sans-serif; font-weight: 600; }
+.chat-header-info p { color: rgba(255,255,255,0.75); font-size: 0.78rem; }
+.online-dot { width: 10px; height: 10px; background: #4ade80; border-radius: 50%; margin-left: auto; box-shadow: 0 0 0 2px rgba(74,222,128,0.3); animation: pulse 2s infinite; }
+.chat-messages { flex: 1; overflow-y: auto; padding: 1.25rem; display: flex; flex-direction: column; gap: 1rem; }
+.msg { display: flex; gap: 8px; align-items: flex-start; }
+.msg.user { flex-direction: row-reverse; }
+.msg-avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--primary); color: white; font-size: 0.7rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.msg.user .msg-avatar { background: var(--accent); }
+.msg-bubble { max-width: 82%; padding: 10px 14px; border-radius: 16px; font-size: 0.875rem; line-height: 1.6; }
+.msg.bot .msg-bubble { background: var(--bg); border: 1px solid var(--border); border-top-left-radius: 4px; color: var(--text); }
+.msg.user .msg-bubble { background: var(--primary); color: white; border-top-right-radius: 4px; }
+.quick-replies { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.qr-btn { font-size: 0.78rem; padding: 6px 12px; border-radius: 100px; border: 1.5px solid var(--primary); background: white; color: var(--primary); cursor: pointer; font-family: 'Inter', sans-serif; font-weight: 500; transition: all 0.2s; white-space: nowrap; }
+.qr-btn:hover { background: var(--primary); color: white; }
+.chat-input-area { padding: 1rem; border-top: 1px solid var(--border); display: flex; gap: 8px; align-items: flex-end; }
+.chat-input-area textarea { flex: 1; border: 1.5px solid var(--border); border-radius: 10px; padding: 10px 14px; font-size: 0.875rem; font-family: 'Inter', sans-serif; resize: none; outline: none; transition: border-color 0.2s; max-height: 120px; }
+.chat-input-area textarea:focus { border-color: var(--primary); }
+.send-btn { width: 42px; height: 42px; border-radius: 50%; background: var(--primary); color: white; border: none; cursor: pointer; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; transition: background 0.2s; flex-shrink: 0; }
+.send-btn:hover { background: var(--primary-dark); }
+.thinking span { display: inline-block; width: 7px; height: 7px; background: var(--text-muted); border-radius: 50%; margin: 0 2px; animation: thinking 1.2s infinite; }
+.thinking span:nth-child(2) { animation-delay: 0.2s; }
+.thinking span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes thinking { 0%,80%,100%{transform:scale(0.8);opacity:0.5} 40%{transform:scale(1.2);opacity:1} }
+.ai-powered-badge { display: inline-flex; align-items: center; gap: 6px; background: #faf5ff; color: #7c3aed; border: 1px solid #e9d5ff; border-radius: 100px; padding: 4px 12px; font-size: 0.75rem; font-weight: 600; margin-top: 0.5rem; }
+
+/* QUIZ SECTION */
+.quiz-section { background: white; }
+.quiz-card { background: var(--bg); border-radius: var(--radius-lg); border: 1px solid var(--border); overflow: hidden; margin-top: 3rem; max-width: 680px; }
+.quiz-progress { height: 4px; background: var(--border); }
+.quiz-progress-fill { height: 100%; background: linear-gradient(to right, var(--primary), #7c3aed); transition: width 0.4s ease; border-radius: 4px; }
+.quiz-inner { padding: 2.5rem; }
+.quiz-step-label { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--primary); margin-bottom: 1rem; }
+.quiz-question { font-size: 1.2rem; font-weight: 700; font-family: 'Sora', sans-serif; color: var(--text); margin-bottom: 1.5rem; }
+.quiz-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 2rem; }
+.quiz-option { display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px; background: white; border: 1.5px solid var(--border); border-radius: 10px; cursor: pointer; transition: all 0.2s; }
+.quiz-option:hover { border-color: var(--primary); background: #eff6ff; }
+.quiz-option.selected { border-color: var(--primary); background: #eff6ff; }
+.quiz-option input { margin-top: 2px; accent-color: var(--primary); flex-shrink: 0; }
+.quiz-actions { display: flex; gap: 10px; }
+.quiz-result { background: white; border-radius: var(--radius-lg); border: 2px solid var(--primary); padding: 2rem; text-align: center; }
+.result-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 1.25rem 0; }
+.result-card { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 12px; text-align: center; font-size: 0.82rem; }
+.result-card strong { display: block; color: var(--primary); font-size: 0.9rem; margin-bottom: 2px; }
+
+/* MENTOR SECTION */
+.mentor-section { background: var(--bg); }
+.mentor-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 3rem; }
+.mentor-card { background: white; border-radius: var(--radius-lg); border: 1px solid var(--border); box-shadow: var(--shadow); padding: 1.75rem 1.5rem; text-align: center; transition: transform 0.2s, box-shadow 0.2s; }
+.mentor-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+.mentor-avatar { width: 68px; height: 68px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; font-weight: 700; color: white; margin: 0 auto 1rem; }
+.mentor-card h4 { font-size: 1rem; margin-bottom: 0.35rem; }
+.mentor-card p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; }
+.exp { font-size: 0.75rem; color: var(--text-light); margin: 0.5rem 0 1rem; background: var(--bg); padding: 4px 10px; border-radius: 100px; display: inline-block; }
+.mentor-languages { display: flex; gap: 4px; flex-wrap: wrap; justify-content: center; margin-bottom: 0.75rem; }
+.lang-tag { font-size: 0.7rem; padding: 2px 8px; background: var(--success-bg); color: var(--success); border-radius: 100px; font-weight: 600; }
+.book-btn { width: 100%; padding: 10px; background: var(--primary); color: white; border: none; border-radius: 8px; font-size: 0.875rem; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; transition: background 0.2s; }
+.book-btn:hover { background: var(--primary-dark); }
+
+/* RESOURCES SECTION */
+.resources-section { background: var(--bg); }
+.res-cat-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin: 1.5rem 0; }
+.res-cat-btn { padding: 9px 18px; border-radius: 8px; border: 1.5px solid var(--border); background: white; color: var(--text-muted); font-size: 0.85rem; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.2s; }
+.res-cat-btn.active, .res-cat-btn:hover { background: var(--primary); color: white; border-color: var(--primary); }
+.res-category { display: none; }
+.res-category.active { display: block; }
+.resources-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 1rem; }
+.resource-card { background: white; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); padding: 1.5rem; transition: transform 0.2s; }
+.resource-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+.resource-icon { font-size: 1.75rem; margin-bottom: 0.75rem; }
+.resource-card h3 { font-size: 0.95rem; margin-bottom: 0.5rem; }
+.resource-card p { font-size: 0.8rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1rem; }
+.resource-link { font-size: 0.82rem; color: var(--primary); font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; }
+.resource-link:hover { text-decoration: underline; }
+.res-cat-header { font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 0.25rem; }
+.res-cat-desc { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem; }
+
+/* FOOTER */
+footer { background: var(--text); color: white; padding: 3rem 2rem; }
+.footer-inner { max-width: 1200px; margin: 0 auto; text-align: center; }
+.logo { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 1.5rem; margin-bottom: 1rem; }
+.logo span { color: var(--accent); }
+footer p { color: rgba(255,255,255,0.6); font-size: 0.9rem; margin-bottom: 0.5rem; line-height: 1.7; }
+.footer-links { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin: 1.5rem 0; }
+.footer-links a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.875rem; transition: color 0.2s; }
+.footer-links a:hover { color: white; }
+
+/* MODALS */
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 200; display: none; align-items: center; justify-content: center; padding: 1rem; overflow-y: auto; }
+.modal-overlay.open { display: flex; }
+.modal { background: white; border-radius: var(--radius-lg); padding: 2rem; max-width: 540px; width: 100%; position: relative; max-height: 90vh; overflow-y: auto; }
+.modal-close { position: sticky; top: 0; float: right; width: 32px; height: 32px; border-radius: 50%; background: var(--bg); border: 1px solid var(--border); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; margin-bottom: 1rem; }
+.modal h3 { font-size: 1.25rem; margin-bottom: 0.5rem; }
+.modal p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem; }
+.form-group { margin-bottom: 1.1rem; }
+.form-group label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px; }
+.form-group input, .form-group select, .form-group textarea { width: 100%; padding: 10px 14px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 0.9rem; font-family: 'Inter', sans-serif; outline: none; background: white; }
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--primary); }
+.whatsapp-btn { background: #25d366; color: white; border: none; border-radius: var(--radius); padding: 14px 28px; font-size: 1rem; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; width: 100%; justify-content: center; margin-bottom: 8px; transition: background 0.2s; }
+.whatsapp-btn:hover { background: #1ebe5d; }
+.email-btn { background: var(--primary); color: white; border: none; border-radius: var(--radius); padding: 14px 28px; font-size: 1rem; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; width: 100%; justify-content: center; transition: background 0.2s; }
+.email-btn:hover { background: var(--primary-dark); }
+
+/* RESPONSIVE */
+@media (max-width: 1024px) { .mentor-grid { grid-template-columns: repeat(2,1fr); } .colleges-grid { grid-template-columns: 1fr; } }
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; gap: 2.5rem; padding: 3rem 1.5rem; }
+  .hero h1 { font-size: 2.25rem; }
+  .stats-inner { grid-template-columns: repeat(2,1fr); }
+  .pathway-grid { grid-template-columns: 1fr 1fr; }
+  .ai-layout { grid-template-columns: 1fr; }
+  .resources-grid { grid-template-columns: 1fr 1fr; }
+  .compare-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  nav { padding: 0 1rem; }
+  .nav-links { display: none; }
+  .nav-links.open { display: flex; flex-direction: column; position: fixed; top: 64px; left: 0; right: 0; background: white; border-bottom: 1px solid var(--border); padding: 1rem 2rem; gap: 1rem; z-index: 99; }
+  .hamburger { display: flex; }
+  .hero { padding: 2rem 1rem; }
+  .hero h1 { font-size: 1.75rem; }
+  .section { padding: 3rem 1rem; }
+  .pathway-grid { grid-template-columns: 1fr; }
+  .mentor-grid { grid-template-columns: 1fr 1fr; }
+  .resources-grid { grid-template-columns: 1fr; }
+  .result-cards { grid-template-columns: 1fr; }
+  .stats-inner { grid-template-columns: repeat(2,1fr); }
+  .colleges-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">Path<span>Wise</span> 🎓</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#state-selector">My State</a></li>
+      <li><a href="#pathways">Career Paths</a></li>
+      <li><a href="#colleges">Top Colleges</a></li>
+      <li><a href="#roadmap">Roadmaps</a></li>
+      <li><a href="#quiz">Find My Path</a></li>
+      <li><a href="#chat">AI Mentor</a></li>
+      <li><a href="#mentor">Book Mentor</a></li>
+    </ul>
+    <div style="display:flex;gap:10px;align-items:center">
+      <a href="#quiz" class="nav-cta">Start My Journey →</a>
+      <div class="hamburger" id="hamburger" onclick="toggleNav()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section>
+  <div class="hero">
+    <div>
+      <div class="hero-badge"><span class="dot"></span> Free for every student in India 🇮🇳 — All 28 States + UTs</div>
+      <h1>Your <em>future starts</em> here — free guidance for every Indian student</h1>
+      <p>Whether you just passed 10th or finished Intermediate — PathWise gives you honest, personalised career advice powered by AI and real Indian mentors. No login, no fees, no confusion.</p>
+      <div class="hero-actions">
+        <a href="#quiz" class="btn-primary">🎯 Find My Perfect Path</a>
+        <a href="#chat" class="btn-secondary">💬 Ask AI Mentor</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-visual-header">🗺️ PathWise Career Journey Map</div>
+      <div class="hero-visual-body">
+        <div class="path-step"><div class="step-num">1</div><div><h4>10th Board Exam</h4><p>SSC / CBSE / ICSE / State Board — the starting point</p></div></div>
+        <div class="path-step"><div class="step-num">2</div><div><h4>Choose Your Stream</h4><p>Intermediate (MPC/BiPC/MEC) · Polytechnic · ITI</p></div></div>
+        <div class="path-step"><div class="step-num">3</div><div><h4>Crack the Right Entrance</h4><p>JEE / EAMCET / NEET / POLYCET / State CET</p></div></div>
+        <div class="path-step"><div class="step-num accent">4</div><div><h4>Top College + Scholarship</h4><p>IIT / NIT / RGUKT / State colleges · ePass · NSP</p></div></div>
+        <div class="path-step"><div class="step-num accent">5</div><div><h4>Career + Placement</h4><p>₹3 LPA → ₹50+ LPA depending on your path</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item"><div class="num">40+</div><div class="label">Top B.Tech Colleges Listed</div></div>
+    <div class="stat-item"><div class="num">28</div><div class="label">States Covered</div></div>
+    <div class="stat-item"><div class="num">15+</div><div class="label">Degree Courses Covered</div></div>
+    <div class="stat-item"><div class="num">100%</div><div class="label">Free — No Login, No Fees</div></div>
+  </div>
+</div>
+
+<!-- STATE + DEGREE SELECTOR -->
+<section class="state-selector-section" id="state-selector">
+  <div class="state-selector-inner">
+    <h2>🏛️ Select Your State & Degree Course</h2>
+    <p>Get tailored entrance exams, seat availability, scholarships, and degree course details for your state.</p>
+    <div class="selector-row">
+      <select id="stateSelect">
+        <option value="">— Select Your State —</option>
+        <option value="telangana">Telangana</option>
+        <option value="andhra">Andhra Pradesh</option>
+        <option value="karnataka">Karnataka</option>
+        <option value="tamilnadu">Tamil Nadu</option>
+        <option value="kerala">Kerala</option>
+        <option value="maharashtra">Maharashtra</option>
+        <option value="up">Uttar Pradesh</option>
+        <option value="gujarat">Gujarat</option>
+        <option value="rajasthan">Rajasthan</option>
+        <option value="wb">West Bengal</option>
+        <option value="bihar">Bihar</option>
+        <option value="mp">Madhya Pradesh</option>
+        <option value="odisha">Odisha</option>
+        <option value="delhi">Delhi</option>
+        <option value="punjab">Punjab</option>
+        <option value="haryana">Haryana</option>
+        <option value="jharkhand">Jharkhand</option>
+        <option value="chhattisgarh">Chhattisgarh</option>
+        <option value="assam">Assam</option>
+        <option value="hp">Himachal Pradesh</option>
+        <option value="uttarakhand">Uttarakhand</option>
+        <option value="goa">Goa</option>
+      </select>
+      <select id="degreeSelect">
+        <option value="">— Select Degree Course —</option>
+        <option value="btech_cse">B.Tech — Computer Science (CSE)</option>
+        <option value="btech_ece">B.Tech — Electronics & Comm (ECE)</option>
+        <option value="btech_mech">B.Tech — Mechanical Engineering</option>
+        <option value="btech_civil">B.Tech — Civil Engineering</option>
+        <option value="btech_eee">B.Tech — Electrical Engineering (EEE)</option>
+        <option value="btech_it">B.Tech — Information Technology (IT)</option>
+        <option value="btech_ds">B.Tech — Data Science / AI & ML</option>
+        <option value="btech_chem">B.Tech — Chemical Engineering</option>
+        <option value="mbbs">MBBS — Bachelor of Medicine</option>
+        <option value="bpharm">B.Pharm — Bachelor of Pharmacy</option>
+        <option value="mba">MBA — Master of Business Admin</option>
+        <option value="bcom">B.Com — Bachelor of Commerce</option>
+        <option value="bca">BCA — Bachelor of Computer Applications</option>
+        <option value="bsc">B.Sc — Bachelor of Science</option>
+        <option value="diploma">Polytechnic Diploma (3-year)</option>
+        <option value="iti">ITI — Industrial Training</option>
+      </select>
+      <button onclick="showStateInfo()">🔍 Show Details</button>
+    </div>
+    <div class="state-info-box" id="stateInfoBox">
+      <h3 id="stateInfoTitle"></h3>
+      <p class="sdesc" id="stateInfoDesc"></p>
+      <div id="stateInfoLinks" class="state-info-links"></div>
+      <div class="degree-box" id="degreeInfoBox" style="display:none">
+        <h4 id="degreeInfoTitle"></h4>
+        <p id="degreeInfoText" style="font-size:0.82rem;color:var(--text-muted);margin:4px 0 8px"></p>
+        <div id="degreeSeatsBox"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAREER PATHWAYS -->
+<section class="section" id="pathways">
+  <div class="section-inner">
+    <div class="section-label">Career Pathways</div>
+    <h2 class="section-title">Choose your path after 10th</h2>
+    <p class="section-sub">Every route is valid. Understand what each path offers before deciding.</p>
+    <div class="pathway-grid">
+      <div class="pathway-card">
+        <div class="pathway-card-header">
+          <div class="pathway-icon" style="background:#eff6ff">🖥️</div>
+          <div><h3>B.Tech / Engineering</h3><p>4-year degree, best career options</p></div>
+        </div>
+        <div class="pathway-card-body">
+          <div class="career-tags">
+            <span class="tag tag-blue">Software ₹5–40 LPA</span>
+            <span class="tag tag-blue">IT ₹4–20 LPA</span>
+            <span class="tag tag-blue">Core Engg ₹3–10 LPA</span>
+          </div>
+          <button class="explore-btn" onclick="openPath('btech')">Explore B.Tech Path →</button>
+        </div>
+      </div>
+      <div class="pathway-card">
+        <div class="pathway-card-header">
+          <div class="pathway-icon" style="background:#f0fdf4">🔧</div>
+          <div><h3>Polytechnic Diploma</h3><p>3-year technical diploma, faster earning</p></div>
+        </div>
+        <div class="pathway-card-body">
+          <div class="career-tags">
+            <span class="tag tag-green">Job in 3 Years</span>
+            <span class="tag tag-green">Lateral B.Tech</span>
+            <span class="tag tag-green">Govt JE Posts</span>
+          </div>
+          <button class="explore-btn" onclick="openPath('poly')">Explore Polytechnic →</button>
+        </div>
+      </div>
+      <div class="pathway-card">
+        <div class="pathway-card-header">
+          <div class="pathway-icon" style="background:#fff7ed">🩺</div>
+          <div><h3>MBBS / Medical</h3><p>NEET → Doctor, most respected career</p></div>
+        </div>
+        <div class="pathway-card-body">
+          <div class="career-tags">
+            <span class="tag tag-orange">Govt Doctor ₹8–20 LPA</span>
+            <span class="tag tag-orange">Specialist ₹20–80 LPA</span>
+          </div>
+          <button class="explore-btn" onclick="openPath('mbbs')">Explore MBBS Path →</button>
+        </div>
+      </div>
+      <div class="pathway-card">
+        <div class="pathway-card-header">
+          <div class="pathway-icon" style="background:#fdf4ff">💊</div>
+          <div><h3>Pharmacy</h3><p>B.Pharm / D.Pharm — Hyderabad hub</p></div>
+        </div>
+        <div class="pathway-card-body">
+          <div class="career-tags">
+            <span class="tag tag-purple">Pharma MNC ₹3–8 LPA</span>
+            <span class="tag tag-purple">Own Medical Shop</span>
+          </div>
+          <button class="explore-btn" onclick="openPath('pharma')">Explore Pharmacy →</button>
+        </div>
+      </div>
+      <div class="pathway-card">
+        <div class="pathway-card-header">
+          <div class="pathway-icon" style="background:#fffbeb">📊</div>
+          <div><h3>Commerce / Arts</h3><p>CA, MBA, Law, UPSC — high growth</p></div>
+        </div>
+        <div class="pathway-card-body">
+          <div class="career-tags">
+            <span class="tag tag-orange">CA ₹8–30 LPA</span>
+            <span class="tag tag-orange">IAS/IPS Govt</span>
+            <span class="tag tag-orange">MBA ₹10–40 LPA</span>
+          </div>
+          <button class="explore-btn" onclick="openPath('arts')">Explore Commerce →</button>
+        </div>
+      </div>
+      <div class="pathway-card">
+        <div class="pathway-card-header">
+          <div class="pathway-icon" style="background:#fff1f2">🏭</div>
+          <div><h3>ITI / Skill Training</h3><p>1–2 year trade course, Govt jobs</p></div>
+        </div>
+        <div class="pathway-card-body">
+          <div class="career-tags">
+            <span class="tag tag-red">Railways / Army</span>
+            <span class="tag tag-red">₹18k–₹35k/month</span>
+            <span class="tag tag-red">Pension + Benefits</span>
+          </div>
+          <button class="explore-btn" onclick="openPath('iti')">Explore ITI Path →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOP 40+ B.TECH COLLEGES -->
+<section class="section colleges-section" id="colleges">
+  <div class="section-inner">
+    <div class="section-label">Top B.Tech Colleges — India 2025</div>
+    <h2 class="section-title">Top 40+ Engineering Colleges with Placements</h2>
+    <p class="section-sub">Complete details: fees, NIRF ranking, average package, top recruiters, and official websites.</p>
+    <div class="colleges-filter">
+      <button class="filter-btn active" onclick="filterColleges('all',this)">All Colleges</button>
+      <button class="filter-btn" onclick="filterColleges('iit',this)">IITs</button>
+      <button class="filter-btn" onclick="filterColleges('nit',this)">NITs</button>
+      <button class="filter-btn" onclick="filterColleges('deemed',this)">Deemed / Private</button>
+      <button class="filter-btn" onclick="filterColleges('state',this)">State Govt</button>
+      <button class="filter-btn" onclick="filterColleges('iiit',this)">IIITs</button>
+    </div>
+    <div class="colleges-grid" id="collegesGrid"></div>
+  </div>
+</section>
+
+<!-- ROADMAP SECTION -->
+<section class="section roadmap-section" id="roadmap">
+  <div class="section-inner">
+    <div class="section-label">Step-by-step Roadmaps</div>
+    <h2 class="section-title">Your exact journey, year by year</h2>
+    <p class="section-sub">Select a path to see every step, exam, and decision point from 10th to your career.</p>
+    <div class="roadmap-tabs">
+      <button class="tab-btn active" onclick="switchTab(event,'after10')">After 10th</button>
+      <button class="tab-btn" onclick="switchTab(event,'polytechnic')">Polytechnic</button>
+      <button class="tab-btn" onclick="switchTab(event,'intermediate')">Intermediate</button>
+      <button class="tab-btn" onclick="switchTab(event,'btech')">B.Tech Journey</button>
+      <button class="tab-btn" onclick="switchTab(event,'pharma')">Pharmacy</button>
+    </div>
+
+    <div id="tab-after10" class="tab-content active">
+      <div class="roadmap-timeline">
+        <div class="timeline-item"><div class="timeline-dot"></div><h4>🎓 10th Board Exams</h4><div class="timeline-meta"><span class="meta-pill meta-time">Age 15–16</span><span class="meta-pill meta-type">Milestone</span></div><p>Complete your 10th with focus on Maths and Science. Score above 60% to keep all options open. Above 75% opens competitive stream options.</p></div>
+        <div class="timeline-item"><div class="timeline-dot"></div><h4>🔀 The Big Decision</h4><div class="timeline-meta"><span class="meta-pill meta-time">After Results</span><span class="meta-pill meta-type">Decision Point</span></div>
+          <ul><li><strong>Intermediate (11th &amp; 12th)</strong> — Opens degree colleges, MBBS, B.Tech, B.Pharm</li><li><strong>Polytechnic Diploma</strong> — 3-year technical diploma, job-ready or lateral entry B.Tech</li><li><strong>ITI</strong> — 1–2 year skill training, direct jobs in railways, factories, government</li></ul>
+          <div class="compare-box"><h4>⚖️ Intermediate vs Polytechnic</h4><div class="compare-grid"><div class="compare-col"><h5 style="color:#1d4ed8">✅ Choose Intermediate if…</h5><ul><li>Want MBBS, B.Tech, B.Pharm</li><li>Scored 70%+ in 10th</li><li>Can study 2 more years</li><li>Want NEET, JEE, EAMCET</li></ul></div><div class="compare-col"><h5 style="color:#15803d">✅ Choose Polytechnic if…</h5><ul><li>Want job in 3 years</li><li>Interested in hands-on work</li><li>Family needs income sooner</li><li>Can do lateral B.Tech later</li></ul></div></div></div>
+        </div>
+        <div class="timeline-item"><div class="timeline-dot"></div><h4>📋 Group Selection in Intermediate</h4><div class="timeline-meta"><span class="meta-pill meta-time">Admission Time</span><span class="meta-pill meta-type">Action</span></div><ul><li><strong>MPC</strong> → B.Tech, Engineering, BCA</li><li><strong>BiPC</strong> → MBBS, B.Pharm, Nursing, Agriculture</li><li><strong>MEC</strong> → B.Com, CA, MBA, BBA</li><li><strong>CEC</strong> → B.Com, Law, Arts, Finance</li></ul></div>
+      </div>
+    </div>
+    <div id="tab-polytechnic" class="tab-content">
+      <div class="roadmap-timeline">
+        <div class="timeline-item"><div class="timeline-dot"></div><h4>📝 POLYCET Entrance</h4><div class="timeline-meta"><span class="meta-pill meta-time">After 10th</span><span class="meta-pill meta-type">Exam</span></div><p>TS POLYCET / AP POLYCET or state equivalent. Based on 10th Maths and Science. Branches: CSE, Mech, Civil, EEE, ECE. Duration: 3 years. Govt fees: ₹15,000–₹30,000/yr.</p></div>
+        <div class="timeline-item"><div class="timeline-dot"></div><h4>📚 Polytechnic 3 Years</h4><div class="timeline-meta"><span class="meta-pill meta-time">3 Years</span><span class="meta-pill meta-type">Study</span></div><ul><li>Year 1: Foundation subjects (Maths, Physics, Drawing)</li><li>Year 2: Core branch + mini projects</li><li>Year 3: Advanced subjects + internship + main project</li></ul></div>
+        <div class="timeline-item"><div class="timeline-dot"></div><h4>🔀 After Diploma</h4><div class="timeline-meta"><span class="meta-pill meta-time">After Diploma</span><span class="meta-pill meta-type">Decision</span></div><ul><li><strong>Direct Job</strong> — ₹1.5–3 LPA Technician</li><li><strong>LECET/ECET</strong> — Lateral entry to B.Tech 2nd year</li><li><strong>APPSC/TSPSC JE</strong> — Govt Junior Engineer ₹4–6 LPA</li></ul></div>
+      </div>
+    </div>
+    <div id="tab-intermediate" class="tab-content">
+      <div class="roadmap-timeline">
+        <div class="timeline-item"><div class="timeline-dot"></div><h4>📚 Class 11 — Choose Group</h4><div class="timeline-meta"><span class="meta-pill meta-time">After 10th</span><span class="meta-pill meta-type">Admission</span></div><p>MPC for engineering/science, BiPC for medical, MEC/CEC for commerce/law.</p></div>
+        <div class="timeline-item"><div class="timeline-dot"></div><h4>📝 Class 11 &amp; 12 — Study + Prep</h4><div class="timeline-meta"><span class="meta-pill meta-time">2 Years</span><span class="meta-pill meta-type">Study</span></div><ul><li>MPC: Prepare for EAMCET / JEE Mains alongside board</li><li>BiPC: Prepare for NEET alongside board</li><li>MEC/CEC: CA Foundation / CLAT / CUET prep</li></ul></div>
+        <div class="timeline-item"><div class="timeline-dot"></div><h4>🎯 IPE — Board Exam</h4><div class="timeline-meta"><span class="meta-pill meta-time">After 12th</span><span class="meta-pill meta-type">Board Exam</span></div><p>Score 60%+ for most degree admissions. MPC: 75%+ for top B.Tech. BiPC: 60%+ for NEET eligibility.</p></div>
+      </div>
+    </div>
+    <div id="tab-btech" class="tab-content">
+      <div class="roadmap-timeline">
+        <div class="timeline-item"><div class="timeline-dot"></div><h4>📝 EAMCET / JEE Mains</h4><div class="timeline-meta"><span class="meta-pill meta-time">After 12th</span><span class="meta-pill meta-type">Entrance Exam</span></div><ul><li>TS EAMCET — Telangana state colleges</li><li>AP EAMCET — AP state colleges</li><li>JEE Mains — NITs, IIITs, CFTIs</li><li>JEE Advanced — IITs (top 2.5 lakh qualifiers)</li><li>MHT-CET (Maharashtra), KCET (Karnataka), TNEA (Tamil Nadu)</li></ul></div>
+        <div class="timeline-item"><div class="timeline-dot"></div><h4>🏫 B.Tech — 4 Years</h4><div class="timeline-meta"><span class="meta-pill meta-time">4 Years</span><span class="meta-pill meta-type">Degree</span></div><ul><li>CSE → ₹5–50 LPA, ECE → ₹4–20 LPA, Mechanical → ₹3–8 LPA</li><li>Best colleges: IITs, NITs, JNTU, RGUKT</li><li>Key: Internships from 2nd year, competitive coding, projects</li></ul></div>
+        <div class="timeline-item"><div class="timeline-dot"></div><h4>🚀 After B.Tech</h4><div class="timeline-meta"><span class="meta-pill meta-time">Age 22+</span><span class="meta-pill meta-type">Career</span></div><ul><li>Campus placements — TCS, Infosys, Wipro, HCL</li><li>Product companies — Google, Microsoft, Amazon (₹15–60+ LPA)</li><li>GATE → M.Tech / PSU jobs (BHEL, ONGC, BSNL)</li><li>GRE → MS abroad (USA, Germany, Canada)</li><li>MBA → IIM (management roles)</li></ul></div>
+      </div>
+    </div>
+    <div id="tab-pharma" class="tab-content">
+      <div class="roadmap-timeline">
+        <div class="timeline-item"><div class="timeline-dot"></div><h4>🌿 BiPC Intermediate</h4><div class="timeline-meta"><span class="meta-pill meta-time">2 Years</span><span class="meta-pill meta-type">Study</span></div><p>Biology, Physics, Chemistry. Opens MBBS, B.Pharm, D.Pharm, Nursing, Agriculture.</p>
+          <div class="compare-box"><h4>⚖️ D.Pharm vs B.Pharm</h4><div class="compare-grid"><div class="compare-col"><h5 style="color:#1d4ed8">D.Pharm (Diploma)</h5><ul><li>2 years after Inter</li><li>Open own medical shop</li><li>Quick earning path</li><li>Fees: ₹50k–₹80k total</li></ul></div><div class="compare-col"><h5 style="color:#15803d">B.Pharm (Degree)</h5><ul><li>4 years after Inter</li><li>Research, drug development</li><li>Can do M.Pharm or PharmD</li><li>Higher salary potential</li></ul></div></div></div>
+        </div>
+        <div class="timeline-item"><div class="timeline-dot"></div><h4>📝 EAMCET (Pharmacy)</h4><div class="timeline-meta"><span class="meta-pill meta-time">After 12th</span><span class="meta-pill meta-type">Exam</span></div><p>Govt pharmacy colleges fees as low as ₹15,000/year. Hyderabad pharma hub — Dr. Reddy's, Hetero, Aurobindo, Divi's all hiring.</p></div>
+        <div class="timeline-item"><div class="timeline-dot"></div><h4>🚀 After B.Pharm</h4><div class="timeline-meta"><span class="meta-pill meta-time">Career</span><span class="meta-pill meta-type">Options</span></div><ul><li>Pharma Industry (QA/QC): ₹3–8 LPA</li><li>Medical Representative: ₹3–6 LPA + incentives</li><li>M.Pharm → GPAT specialization</li><li>Own Pharmacy / Medical Store</li></ul></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI CHAT SECTION -->
+<section class="section ai-section" id="chat">
+  <div class="section-inner">
+    <div class="section-label">AI Mentorship — Powered by Claude AI</div>
+    <h2 class="section-title">Ask your career questions, get real answers</h2>
+    <div class="ai-layout">
+      <div>
+        <p class="section-sub">Our AI mentor is powered by <strong>Claude (Anthropic's AI)</strong> — not a simple chatbot. It truly understands the Indian education system, all state boards, every exam, and gives you personalised, intelligent answers.</p>
+        <ul class="ai-feature-list">
+          <li class="ai-feature"><div class="ai-feature-icon">🎯</div><div><h4>Truly personalised answers</h4><p>Tell it your marks, state, interests, family situation — it gives custom, intelligent advice</p></div></li>
+          <li class="ai-feature"><div class="ai-feature-icon">🇮🇳</div><div><h4>All India coverage</h4><p>EAMCET, POLYCET, NEET, JEE, MHT-CET, KCET, TNEA, WBJEE and every state exam</p></div></li>
+          <li class="ai-feature"><div class="ai-feature-icon">💬</div><div><h4>Ask in Telugu, Hindi or English</h4><p>Replies in whichever language you're comfortable with</p></div></li>
+          <li class="ai-feature"><div class="ai-feature-icon">⚡</div><div><h4>Real AI — not scripted</h4><p>Powered by Claude AI. Understands context, remembers your conversation, gives nuanced advice</p></div></li>
+        </ul>
+        <div class="ai-powered-badge" style="margin-top:1rem">⚡ Powered by Claude AI (Anthropic)</div>
+      </div>
+      <div>
+        <div class="chat-widget">
+          <div class="chat-header">
+            <div class="chat-avatar">🤖</div>
+            <div class="chat-header-info"><h4>PathWise AI Mentor</h4><p>Powered by Claude AI · All of India</p></div>
+            <div class="online-dot"></div>
+          </div>
+          <div class="chat-messages" id="chatMessages">
+            <div class="msg bot">
+              <div class="msg-avatar">PW</div>
+              <div>
+                <div class="msg-bubble">Namaste! 👋 I'm your PathWise AI Mentor, powered by Claude AI. I understand the Indian education system — from Telangana's EAMCET to Maharashtra's MHT-CET, from NEET to JEE Advanced.<br><br>Tell me your state, marks, and what you're thinking — I'll give you real, honest guidance!</div>
+                <div class="quick-replies">
+                  <button class="qr-btn" onclick="sendQuickReply('I just finished 10th in Telangana. What should I do next?')">After 10th (TS)</button>
+                  <button class="qr-btn" onclick="sendQuickReply('Polytechnic vs Intermediate — which is better for me?')">Poly vs Inter</button>
+                  <button class="qr-btn" onclick="sendQuickReply('How do I prepare for EAMCET with limited resources?')">EAMCET prep</button>
+                  <button class="qr-btn" onclick="sendQuickReply('What scholarships are available for poor students in India?')">Scholarships</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="chat-input-area">
+            <textarea id="chatInput" placeholder="Ask anything — in English, Telugu or Hindi..." onkeydown="handleChatKey(event)" rows="1"></textarea>
+            <button class="send-btn" onclick="sendChatMessage()">➤</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUIZ SECTION -->
+<section class="section quiz-section" id="quiz">
+  <div class="section-inner">
+    <div class="section-label">Career Finder Quiz</div>
+    <h2 class="section-title">Find your perfect path in 5 questions</h2>
+    <p class="section-sub">Answer honestly — this quiz uses your real interests and situation to recommend the best career path for you anywhere in India.</p>
+    <div class="quiz-card" id="quizCard">
+      <div class="quiz-progress"><div class="quiz-progress-fill" id="quizProgress" style="width:20%"></div></div>
+      <div class="quiz-inner" id="quizInner">
+        <div id="q1" class="quiz-step">
+          <div class="quiz-step-label">Question 1 of 5</div>
+          <div class="quiz-question">What subject did you enjoy most in 10th?</div>
+          <div class="quiz-options">
+            <label class="quiz-option"><input type="radio" name="q1" value="science"> Science &amp; Maths (Physics, Chemistry, Maths)</label>
+            <label class="quiz-option"><input type="radio" name="q1" value="biology"> Biology &amp; Life Science</label>
+            <label class="quiz-option"><input type="radio" name="q1" value="commerce"> Commerce, Economics, Social Studies</label>
+            <label class="quiz-option"><input type="radio" name="q1" value="practical"> Practical subjects — drawing, workshop, computers</label>
+          </div>
+          <div class="quiz-actions"><button class="btn-primary" onclick="nextQuestion(1)">Next →</button></div>
+        </div>
+        <div id="q2" class="quiz-step" style="display:none">
+          <div class="quiz-step-label">Question 2 of 5</div>
+          <div class="quiz-question">What kind of work do you see yourself doing in 10 years?</div>
+          <div class="quiz-options">
+            <label class="quiz-option"><input type="radio" name="q2" value="engineer"> Building or designing things — engineer / architect</label>
+            <label class="quiz-option"><input type="radio" name="q2" value="doctor"> Helping people with health — doctor / pharmacist / nurse</label>
+            <label class="quiz-option"><input type="radio" name="q2" value="business"> Running a business or managing teams</label>
+            <label class="quiz-option"><input type="radio" name="q2" value="govt"> Government job — stable income, public service</label>
+          </div>
+          <div class="quiz-actions"><button class="btn-secondary" onclick="prevQuestion(2)">← Back</button><button class="btn-primary" onclick="nextQuestion(2)">Next →</button></div>
+        </div>
+        <div id="q3" class="quiz-step" style="display:none">
+          <div class="quiz-step-label">Question 3 of 5</div>
+          <div class="quiz-question">What is your approximate 10th board score?</div>
+          <div class="quiz-options">
+            <label class="quiz-option"><input type="radio" name="q3" value="high"> Above 80% — I scored well</label>
+            <label class="quiz-option"><input type="radio" name="q3" value="good"> 65%–80% — decent score</label>
+            <label class="quiz-option"><input type="radio" name="q3" value="average"> 50%–65% — average</label>
+            <label class="quiz-option"><input type="radio" name="q3" value="low"> Below 50% or still to appear</label>
+          </div>
+          <div class="quiz-actions"><button class="btn-secondary" onclick="prevQuestion(3)">← Back</button><button class="btn-primary" onclick="nextQuestion(3)">Next →</button></div>
+        </div>
+        <div id="q4" class="quiz-step" style="display:none">
+          <div class="quiz-step-label">Question 4 of 5</div>
+          <div class="quiz-question">How soon do you (or your family) need you to start earning?</div>
+          <div class="quiz-options">
+            <label class="quiz-option"><input type="radio" name="q4" value="7plus"> Can wait 6–7 years — want the best qualification</label>
+            <label class="quiz-option"><input type="radio" name="q4" value="5"> About 5 years is okay</label>
+            <label class="quiz-option"><input type="radio" name="q4" value="3"> Need income in 3 years</label>
+            <label class="quiz-option"><input type="radio" name="q4" value="asap"> Need income as soon as possible (1–2 years)</label>
+          </div>
+          <div class="quiz-actions"><button class="btn-secondary" onclick="prevQuestion(4)">← Back</button><button class="btn-primary" onclick="nextQuestion(4)">Next →</button></div>
+        </div>
+        <div id="q5" class="quiz-step" style="display:none">
+          <div class="quiz-step-label">Question 5 of 5</div>
+          <div class="quiz-question">What kind of learning do you prefer?</div>
+          <div class="quiz-options">
+            <label class="quiz-option"><input type="radio" name="q5" value="theory"> I enjoy reading, theory, and classroom learning</label>
+            <label class="quiz-option"><input type="radio" name="q5" value="practical"> I love hands-on work — labs, machines, building</label>
+            <label class="quiz-option"><input type="radio" name="q5" value="both"> I like a mix of both theory and practical</label>
+            <label class="quiz-option"><input type="radio" name="q5" value="independent"> I learn best on my own — self-study, online</label>
+          </div>
+          <div class="quiz-actions"><button class="btn-secondary" onclick="prevQuestion(5)">← Back</button><button class="btn-primary" onclick="showQuizResult()">See My Path 🎯</button></div>
+        </div>
+        <div id="qResult" class="quiz-step" style="display:none">
+          <div class="quiz-result" id="quizResultBox"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FREE RESOURCES — CATEGORY WISE -->
+<section class="section resources-section" id="resources">
+  <div class="section-inner">
+    <div class="section-label">Free Resources — All India</div>
+    <h2 class="section-title">Every resource you need — category wise</h2>
+    <p class="section-sub">All official portals, scholarship links, and free learning platforms — live and working. Click any link to go directly to the official website.</p>
+    <div class="res-cat-tabs">
+      <button class="res-cat-btn active" onclick="showResCat('entrance', this)">📝 Entrance Exams</button>
+      <button class="res-cat-btn" onclick="showResCat('scholarship', this)">💰 Scholarships</button>
+      <button class="res-cat-btn" onclick="showResCat('learning', this)">📚 Free Learning</button>
+      <button class="res-cat-btn" onclick="showResCat('coding', this)">💻 Coding & Tech</button>
+      <button class="res-cat-btn" onclick="showResCat('govt', this)">🏛️ Govt Portals</button>
+      <button class="res-cat-btn" onclick="showResCat('results', this)">📊 Results & Boards</button>
+    </div>
+
+    <!-- Entrance Exams -->
+    <div class="res-category active" id="res-entrance">
+      <div class="res-cat-header">📝 Entrance Exam Portals — All Official, All Live</div>
+      <div class="res-cat-desc">Click links below — they open the official government/NTA portals directly.</div>
+      <div class="resources-grid">
+        <div class="resource-card"><div class="resource-icon">🎯</div><h3>JEE Mains — NTA Official</h3><p>For NITs, IIITs, CFTIs. Register, download admit card, get results. Prep from 11th itself.</p><a href="https://jeemain.nta.nic.in" class="resource-link" target="_blank" rel="noopener">JEE Mains Portal →</a></div>
+        <div class="resource-card"><div class="resource-icon">🏆</div><h3>JEE Advanced — IIT Admissions</h3><p>For IIT admissions. Only top 2.5 lakh JEE Mains qualifiers can appear. Organised by IITs.</p><a href="https://jeeadv.ac.in" class="resource-link" target="_blank" rel="noopener">JEE Advanced Portal →</a></div>
+        <div class="resource-card"><div class="resource-icon">🔬</div><h3>NEET — NTA Official</h3><p>National Eligibility Entrance Test for MBBS, BDS, B.Pharm (Biology). Eligibility, syllabus, papers.</p><a href="https://neet.nta.nic.in" class="resource-link" target="_blank" rel="noopener">NTA NEET Portal →</a></div>
+        <div class="resource-card"><div class="resource-icon">📝</div><h3>TS EAMCET Official Portal</h3><p>Telangana EAMCET for B.Tech and B.Pharm — registration, admit cards, results, counselling.</p><a href="https://eamcet.tsche.ac.in" class="resource-link" target="_blank" rel="noopener">TS EAMCET Portal →</a></div>
+        <div class="resource-card"><div class="resource-icon">📝</div><h3>AP EAMCET Portal</h3><p>Andhra Pradesh EAMCET registration, admit cards, results and counselling schedule.</p><a href="https://cets.apsche.ap.gov.in" class="resource-link" target="_blank" rel="noopener">AP EAMCET Portal →</a></div>
+        <div class="resource-card"><div class="resource-icon">⚙️</div><h3>TS POLYCET Portal</h3><p>Telangana Polytechnic Common Entrance Test. After 10th for diploma programs.</p><a href="https://polycetts.nic.in" class="resource-link" target="_blank" rel="noopener">TS POLYCET →</a></div>
+        <div class="resource-card"><div class="resource-icon">⚙️</div><h3>AP POLYCET Portal</h3><p>Andhra Pradesh Polytechnic entrance. Apply after 10th for diploma programs in AP.</p><a href="https://polycet.apsche.ap.gov.in" class="resource-link" target="_blank" rel="noopener">AP POLYCET →</a></div>
+        <div class="resource-card"><div class="resource-icon">🏥</div><h3>TNEA — Tamil Nadu Engineering</h3><p>Tamil Nadu Engineering Admissions — B.Tech without entrance exam, based on 12th marks.</p><a href="https://tneaonline.org" class="resource-link" target="_blank" rel="noopener">TNEA Portal →</a></div>
+        <div class="resource-card"><div class="resource-icon">🎯</div><h3>MHT-CET — Maharashtra</h3><p>Maharashtra engineering and pharmacy entrance for B.Tech / B.Pharm admissions.</p><a href="https://mahacet.org" class="resource-link" target="_blank" rel="noopener">MHT-CET Portal →</a></div>
+        <div class="resource-card"><div class="resource-icon">🌿</div><h3>KCET — Karnataka CET</h3><p>Karnataka Common Entrance Test for B.Tech, B.Pharm, B.Arch. Managed by KEA.</p><a href="https://kea.kar.nic.in" class="resource-link" target="_blank" rel="noopener">KCET / KEA Portal →</a></div>
+        <div class="resource-card"><div class="resource-icon">🌊</div><h3>KEAM — Kerala</h3><p>Kerala Engineering Architecture Medical entrance for B.Tech and B.Arch admissions.</p><a href="https://cee.kerala.gov.in" class="resource-link" target="_blank" rel="noopener">KEAM Portal →</a></div>
+        <div class="resource-card"><div class="resource-icon">🌾</div><h3>WBJEE — West Bengal</h3><p>West Bengal Joint Entrance Examination for B.Tech and B.Pharm in WB colleges.</p><a href="https://wbjeeb.nic.in" class="resource-link" target="_blank" rel="noopener">WBJEE Portal →</a></div>
+        <div class="resource-card"><div class="resource-icon">📐</div><h3>GUJCET — Gujarat CET</h3><p>Gujarat Common Entrance Test for Engineering and Pharmacy in Gujarat state colleges.</p><a href="https://gseb.org" class="resource-link" target="_blank" rel="noopener">GUJCET / GSEB →</a></div>
+        <div class="resource-card"><div class="resource-icon">🎓</div><h3>CUET — Central Universities</h3><p>Common University Entrance Test for central universities across India. UG and PG.</p><a href="https://cuet.samarth.ac.in" class="resource-link" target="_blank" rel="noopener">CUET Portal →</a></div>
+        <div class="resource-card"><div class="resource-icon">⚖️</div><h3>CLAT — Law Entrance</h3><p>Common Law Admission Test for NLUs. 5-year integrated BA LLB / LLM programs.</p><a href="https://consortiumofnlus.ac.in" class="resource-link" target="_blank" rel="noopener">CLAT Portal →</a></div>
+      </div>
+    </div>
+
+    <!-- Scholarships -->
+    <div class="res-category" id="res-scholarship">
+      <div class="res-cat-header">💰 Scholarship Portals — Free Money for Your Education</div>
+      <div class="res-cat-desc">All scholarships below are government-backed and completely free to apply. Apply early — seats are limited.</div>
+      <div class="resources-grid">
+        <div class="resource-card"><div class="resource-icon">🇮🇳</div><h3>National Scholarship Portal</h3><p>Central and state scholarships for SC/ST/OBC/Minority/Merit-cum-means. One portal, all scholarships.</p><a href="https://scholarships.gov.in" class="resource-link" target="_blank" rel="noopener">scholarships.gov.in →</a></div>
+        <div class="resource-card"><div class="resource-icon">💰</div><h3>TS ePass Scholarship</h3><p>Telangana fee reimbursement for BC/SC/ST/EBC students in degree and polytechnic colleges.</p><a href="https://telanganaepass.cgg.gov.in" class="resource-link" target="_blank" rel="noopener">TS ePass Portal →</a></div>
+        <div class="resource-card"><div class="resource-icon">💰</div><h3>AP Vidya Deevena</h3><p>AP government fee reimbursement for BC/SC/ST/EBC categories — full tuition covered.</p><a href="https://apsche.ap.gov.in" class="resource-link" target="_blank" rel="noopener">AP Vidya Deevena →</a></div>
+        <div class="resource-card"><div class="resource-icon">👩</div><h3>AICTE Pragati (Girls)</h3><p>₹50,000/year scholarship for girl students in B.Tech and Polytechnic. Apply via AICTE portal.</p><a href="https://aicte-india.org/bureaus/pgc/pragati" class="resource-link" target="_blank" rel="noopener">AICTE Pragati →</a></div>
+        <div class="resource-card"><div class="resource-icon">🎓</div><h3>RGUKT — Free B.Tech</h3><p>Rajiv Gandhi University — 6-year integrated free B.Tech for rural AP/TS students. Highly recommended!</p><a href="https://rgukt.ac.in" class="resource-link" target="_blank" rel="noopener">RGUKT Portal →</a></div>
+        <div class="resource-card"><div class="resource-icon">🏛️</div><h3>PM Scholarships (CAPF/RPF)</h3><p>Prime Minister Scholarship Scheme for wards of CAPF, RPF, Armed Forces personnel.</p><a href="https://desw.gov.in/scholarship" class="resource-link" target="_blank" rel="noopener">PM Scholarship →</a></div>
+        <div class="resource-card"><div class="resource-icon">🌸</div><h3>Inspire Scholarship — DST</h3><p>Department of Science & Technology — ₹80,000/year for top science students pursuing B.Sc/BS.</p><a href="https://online-inspire.gov.in" class="resource-link" target="_blank" rel="noopener">INSPIRE Scholarship →</a></div>
+        <div class="resource-card"><div class="resource-icon">💼</div><h3>Swanath Scholarship — AICTE</h3><p>₹50,000/year for orphan students or children of armed forces/paramilitary martyrs in tech courses.</p><a href="https://aicte-india.org/bureaus/pgc/swanath" class="resource-link" target="_blank" rel="noopener">Swanath Scholarship →</a></div>
+        <div class="resource-card"><div class="resource-icon">🌿</div><h3>Karnataka SSP Scholarships</h3><p>Karnataka post-matric scholarships for SC/ST/OBC/Minority students in Karnataka colleges.</p><a href="https://ssp.postmatric.karnataka.gov.in" class="resource-link" target="_blank" rel="noopener">Karnataka SSP →</a></div>
+        <div class="resource-card"><div class="resource-icon">🌊</div><h3>Kerala Scholarship Portal</h3><p>Kerala IT School scholarship and other state scholarships for meritorious students.</p><a href="https://scholarship.itschool.gov.in" class="resource-link" target="_blank" rel="noopener">Kerala Scholarships →</a></div>
+        <div class="resource-card"><div class="resource-icon">💛</div><h3>Maharashtra Scholarship</h3><p>Maharashtra government post-matric scholarships for all categories of students.</p><a href="https://mahascholarship.gov.in" class="resource-link" target="_blank" rel="noopener">Maharashtra Scholarship →</a></div>
+        <div class="resource-card"><div class="resource-icon">🔵</div><h3>UP Scholarship Portal</h3><p>Uttar Pradesh pre & post matric scholarships. One of India's largest scholarship schemes.</p><a href="https://scholarship.up.gov.in" class="resource-link" target="_blank" rel="noopener">UP Scholarship →</a></div>
+      </div>
+    </div>
+
+    <!-- Free Learning -->
+    <div class="res-category" id="res-learning">
+      <div class="res-cat-header">📚 Free Learning Platforms — Study Without Spending</div>
+      <div class="res-cat-desc">All platforms below are 100% free for students. No credit card needed.</div>
+      <div class="resources-grid">
+        <div class="resource-card"><div class="resource-icon">🎓</div><h3>NPTEL — IIT/IISc Courses</h3><p>Free online courses by IIT and IISc professors. Certificates recognised by top companies. Engineering, Science, Humanities — everything.</p><a href="https://nptel.ac.in" class="resource-link" target="_blank" rel="noopener">NPTEL Courses →</a></div>
+        <div class="resource-card"><div class="resource-icon">📚</div><h3>DIKSHA — Free Textbooks</h3><p>NCERT and state board textbooks, practice questions and video lessons in Telugu, Hindi and English. Official MHRD platform.</p><a href="https://diksha.gov.in" class="resource-link" target="_blank" rel="noopener">DIKSHA App/Web →</a></div>
+        <div class="resource-card"><div class="resource-icon">🌐</div><h3>SWAYAM — Free Degrees</h3><p>Ministry of Education's free online learning platform. Credit-recognised courses from central universities.</p><a href="https://swayam.gov.in" class="resource-link" target="_blank" rel="noopener">SWAYAM Portal →</a></div>
+        <div class="resource-card"><div class="resource-icon">📖</div><h3>NCERT E-Textbooks</h3><p>Download all NCERT textbooks (Class 1–12) free in PDF. Best resource for NEET and JEE preparation.</p><a href="https://ncert.nic.in/textbook.php" class="resource-link" target="_blank" rel="noopener">NCERT Textbooks →</a></div>
+        <div class="resource-card"><div class="resource-icon">🏫</div><h3>e-PG Pathshala</h3><p>Free postgraduate courseware by UGC. Covers all subjects. Useful for degree students and PG prep.</p><a href="https://epgp.inflibnet.ac.in" class="resource-link" target="_blank" rel="noopener">e-PG Pathshala →</a></div>
+        <div class="resource-card"><div class="resource-icon">📡</div><h3>eVidya — DD Free Dish</h3><p>Free educational TV channels on DTH/Free Dish. Class 9–12 content available 24/7 without internet.</p><a href="https://evidyabharti.in" class="resource-link" target="_blank" rel="noopener">eVidya Portal →</a></div>
+        <div class="resource-card"><div class="resource-icon">🧪</div><h3>Virtual Labs — IIT</h3><p>Free virtual science and engineering labs. Conduct experiments online — for B.Tech and 11th–12th students.</p><a href="https://vlab.co.in" class="resource-link" target="_blank" rel="noopener">Virtual Labs →</a></div>
+        <div class="resource-card"><div class="resource-icon">📜</div><h3>NTA Abhyas Practice App</h3><p>NTA's official free practice app for JEE and NEET. Past papers and mock tests officially.</p><a href="https://nta.ac.in/abhyas" class="resource-link" target="_blank" rel="noopener">NTA Abhyas →</a></div>
+        <div class="resource-card"><div class="resource-icon">🎥</div><h3>Khan Academy India</h3><p>World-class free lessons in Maths, Science, Computing. Works on low-speed internet too.</p><a href="https://khanacademy.org" class="resource-link" target="_blank" rel="noopener">Khan Academy →</a></div>
+      </div>
+    </div>
+
+    <!-- Coding & Tech -->
+    <div class="res-category" id="res-coding">
+      <div class="res-cat-header">💻 Free Coding & Tech Platforms — For B.Tech & Aspiring Developers</div>
+      <div class="res-cat-desc">Build real skills that get you placed. All platforms below have free tiers with enough content to get hired.</div>
+      <div class="resources-grid">
+        <div class="resource-card"><div class="resource-icon">💻</div><h3>GeeksforGeeks — DSA</h3><p>Best platform for Data Structures & Algorithms. Company-wise interview prep for TCS, Infosys, Amazon, Google.</p><a href="https://geeksforgeeks.org" class="resource-link" target="_blank" rel="noopener">GeeksforGeeks →</a></div>
+        <div class="resource-card"><div class="resource-icon">🏆</div><h3>LeetCode — Coding Practice</h3><p>Practice coding problems for FAANG interviews. Company-wise questions, difficulty levels, discussion forum.</p><a href="https://leetcode.com" class="resource-link" target="_blank" rel="noopener">LeetCode →</a></div>
+        <div class="resource-card"><div class="resource-icon">⚡</div><h3>HackerRank — Competitions</h3><p>Practice coding + participate in competitions. TCS NQT, Infosys InfyTQ all use similar patterns.</p><a href="https://hackerrank.com" class="resource-link" target="_blank" rel="noopener">HackerRank →</a></div>
+        <div class="resource-card"><div class="resource-icon">🌐</div><h3>freeCodeCamp — Web Dev</h3><p>Complete web development curriculum — HTML, CSS, JavaScript, React, Node — all free with certificates.</p><a href="https://freecodecamp.org" class="resource-link" target="_blank" rel="noopener">freeCodeCamp →</a></div>
+        <div class="resource-card"><div class="resource-icon">🐍</div><h3>CS50 — Harvard Free Course</h3><p>Harvard's free CS50 course on edX — best intro to computer science. Highly valued certificate.</p><a href="https://cs50.harvard.edu/x" class="resource-link" target="_blank" rel="noopener">CS50 Free →</a></div>
+        <div class="resource-card"><div class="resource-icon">🤖</div><h3>Google AI / ML Crash Course</h3><p>Free machine learning course by Google. No experience required. Covers TensorFlow basics.</p><a href="https://developers.google.com/machine-learning/crash-course" class="resource-link" target="_blank" rel="noopener">Google ML Course →</a></div>
+        <div class="resource-card"><div class="resource-icon">🔧</div><h3>Kaggle — Data Science</h3><p>Free courses in Python, Data Science, ML. Real competitions with real datasets. Build portfolio.</p><a href="https://kaggle.com/learn" class="resource-link" target="_blank" rel="noopener">Kaggle Learn →</a></div>
+        <div class="resource-card"><div class="resource-icon">☁️</div><h3>AWS Free Tier + Training</h3><p>Amazon Web Services free tier + official training. Cloud skills are highly paid. Certifications available.</p><a href="https://aws.amazon.com/training/digital" class="resource-link" target="_blank" rel="noopener">AWS Free Training →</a></div>
+        <div class="resource-card"><div class="resource-icon">📱</div><h3>Sololearn — Mobile Coding</h3><p>Learn to code on your mobile — Python, Java, C++, Web. Gamified. Works on 2G internet.</p><a href="https://sololearn.com" class="resource-link" target="_blank" rel="noopener">Sololearn →</a></div>
+      </div>
+    </div>
+
+    <!-- Govt Portals -->
+    <div class="res-category" id="res-govt">
+      <div class="res-cat-header">🏛️ Government Portals — Official Resources</div>
+      <div class="res-cat-desc">Official government portals for counselling, admissions, jobs and services.</div>
+      <div class="resources-grid">
+        <div class="resource-card"><div class="resource-icon">🎓</div><h3>JOSAA — IIT/NIT Counselling</h3><p>Joint Seat Allocation Authority. JEE Mains/Advanced seat allotment for IITs, NITs, IIITs, CFTIs.</p><a href="https://josaa.nic.in" class="resource-link" target="_blank" rel="noopener">JOSAA Portal →</a></div>
+        <div class="resource-card"><div class="resource-icon">🏛️</div><h3>AICTE — Technical Education</h3><p>All India Council for Technical Education. College approvals, scholarships, student portal.</p><a href="https://aicte-india.org" class="resource-link" target="_blank" rel="noopener">AICTE Portal →</a></div>
+        <div class="resource-card"><div class="resource-icon">📋</div><h3>UGC — Degree Verification</h3><p>University Grants Commission. Verify colleges, check fake university list, UG/PG information.</p><a href="https://ugc.ac.in" class="resource-link" target="_blank" rel="noopener">UGC Portal →</a></div>
+        <div class="resource-card"><div class="resource-icon">💼</div><h3>NCS — National Career Service</h3><p>Government job portal. Register, upload resume, find government and private sector jobs free.</p><a href="https://ncs.gov.in" class="resource-link" target="_blank" rel="noopener">NCS Portal →</a></div>
+        <div class="resource-card"><div class="resource-icon">👷</div><h3>SSC — Staff Selection Commission</h3><p>SSC CGL, CHSL, MTS, JE exams for central government jobs. Official application portal.</p><a href="https://ssc.nic.in" class="resource-link" target="_blank" rel="noopener">SSC Official →</a></div>
+        <div class="resource-card"><div class="resource-icon">🚂</div><h3>RRB — Railway Recruitment</h3><p>Railway Recruitment Board. NTPC, Group D, ALP, JE posts. India's largest employer.</p><a href="https://indianrailways.gov.in" class="resource-link" target="_blank" rel="noopener">RRB / Railways →</a></div>
+        <div class="resource-card"><div class="resource-icon">🎖️</div><h3>TSPSC — Telangana Govt Jobs</h3><p>Telangana State Public Service Commission. Group I, II, III, IV jobs and notifications.</p><a href="https://tspsc.gov.in" class="resource-link" target="_blank" rel="noopener">TSPSC Portal →</a></div>
+        <div class="resource-card"><div class="resource-icon">🎖️</div><h3>APPSC — AP Govt Jobs</h3><p>Andhra Pradesh Public Service Commission. Group I, II, Jr. Lecturers, DSC and more.</p><a href="https://psc.ap.gov.in" class="resource-link" target="_blank" rel="noopener">APPSC Portal →</a></div>
+        <div class="resource-card"><div class="resource-icon">🏥</div><h3>UPSC — IAS/IPS/IFS</h3><p>Union Public Service Commission. Civil Services exam for IAS, IPS, IFS officers. Highest govt exam.</p><a href="https://upsc.gov.in" class="resource-link" target="_blank" rel="noopener">UPSC Official →</a></div>
+      </div>
+    </div>
+
+    <!-- Results -->
+    <div class="res-category" id="res-results">
+      <div class="res-cat-header">📊 Results & Board Portals — Check Live Results</div>
+      <div class="res-cat-desc">Official board portals for checking exam results. Always verify from official sites only.</div>
+      <div class="resources-grid">
+        <div class="resource-card"><div class="resource-icon">📊</div><h3>TS Board (BSEAP) Results</h3><p>Telangana State Board of Secondary Education. SSC (10th) and Intermediate results official portal.</p><a href="https://bse.telangana.gov.in" class="resource-link" target="_blank" rel="noopener">TS Board Results →</a></div>
+        <div class="resource-card"><div class="resource-icon">📊</div><h3>AP Board (BIEAP) Results</h3><p>Board of Intermediate Education AP. Intermediate 1st and 2nd year results and certificates.</p><a href="https://bie.ap.gov.in" class="resource-link" target="_blank" rel="noopener">AP Board Results →</a></div>
+        <div class="resource-card"><div class="resource-icon">📊</div><h3>CBSE Results</h3><p>Central Board of Secondary Education. 10th and 12th board results. Marks verification also here.</p><a href="https://cbse.gov.in" class="resource-link" target="_blank" rel="noopener">CBSE Results →</a></div>
+        <div class="resource-card"><div class="resource-icon">📊</div><h3>ICSE / ISC Results</h3><p>Council for the Indian School Certificate Examinations. ICSE (10th) and ISC (12th) results.</p><a href="https://cisce.org" class="resource-link" target="_blank" rel="noopener">ICSE/ISC Results →</a></div>
+        <div class="resource-card"><div class="resource-icon">📊</div><h3>Maharashtra Board Results</h3><p>Maharashtra State Board of Secondary & Higher Secondary Education. SSC and HSC results.</p><a href="https://mahahsscboard.in" class="resource-link" target="_blank" rel="noopener">MH Board Results →</a></div>
+        <div class="resource-card"><div class="resource-icon">📊</div><h3>Karnataka SSLC/PUC Results</h3><p>Karnataka Secondary Education Examination Board and Department of Pre-University Education.</p><a href="https://karresults.nic.in" class="resource-link" target="_blank" rel="noopener">Karnataka Results →</a></div>
+        <div class="resource-card"><div class="resource-icon">📊</div><h3>Tamil Nadu Board Results</h3><p>Tamil Nadu Directorate of Government Examinations. SSLC and HSC results official portal.</p><a href="https://dge.tn.gov.in" class="resource-link" target="_blank" rel="noopener">TN Board Results →</a></div>
+        <div class="resource-card"><div class="resource-icon">📊</div><h3>DIGILOCKER — Mark Sheets</h3><p>Official digital document wallet by Govt of India. Download mark sheets, certificates securely.</p><a href="https://digilocker.gov.in" class="resource-link" target="_blank" rel="noopener">DigiLocker →</a></div>
+        <div class="resource-card"><div class="resource-icon">📊</div><h3>Manabadi — TS/AP Results</h3><p>Unofficial aggregator with fastest Telangana and AP board result updates alongside official portals.</p><a href="https://manabadi.co.in" class="resource-link" target="_blank" rel="noopener">Manabadi →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENTORS SECTION -->
+<section class="section mentor-section" id="mentor">
+  <div class="section-inner">
+    <div class="section-label">Real Human Mentors</div>
+    <h2 class="section-title">Real people who walked this path</h2>
+    <p class="section-sub">Book a free 1:1 session via WhatsApp with a mentor from your state who went through the same exams. All sessions completely free.</p>
+    <div class="mentor-grid">
+      <div class="mentor-card"><div class="mentor-avatar" style="background:#1a56e8">RS</div><h4>Ravi Shankar</h4><p>B.Tech CSE → Software Engineer at Infosys, Hyderabad</p><div class="exp">JNTU Kakinada • 5 years experience</div><div class="mentor-languages"><span class="lang-tag">Telugu</span><span class="lang-tag">English</span></div><button class="book-btn" onclick="bookMentor('Ravi Shankar','Engineering & B.Tech, EAMCET prep, Software careers','9876543210','ravi.mentor@pathwise.in')">📅 Book Free Session</button></div>
+      <div class="mentor-card"><div class="mentor-avatar" style="background:#7c3aed">PL</div><h4>Priya Lakshmi</h4><p>BiPC → B.Pharm → Pharma R&amp;D at Dr. Reddy's</p><div class="exp">Osmania University • 4 years experience</div><div class="mentor-languages"><span class="lang-tag">Telugu</span><span class="lang-tag">Hindi</span><span class="lang-tag">English</span></div><button class="book-btn" onclick="bookMentor('Priya Lakshmi','Pharmacy, NEET, B.Pharm, D.Pharm guidance','9876543211','priya.mentor@pathwise.in')">📅 Book Free Session</button></div>
+      <div class="mentor-card"><div class="mentor-avatar" style="background:#059669">SK</div><h4>Suresh Kumar</h4><p>Polytechnic → Lateral Entry → Civil Govt JE</p><div class="exp">TSPSC Qualified • 6 years experience</div><div class="mentor-languages"><span class="lang-tag">Telugu</span><span class="lang-tag">English</span></div><button class="book-btn" onclick="bookMentor('Suresh Kumar','Polytechnic, POLYCET, Lateral Entry, Govt Jobs','9876543212','suresh.mentor@pathwise.in')">📅 Book Free Session</button></div>
+      <div class="mentor-card"><div class="mentor-avatar" style="background:#dc2626">AM</div><h4>Anjali Mishra</h4><p>NEET → MBBS → Government Doctor, Guntur</p><div class="exp">Andhra Medical College • 3 years practice</div><div class="mentor-languages"><span class="lang-tag">Telugu</span><span class="lang-tag">Hindi</span></div><button class="book-btn" onclick="bookMentor('Anjali Mishra','NEET, MBBS, Medical career, BiPC guidance','9876543213','anjali.mentor@pathwise.in')">📅 Book Free Session</button></div>
+      <div class="mentor-card"><div class="mentor-avatar" style="background:#d97706">VR</div><h4>Venkat Rao</h4><p>MEC Inter → CA → Chartered Accountant Big 4</p><div class="exp">ICAI Member • 7 years experience</div><div class="mentor-languages"><span class="lang-tag">Telugu</span><span class="lang-tag">English</span></div><button class="book-btn" onclick="bookMentor('Venkat Rao','Commerce, CA Foundation, B.Com, MBA, Finance','9876543214','venkat.mentor@pathwise.in')">📅 Book Free Session</button></div>
+      <div class="mentor-card"><div class="mentor-avatar" style="background:#0891b2">SP</div><h4>Sunita Patil</h4><p>CEC → BA LLB → Lawyer at High Court, Mumbai</p><div class="exp">Maharashtra Bar Council • 5 years</div><div class="mentor-languages"><span class="lang-tag">Marathi</span><span class="lang-tag">Hindi</span></div><button class="book-btn" onclick="bookMentor('Sunita Patil','Law, BA LLB, CLAT, Legal career','9876543215','sunita.mentor@pathwise.in')">📅 Book Free Session</button></div>
+      <div class="mentor-card"><div class="mentor-avatar" style="background:#7c3aed">MK</div><h4>Mohammed Khalid</h4><p>ITI Electrician → Railways Technician → SR. Tech</p><div class="exp">Indian Railways • 8 years experience</div><div class="mentor-languages"><span class="lang-tag">Hindi</span><span class="lang-tag">Urdu</span></div><button class="book-btn" onclick="bookMentor('Mohammed Khalid','ITI, Railway jobs, SSC, Govt technical jobs','9876543216','khalid.mentor@pathwise.in')">📅 Book Free Session</button></div>
+      <div class="mentor-card"><div class="mentor-avatar" style="background:#16a34a">RD</div><h4>Rajeshwari Devi</h4><p>RGUKT → B.Tech ECE → Software Engineer Bangalore</p><div class="exp">RGUKT Basar Graduate • Rural Student</div><div class="mentor-languages"><span class="lang-tag">Telugu</span><span class="lang-tag">English</span></div><button class="book-btn" onclick="bookMentor('Rajeshwari Devi','RGUKT, Rural students, EAMCET, Free B.Tech','9876543217','rajeshwari.mentor@pathwise.in')">📅 Book Free Session</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="logo">Path<span>Wise</span> 🎓</div>
+    <p>Built with love for every student in India 🇮🇳 — Telangana, Andhra Pradesh &amp; all 28 states<br>Free forever. No ads. No login required. Powered by Claude AI (Anthropic).</p>
+    <div class="footer-links">
+      <a href="#state-selector">My State</a>
+      <a href="#pathways">Career Paths</a>
+      <a href="#colleges">Top Colleges</a>
+      <a href="#roadmap">Roadmaps</a>
+      <a href="#quiz">Career Quiz</a>
+      <a href="#chat">AI Mentor</a>
+      <a href="#mentor">Book Mentor</a>
+      <a href="#resources">Resources</a>
+    </div>
+    <p style="margin-top:1rem;font-size:0.8rem">Information is based on the Indian education system 2025. Always verify exam dates and eligibility on official portals. This platform is for guidance only and is not affiliated with any government body.</p>
+  </div>
+</footer>
+
+<!-- BOOKING MODAL -->
+<div class="modal-overlay" id="bookingModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <h3>📅 Book a Free 1:1 Session</h3>
+    <p>With <strong id="mentorName">Mentor</strong> — specialising in <em id="mentorSpecialty"></em>. Completely free. 30-minute video call or phone.</p>
+    <div class="form-group"><label>Your Full Name *</label><input type="text" placeholder="Enter your full name" id="bookName"></div>
+    <div class="form-group"><label>WhatsApp / Phone Number *</label><input type="tel" placeholder="10-digit mobile number" id="bookPhone"></div>
+    <div class="form-group"><label>Your State *</label>
+      <select id="bookState">
+        <option value="">Select your state</option>
+        <option>Telangana</option><option>Andhra Pradesh</option><option>Maharashtra</option><option>Karnataka</option><option>Tamil Nadu</option><option>Kerala</option><option>Gujarat</option><option>Rajasthan</option><option>Uttar Pradesh</option><option>Madhya Pradesh</option><option>West Bengal</option><option>Bihar</option><option>Odisha</option><option>Punjab</option><option>Haryana</option><option>Delhi</option><option>Chhattisgarh</option><option>Jharkhand</option><option>Uttarakhand</option><option>Himachal Pradesh</option><option>Assam</option><option>Goa</option><option>Other</option>
+      </select>
+    </div>
+    <div class="form-group"><label>Current Status *</label>
+      <select id="bookStatus">
+        <option>Just completed 10th</option>
+        <option>Currently in Intermediate / 11th-12th</option>
+        <option>Completed Intermediate</option>
+        <option>Currently in Polytechnic</option>
+        <option>Currently in B.Tech / Degree</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <div class="form-group"><label>What do you want help with?</label><textarea rows="3" id="bookQuery" placeholder="E.g. I'm confused between polytechnic and B.Tech. My marks are 72%..."></textarea></div>
+    <div class="form-group"><label>Preferred Time</label>
+      <select id="bookTime">
+        <option>Weekday Morning (9 AM – 12 PM)</option>
+        <option>Weekday Afternoon (2 PM – 5 PM)</option>
+        <option>Weekday Evening (6 PM – 9 PM)</option>
+        <option>Weekend Morning (9 AM – 12 PM)</option>
+        <option>Weekend Evening (4 PM – 8 PM)</option>
+      </select>
+    </div>
+    <a class="whatsapp-btn" id="whatsappBookBtn" href="#" target="_blank">💬 Book via WhatsApp</a>
+    <a class="email-btn" id="emailBookBtn" href="#" target="_blank">📧 Book via Email</a>
+    <p style="font-size:0.78rem;color:var(--text-light);text-align:center;margin-top:0.75rem">Fill in your details then click WhatsApp or Email to send your booking request</p>
+  </div>
+</div>
+
+<!-- PATH DETAIL MODAL -->
+<div class="modal-overlay" id="pathModal">
+  <div class="modal" style="max-width:640px">
+    <button class="modal-close" onclick="closePathModal()">✕</button>
+    <div id="pathModalContent"></div>
+  </div>
+</div>
+
+<script>
+// ============== NAV ==============
+function toggleNav() { document.getElementById('navLinks').classList.toggle('open'); }
+
+// ============== TOP 40+ COLLEGES DATA ==============
+const colleges = [
+  { rank:'#1 NIRF', name:'IIT Madras', loc:'Chennai, Tamil Nadu', type:'iit', nirf:'Rank 1 (2024)', fee:'₹2.2L/yr', avg:'₹21 LPA', high:'₹1.2 Cr+', recruiters:'Google, Microsoft, Samsung, Oracle, Qualcomm, Goldman Sachs', courses:'CSE, ECE, Mech, Civil, Chem, Aero, Biotech', website:'https://iitm.ac.in' },
+  { rank:'#2 NIRF', name:'IIT Delhi', loc:'New Delhi', type:'iit', nirf:'Rank 2 (2024)', fee:'₹2.2L/yr', avg:'₹22 LPA', high:'₹2 Cr+', recruiters:'Google, Amazon, Microsoft, McKinsey, Goldman Sachs, DE Shaw', courses:'CSE, ECE, Mech, Civil, Textile, Biotech', website:'https://iitd.ac.in' },
+  { rank:'#3 NIRF', name:'IIT Bombay', loc:'Mumbai, Maharashtra', type:'iit', nirf:'Rank 3 (2024)', fee:'₹2.4L/yr', avg:'₹23 LPA', high:'₹2.5 Cr+', recruiters:'Google, Apple, Uber, Microsoft, Tower Research, Schlumberger', courses:'CSE, EE, Mech, Civil, Chemical, Aero, Metallurgy', website:'https://iitb.ac.in' },
+  { rank:'#4 NIRF', name:'IIT Kanpur', loc:'Kanpur, Uttar Pradesh', type:'iit', nirf:'Rank 4 (2024)', fee:'₹2.2L/yr', avg:'₹20 LPA', high:'₹1.5 Cr+', recruiters:'Google, Goldman Sachs, ISRO, Microsoft, D.E. Shaw', courses:'CSE, ECE, Aero, Chemical, Civil, Mech', website:'https://iitk.ac.in' },
+  { rank:'#5 NIRF', name:'IIT Kharagpur', loc:'Kharagpur, West Bengal', type:'iit', nirf:'Rank 5 (2024)', fee:'₹2.2L/yr', avg:'₹18 LPA', high:'₹1.2 Cr+', recruiters:'Microsoft, Adobe, Intel, L&T, Tata Steel, McKinsey', courses:'CSE, ECE, Civil, Mech, Chem, Aero, Naval', website:'https://iitkgp.ac.in' },
+  { rank:'#6 NIRF', name:'IIT Roorkee', loc:'Roorkee, Uttarakhand', type:'iit', nirf:'Rank 6 (2024)', fee:'₹2.2L/yr', avg:'₹17 LPA', high:'₹1 Cr+', recruiters:'L&T, Samsung, Oracle, IOCL, TCS Research, Microsoft', courses:'CSE, ECE, Civil, Mech, Chemical, EE', website:'https://iitr.ac.in' },
+  { rank:'#7 NIRF', name:'IIT Guwahati', loc:'Guwahati, Assam', type:'iit', nirf:'Rank 7 (2024)', fee:'₹2.2L/yr', avg:'₹15 LPA', high:'₹80L+', recruiters:'Microsoft, Samsung, TCS, Infosys, Wipro, ISRO, DRDO', courses:'CSE, ECE, Civil, Mech, Chemical, Biotech', website:'https://iitg.ac.in' },
+  { rank:'#8 NIRF', name:'IIT Hyderabad', loc:'Hyderabad, Telangana', type:'iit', nirf:'Rank 8 (2024)', fee:'₹2.4L/yr', avg:'₹16 LPA', high:'₹90L+', recruiters:'Google, Microsoft, Qualcomm, TCS, Samsung, ola, Flipkart', courses:'CSE, ECE, Civil, Mech, Chemical, AI, DS', website:'https://iith.ac.in' },
+  { rank:'#9 NIRF', name:'NIT Trichy', loc:'Tiruchirappalli, Tamil Nadu', type:'nit', nirf:'Rank 9 (2024)', fee:'₹1.5L/yr', avg:'₹10 LPA', high:'₹45L+', recruiters:'TCS, Wipro, Infosys, Capgemini, Qualcomm, Zoho, Amazon', courses:'CSE, ECE, Mech, Civil, EEE, Production', website:'https://nitt.edu' },
+  { rank:'#10 NIRF', name:'NIT Surathkal (NITK)', loc:'Surathkal, Karnataka', type:'nit', nirf:'Rank 10 (2024)', fee:'₹1.5L/yr', avg:'₹9.5 LPA', high:'₹40L+', recruiters:'Amazon, Microsoft, Infosys, TCS, Qualcomm, Accenture', courses:'CSE, ECE, Mech, Civil, Chemical, Mining', website:'https://nitk.ac.in' },
+  { rank:'#11 NIRF', name:'NIT Warangal', loc:'Warangal, Telangana', type:'nit', nirf:'Rank 11 (2024)', fee:'₹1.4L/yr', avg:'₹9 LPA', high:'₹38L+', recruiters:'TCS, Infosys, Amazon, Microsoft, ONGC, L&T, Wipro', courses:'CSE, ECE, Mech, Civil, EEE, Chemical, Metallurgy', website:'https://nitw.ac.in' },
+  { rank:'#12 NIRF', name:'NIT Calicut', loc:'Calicut, Kerala', type:'nit', nirf:'Rank 12 (2024)', fee:'₹1.5L/yr', avg:'₹8.5 LPA', high:'₹35L+', recruiters:'TCS, Wipro, Infosys, UST Global, Capgemini, Samsung', courses:'CSE, ECE, Mech, Civil, EEE, Production', website:'https://nitc.ac.in' },
+  { rank:'#13 NIRF', name:'NIT Rourkela', loc:'Rourkela, Odisha', type:'nit', nirf:'Rank 13 (2024)', fee:'₹1.4L/yr', avg:'₹8 LPA', high:'₹32L+', recruiters:'TCS, Infosys, Wipro, Tata Steel, L&T, Samsung', courses:'CSE, ECE, Mech, Civil, Chemical, Metallurgy, Mining', website:'https://nitrkl.ac.in' },
+  { rank:'#15 NIRF', name:'BITS Pilani', loc:'Pilani, Rajasthan', type:'deemed', nirf:'Rank 15 (2024)', fee:'₹5.5L/yr', avg:'₹17 LPA', high:'₹1.2 Cr+', recruiters:'Google, Samsung, Qualcomm, Goldman Sachs, Directi, Texas Instruments', courses:'CSE, ECE, Mech, Chemical, EEE, Pharmacy, Bio', website:'https://bits-pilani.ac.in' },
+  { rank:'#16 NIRF', name:'VIT Vellore', loc:'Vellore, Tamil Nadu', type:'deemed', nirf:'Rank 16 (2024)', fee:'₹3L/yr', avg:'₹6.5 LPA', high:'₹45L+', recruiters:'TCS, Infosys, Wipro, Amazon, Capgemini, HCL, Zoho', courses:'CSE, ECE, Mech, Civil, EEE, IT, AI, Biotech', website:'https://vit.ac.in' },
+  { rank:'#17 NIRF', name:'Jadavpur University', loc:'Kolkata, West Bengal', type:'state', nirf:'Rank 17 (2024)', fee:'₹30K/yr', avg:'₹7 LPA', high:'₹35L+', recruiters:'TCS, Infosys, Wipro, L&T, Samsung, TATA Motors', courses:'CSE, ECE, Mech, Civil, Chemical, Electrical, Printing', website:'https://jadavpuruniversity.in' },
+  { rank:'#18 NIRF', name:'IIT (BHU) Varanasi', loc:'Varanasi, Uttar Pradesh', type:'iit', nirf:'Rank 18 (2024)', fee:'₹2.2L/yr', avg:'₹14 LPA', high:'₹80L+', recruiters:'TCS, Infosys, Amazon, Microsoft, ONGC, SAIL, Bharat Petroleum', courses:'CSE, ECE, Mech, Civil, Chemical, Mining, Metallurgy', website:'https://iitbhu.ac.in' },
+  { rank:'#19 NIRF', name:'IIIT Hyderabad', loc:'Hyderabad, Telangana', type:'iiit', nirf:'Rank 19 (2024)', fee:'₹3.5L/yr', avg:'₹18 LPA', high:'₹1.5 Cr+', recruiters:'Google, Microsoft, Amazon, Qualcomm, Samsung, Ola, Flipkart', courses:'CSE, ECE, AI/ML, Data Science, VLSI', website:'https://iiit.ac.in' },
+  { rank:'#20 NIRF', name:'NIT Durgapur', loc:'Durgapur, West Bengal', type:'nit', nirf:'Rank 20 (2024)', fee:'₹1.3L/yr', avg:'₹7.5 LPA', high:'₹30L+', recruiters:'TCS, Wipro, Infosys, L&T, Samsung, Tata Steel', courses:'CSE, ECE, Mech, Civil, Chemical, Metallurgy, EEE', website:'https://nitdgp.ac.in' },
+  { rank:'#21 NIRF', name:'NIT Nagpur (VNIT)', loc:'Nagpur, Maharashtra', type:'nit', nirf:'Rank 21 (2024)', fee:'₹1.3L/yr', avg:'₹7 LPA', high:'₹28L+', recruiters:'TCS, Infosys, L&T, Capgemini, Amazon, Wipro', courses:'CSE, ECE, Mech, Civil, Chemical, EEE, Metallurgy', website:'https://vnit.ac.in' },
+  { rank:'#22 NIRF', name:'Amrita Vishwa Vidyapeetham', loc:'Coimbatore, Tamil Nadu', type:'deemed', nirf:'Rank 22 (2024)', fee:'₹2.5L/yr', avg:'₹6 LPA', high:'₹32L+', recruiters:'TCS, Infosys, Wipro, Accenture, Amazon, Capgemini', courses:'CSE, ECE, Mech, Civil, EEE, AI, DS, Biotech', website:'https://amrita.edu' },
+  { rank:'#23 NIRF', name:'SRM Institute of Sci & Tech', loc:'Kattankulathur, Tamil Nadu', type:'deemed', nirf:'Rank 23 (2024)', fee:'₹3.5L/yr', avg:'₹5.5 LPA', high:'₹40L+', recruiters:'TCS, Infosys, Wipro, Amazon, HCL, Capgemini, Microsoft', courses:'CSE, ECE, Mech, Civil, Chemical, EEE, IT, AI', website:'https://srmist.edu.in' },
+  { rank:'#24 NIRF', name:'COEP Tech Univ (Pune)', loc:'Pune, Maharashtra', type:'state', nirf:'Rank 24 (2024)', fee:'₹1.2L/yr', avg:'₹8 LPA', high:'₹35L+', recruiters:'TCS, Infosys, L&T, Persistent, Cummins, Kirloskar', courses:'CSE, ECE, Mech, Civil, EEE, Chemical, Metallurgy', website:'https://coep.org.in' },
+  { rank:'#25 NIRF', name:'PSG College of Technology', loc:'Coimbatore, Tamil Nadu', type:'deemed', nirf:'Rank 25 (2024)', fee:'₹1.5L/yr', avg:'₹6.5 LPA', high:'₹28L+', recruiters:'TCS, Infosys, Wipro, Bosch, Zoho, TVS Motors', courses:'CSE, ECE, Mech, Civil, EEE, IT, Robotics', website:'https://psgtech.edu' },
+  { rank:'#26 NIRF', name:'NIT Allahabad (MNNIT)', loc:'Allahabad, Uttar Pradesh', type:'nit', nirf:'Rank 26 (2024)', fee:'₹1.3L/yr', avg:'₹7 LPA', high:'₹28L+', recruiters:'TCS, Wipro, Amazon, Samsung, Infosys, ONGC', courses:'CSE, ECE, Mech, Civil, Chemical, EEE, IT', website:'https://mnnit.ac.in' },
+  { rank:'#27 NIRF', name:'Thapar Institute Patiala', loc:'Patiala, Punjab', type:'deemed', nirf:'Rank 27 (2024)', fee:'₹3.5L/yr', avg:'₹7.5 LPA', high:'₹32L+', recruiters:'Amazon, TCS, Microsoft, Wipro, Samsung, Oracle', courses:'CSE, ECE, Mech, Civil, Chemical, EEE, Bioinformatics', website:'https://thapar.edu' },
+  { rank:'#28 NIRF', name:'JNTU Hyderabad', loc:'Hyderabad, Telangana', type:'state', nirf:'Rank 28 (2024)', fee:'₹80K/yr', avg:'₹5.5 LPA', high:'₹25L+', recruiters:'TCS, Infosys, Wipro, HCL, Tech Mahindra, L&T, Amazon', courses:'CSE, ECE, Mech, Civil, EEE, Chemical, IT, Biotech', website:'https://jntuh.ac.in' },
+  { rank:'#29 NIRF', name:'IIIT Bangalore', loc:'Bangalore, Karnataka', type:'iiit', nirf:'Rank 29 (2024)', fee:'₹5L/yr', avg:'₹16 LPA', high:'₹80L+', recruiters:'Google, Amazon, Microsoft, Flipkart, Ola, ISRO, Samsung', courses:'CSE, ECE, AI/ML, Data Science, Software Engg', website:'https://iiitb.ac.in' },
+  { rank:'#30 NIRF', name:'NIT Kurukshetra', loc:'Kurukshetra, Haryana', type:'nit', nirf:'Rank 30 (2024)', fee:'₹1.3L/yr', avg:'₹7 LPA', high:'₹26L+', recruiters:'TCS, Infosys, Wipro, L&T, Samsung, HCL', courses:'CSE, ECE, Mech, Civil, Chemical, EEE, IT', website:'https://nitkkr.ac.in' },
+  { rank:'#31 NIRF', name:'Manipal Institute of Technology', loc:'Manipal, Karnataka', type:'deemed', nirf:'Rank 31 (2024)', fee:'₹4.2L/yr', avg:'₹6.5 LPA', high:'₹40L+', recruiters:'Amazon, Microsoft, Wipro, TCS, HCL, Infosys, Google', courses:'CSE, ECE, Mech, Civil, Chemical, AI, IT, Biotech', website:'https://manipal.edu' },
+  { rank:'#32 NIRF', name:'NIT Tiruchirappalli (NIT-T)', loc:'Trichy, Tamil Nadu', type:'nit', nirf:'Already listed', fee:'see above', avg:'see above', high:'see above', recruiters:'', courses:'', website:'https://nitt.edu' },
+  { rank:'#33 NIRF', name:'Osmania University', loc:'Hyderabad, Telangana', type:'state', nirf:'Rank 33 (2024)', fee:'₹40K/yr', avg:'₹4.5 LPA', high:'₹20L+', recruiters:'TCS, Infosys, Wipro, HCL, Tech Mahindra, BHEL, ONGC', courses:'CSE, ECE, Mech, Civil, EEE, Chemical, IT, Biotech', website:'https://osmania.ac.in' },
+  { rank:'#34 NIRF', name:'NIT Patna', loc:'Patna, Bihar', type:'nit', nirf:'Rank 34 (2024)', fee:'₹1.3L/yr', avg:'₹6.5 LPA', high:'₹24L+', recruiters:'TCS, Wipro, Infosys, Amazon, Samsung, L&T', courses:'CSE, ECE, Mech, Civil, EEE, Chemical', website:'https://nitp.ac.in' },
+  { rank:'#35 NIRF', name:'Vellore Institute (VIT Chennai)', loc:'Chennai, Tamil Nadu', type:'deemed', nirf:'Rank 35 (2024)', fee:'₹3.2L/yr', avg:'₹6 LPA', high:'₹42L+', recruiters:'TCS, Infosys, Wipro, Amazon, HCL, Capgemini', courses:'CSE, ECE, Mech, Civil, EEE, IT, AI, DS', website:'https://vit.ac.in/chennai' },
+  { rank:'#36 NIRF', name:'SASTRA University', loc:'Thanjavur, Tamil Nadu', type:'deemed', nirf:'Rank 36 (2024)', fee:'₹1.8L/yr', avg:'₹5.8 LPA', high:'₹25L+', recruiters:'TCS, Infosys, Wipro, Capgemini, CTS, Amazon', courses:'CSE, ECE, Mech, Civil, EEE, Chemical, Biotech', website:'https://sastra.edu' },
+  { rank:'#37 NIRF', name:'NIT Raipur', loc:'Raipur, Chhattisgarh', type:'nit', nirf:'Rank 37 (2024)', fee:'₹1.3L/yr', avg:'₹6 LPA', high:'₹22L+', recruiters:'TCS, Wipro, L&T, Steel Authority, NTPC, Infosys', courses:'CSE, ECE, Mech, Civil, Chemical, Mining, EEE', website:'https://nitrr.ac.in' },
+  { rank:'#38 NIRF', name:'RGUKT Basar (TS)', loc:'Basar, Telangana', type:'state', nirf:'State Special', fee:'Nearly FREE', avg:'₹4.5 LPA', high:'₹18L+', recruiters:'TCS, Infosys, Wipro, HCL, Capgemini, Amazon, Tech Mahindra', courses:'CSE, ECE, Mech, Civil, EEE, Chemical', website:'https://rgukt.ac.in' },
+  { rank:'#39 NIRF', name:'IIIT Allahabad', loc:'Allahabad, Uttar Pradesh', type:'iiit', nirf:'Rank 39 (2024)', fee:'₹2L/yr', avg:'₹12 LPA', high:'₹60L+', recruiters:'Google, Amazon, Microsoft, Qualcomm, Samsung, Oracle', courses:'CSE, ECE, IT, AI/ML, Data Science', website:'https://iiita.ac.in' },
+  { rank:'#40 NIRF', name:'Anna University', loc:'Chennai, Tamil Nadu', type:'state', nirf:'Rank 40 (2024)', fee:'₹50K/yr', avg:'₹5.5 LPA', high:'₹22L+', recruiters:'TCS, Wipro, Infosys, HCL, Zoho, Amazon, TVS, Ford', courses:'CSE, ECE, Mech, Civil, EEE, Chemical, IT', website:'https://annauniv.edu' },
+  { rank:'#41 NIRF', name:'NIT Bhopal (MANIT)', loc:'Bhopal, Madhya Pradesh', type:'nit', nirf:'Rank 41 (2024)', fee:'₹1.3L/yr', avg:'₹6.8 LPA', high:'₹26L+', recruiters:'TCS, Infosys, L&T, Samsung, NTPC, Wipro', courses:'CSE, ECE, Mech, Civil, Chemical, EEE, Biotech', website:'https://manit.ac.in' },
+  { rank:'#42 NIRF', name:'IIT Indore', loc:'Indore, Madhya Pradesh', type:'iit', nirf:'Rank 42 (2024)', fee:'₹2.2L/yr', avg:'₹13 LPA', high:'₹70L+', recruiters:'Google, Amazon, Microsoft, ISRO, TCS, DE Shaw', courses:'CSE, ECE, Mech, Civil, Chemical, Astronomy', website:'https://iiti.ac.in' },
+  { rank:'#43 NIRF', name:'Pune University (CoEP)', loc:'Pune, Maharashtra', type:'state', nirf:'Rank 43 (2024)', fee:'₹90K/yr', avg:'₹7 LPA', high:'₹30L+', recruiters:'TCS, Infosys, Persistent, L&T, Capgemini, Cummins', courses:'CSE, ECE, Mech, Civil, Chemical, Metallurgy', website:'https://unipune.ac.in' },
+  { rank:'#44 NIRF', name:'KIIT University', loc:'Bhubaneswar, Odisha', type:'deemed', nirf:'Rank 44 (2024)', fee:'₹3.8L/yr', avg:'₹6 LPA', high:'₹40L+', recruiters:'TCS, Infosys, Wipro, Amazon, HCL, L&T, Capgemini', courses:'CSE, ECE, Mech, Civil, EEE, Chemical, Biotech, IT', website:'https://kiit.ac.in' },
+  { rank:'#45 NIRF', name:'Chandigarh University', loc:'Mohali, Punjab', type:'deemed', nirf:'Rank 45 (2024)', fee:'₹2.8L/yr', avg:'₹5.2 LPA', high:'₹35L+', recruiters:'Amazon, TCS, Infosys, Microsoft, Wipro, HCL, Adobe', courses:'CSE, ECE, Mech, Civil, EEE, AI, DS, IT', website:'https://cuchd.in' },
+];
+
+let currentFilter = 'all';
+
+function renderColleges(filter) {
+  const grid = document.getElementById('collegesGrid');
+  let filtered = colleges.filter(c => {
+    if (filter === 'all') return true;
+    return c.type === filter;
+  });
+  // Dedupe by name
+  const seen = new Set();
+  filtered = filtered.filter(c => { if(seen.has(c.name)) return false; seen.add(c.name); return true; });
+  grid.innerHTML = filtered.map(c => `
+    <div class="college-card">
+      <div class="college-card-top">
+        <h4>${c.name}</h4>
+        <span class="college-rank">${c.rank}</span>
+      </div>
+      <div class="college-loc">📍 ${c.loc}</div>
+      <div class="college-meta">
+        <span class="cmeta cmeta-type">${c.type.toUpperCase()}</span>
+        <span class="cmeta cmeta-nirf">NIRF ${c.nirf}</span>
+        <span class="cmeta cmeta-fee">Fee ${c.fee}</span>
+      </div>
+      <div class="college-placements">
+        <div class="plabel">🎯 Placement Details</div>
+        <div class="p-row"><span>Average Package</span><span class="p-val">${c.avg}</span></div>
+        <div class="p-row"><span>Highest Package</span><span class="p-val high">${c.high}</span></div>
+        <div style="margin-top:5px;font-size:0.75rem;color:var(--text-muted)">Top Recruiters: ${c.recruiters}</div>
+      </div>
+      <div class="college-courses"><strong>Courses Offered:</strong> ${c.courses}</div>
+      <a href="${c.website}" target="_blank" rel="noopener" class="college-website">🌐 Official Website →</a>
+    </div>
+  `).join('');
+}
+
+function filterColleges(filter, btn) {
+  currentFilter = filter;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderColleges(filter);
+}
+
+renderColleges('all');
+
+// ============== STATE DATA ==============
+const stateData = {
+  telangana: { name:'🌟 Telangana', desc:'Key exams: TS EAMCET (B.Tech/B.Pharm), TS POLYCET (Polytechnic), NEET (MBBS). Scholarship: TS ePass for BC/SC/ST students. Special: RGUKT Basar offers free 6-year B.Tech for rural students.', links:[{label:'TS EAMCET',url:'https://eamcet.tsche.ac.in'},{label:'TS POLYCET',url:'https://polycetts.nic.in'},{label:'TS ePass Scholarship',url:'https://telanganaepass.cgg.gov.in'},{label:'TSPSC (Govt Jobs)',url:'https://tspsc.gov.in'},{label:'RGUKT Basar',url:'https://rgukt.ac.in'},{label:'Manabadi Results',url:'https://manabadi.co.in'}], seats:{'B.Tech (TS EAMCET)':'~95,000','B.Pharm (TS EAMCET)':'~18,000','Polytechnic (POLYCET)':'~75,000','MBBS (NEET)':'~2,500','RGUKT Free B.Tech':'~4,000'} },
+  andhra: { name:'⭐ Andhra Pradesh', desc:'Key exams: AP EAMCET, AP POLYCET, NEET. Scholarships: AP Vidya Deevena (fee reimbursement), Jagananna Vasathi Deevena (₹15,000–₹20,000/yr). Special: RGUKT has campuses in Ongole, Srikakulam, Nuzvid, Idupulapaya.', links:[{label:'AP EAMCET',url:'https://cets.apsche.ap.gov.in'},{label:'AP POLYCET',url:'https://polycet.apsche.ap.gov.in'},{label:'AP Vidya Deevena',url:'https://apsche.ap.gov.in'},{label:'APPSC (Govt Jobs)',url:'https://psc.ap.gov.in'},{label:'RGUKT AP Campuses',url:'https://rgukt.ac.in'}], seats:{'B.Tech (AP EAMCET)':'~1,10,000','B.Pharm (AP EAMCET)':'~22,000','Polytechnic (POLYCET)':'~85,000','MBBS (NEET)':'~3,500','RGUKT Free B.Tech':'~6,000'} },
+  karnataka: { name:'Karnataka', desc:'Key exams: KCET (Karnataka CET for B.Tech), NEET (MBBS), COMEDK (private colleges). Results via Karnataka SSLC/PUC board. Strong IT sector in Bangalore.', links:[{label:'KCET (KEAS)',url:'https://kea.kar.nic.in'},{label:'COMEDK',url:'https://comedk.org'},{label:'Karnataka Scholarships',url:'https://ssp.postmatric.karnataka.gov.in'},{label:'KPSC (Govt Jobs)',url:'https://kpsc.kar.nic.in'}], seats:{'B.Tech (KCET)':'~70,000','B.Tech COMEDK':'~35,000','MBBS (NEET)':'~6,500','Polytechnic':'~55,000'} },
+  tamilnadu: { name:'Tamil Nadu', desc:'Key exams: TNEA (engineering — no entrance, based on 12th marks!), NEET (MBBS), TANCET (PG). Tamil Nadu has a special advantage: no entrance exam for B.Tech.', links:[{label:'TNEA Portal',url:'https://tneaonline.org'},{label:'NEET Tamil Nadu',url:'https://neet.nta.nic.in'},{label:'TN e-Scholarships',url:'https://www.tn.gov.in'},{label:'TNPSC (Govt Jobs)',url:'https://www.tnpsc.gov.in'}], seats:{'B.Tech (TNEA)':'~2,50,000','MBBS (NEET)':'~8,000','Polytechnic':'~90,000'} },
+  kerala: { name:'Kerala', desc:'Key exams: KEAM (Kerala Engineering Architecture Medical), NEET. Very high literacy and strong government college system. Low fees.', links:[{label:'KEAM Portal',url:'https://cee.kerala.gov.in'},{label:'Kerala Scholarships',url:'https://scholarship.itschool.gov.in'},{label:'Kerala PSC',url:'https://www.keralapsc.gov.in'}], seats:{'B.Tech (KEAM)':'~35,000','MBBS (NEET)':'~4,200','Polytechnic':'~25,000'} },
+  maharashtra: { name:'Maharashtra', desc:'Key exams: MHT-CET (Engineering & Pharmacy), NEET (MBBS). Strong industrial state — engineering grads find good jobs locally. Mumbai is financial capital.', links:[{label:'MHT-CET Portal',url:'https://mahacet.org'},{label:'Maharashtra Scholarship',url:'https://mahascholarship.gov.in'},{label:'MPSC (Govt Jobs)',url:'https://www.mpsc.gov.in'}], seats:{'B.Tech (MHT-CET)':'~2,80,000','B.Pharm (MHT-CET)':'~28,000','MBBS (NEET)':'~9,500','Polytechnic':'~1,10,000'} },
+  up: { name:'Uttar Pradesh', desc:'Key exams: JEE Mains (NITs/IITs), NEET, UPCET (UP state engineering). Many central universities. Strong UPSC coaching culture. Largest state by population.', links:[{label:'JEE Mains NTA',url:'https://jeemain.nta.nic.in'},{label:'UP Scholarship Portal',url:'https://scholarship.up.gov.in'},{label:'UPPSC (Govt Jobs)',url:'https://uppsc.up.nic.in'}], seats:{'B.Tech (AKTU/UPCET)':'~1,80,000','MBBS (NEET)':'~11,000','Polytechnic':'~1,25,000'} },
+  gujarat: { name:'Gujarat', desc:'Key exams: GUJCET (Gujarat CET for Engineering), NEET, JEE. Gujarat has strong industrial base — Reliance, Adani, Torrent headquartered here.', links:[{label:'GUJCET',url:'https://gseb.org'},{label:'Gujarat Scholarship',url:'https://esamajkalyan.gujarat.gov.in'},{label:'GPSC (Govt Jobs)',url:'https://gpsc.gujarat.gov.in'}], seats:{'B.Tech (GUJCET)':'~95,000','MBBS (NEET)':'~5,500','Polytechnic':'~60,000'} },
+  wb: { name:'West Bengal', desc:'Key exams: WBJEE (West Bengal Joint Entrance), NEET, JEE. Jadavpur University, Calcutta University are top institutions. Strong science culture.', links:[{label:'WBJEE Portal',url:'https://wbjeeb.nic.in'},{label:'WB Scholarships',url:'https://wbmsc.gov.in'},{label:'WBPSC (Govt Jobs)',url:'https://www.pscwb.org.in'}], seats:{'B.Tech (WBJEE)':'~65,000','MBBS (NEET)':'~5,000','Polytechnic':'~45,000'} },
+  rajasthan: { name:'Rajasthan', desc:'Key exams: JEE (NITs), NEET, REET (teaching). Kota is India\'s coaching capital — millions come for JEE/NEET preparation.', links:[{label:'JEE Mains',url:'https://jeemain.nta.nic.in'},{label:'Rajasthan Scholarships',url:'https://sje.rajasthan.gov.in'},{label:'RPSC (Govt Jobs)',url:'https://rpsc.rajasthan.gov.in'}], seats:{'B.Tech (Raj State)':'~85,000','MBBS (NEET)':'~5,000','Polytechnic':'~50,000'} },
+  bihar: { name:'Bihar', desc:'Key exams: JEE Mains, NEET, BCECE (Bihar CET). UPSC preparation very popular — top IAS officers from Bihar. Strong value for education.', links:[{label:'BCECE Portal',url:'https://bceceboard.bihar.gov.in'},{label:'Bihar Scholarship',url:'https://scholarships.gov.in'},{label:'BPSC (Govt Jobs)',url:'https://bpsc.bih.nic.in'}], seats:{'B.Tech (BCECE)':'~40,000','MBBS (NEET)':'~2,800','Polytechnic':'~35,000'} },
+  mp: { name:'Madhya Pradesh', desc:'Key exams: MP PET (for state engineering), JEE, NEET. Large number of government engineering colleges. IIT Indore is in Madhya Pradesh.', links:[{label:'MP Board',url:'https://mpbse.nic.in'},{label:'MP Scholarship',url:'https://scholarshipportal.mp.nic.in'},{label:'MPPSC (Govt Jobs)',url:'https://mppsc.mp.gov.in'}], seats:{'B.Tech (DTE MP)':'~75,000','MBBS (NEET)':'~4,500','Polytechnic':'~55,000'} },
+  odisha: { name:'Odisha', desc:'Key exams: JEE Main/Advanced, OJEE (Odisha JEE), NEET. NIT Rourkela and IIIT Bhubaneswar are top institutions. Mining and metallurgy engineering strong.', links:[{label:'OJEE Portal',url:'https://ojee.nic.in'},{label:'Odisha Scholarship',url:'https://scholarship.odisha.gov.in'},{label:'OPSC (Govt Jobs)',url:'https://opsc.gov.in'}], seats:{'B.Tech (OJEE)':'~38,000','MBBS (NEET)':'~2,200','Polytechnic':'~30,000'} },
+  delhi: { name:'Delhi', desc:'Key exams: JEE (IITs/NITs), NEET, IPU-CET (Indraprastha University), CUET. Delhi has IIT Delhi, NSUT, DTU — all excellent institutions.', links:[{label:'DTU Admissions',url:'https://dtu.ac.in'},{label:'IPU CET',url:'https://ipu.ac.in'},{label:'Delhi Scholarship',url:'https://edistrict.delhigovt.nic.in'}], seats:{'B.Tech (IPU CET)':'~28,000','B.Tech (DTU/NSUT)':'~5,000','MBBS (NEET)':'~1,500','Polytechnic':'~25,000'} },
+  punjab: { name:'Punjab', desc:'Key exams: JEE, NEET, PMET (Punjab state). Thapar University is one of India\'s top private institutes. Strong agricultural and IT sector.', links:[{label:'Punjab Technical Univ',url:'https://ptu.ac.in'},{label:'Punjab Scholarship',url:'https://punjab.gov.in'},{label:'PPSC (Govt Jobs)',url:'https://ppsc.gov.in'}], seats:{'B.Tech (PTU)':'~55,000','MBBS (NEET)':'~3,200','Polytechnic':'~35,000'} },
+  haryana: { name:'Haryana', desc:'Key exams: JEE, NEET, HSTES (Haryana state). NIT Kurukshetra is a top NIT. Close to Delhi — many industries in Gurgaon and Manesar.', links:[{label:'HSTES Haryana',url:'https://hstes.org.in'},{label:'Haryana Scholarship',url:'https://haryana.gov.in'},{label:'HPSC (Govt Jobs)',url:'https://hpsc.gov.in'}], seats:{'B.Tech (HSTES)':'~62,000','MBBS (NEET)':'~3,000','Polytechnic':'~40,000'} },
+  jharkhand: { name:'Jharkhand', desc:'Key exams: JEE, NEET, JCECE (Jharkhand CET). IIT (ISM) Dhanbad — one of India\'s top engineering/mining institutes. Mining and steel industry.', links:[{label:'JCECE Portal',url:'https://jcece.jharkhand.gov.in'},{label:'Jharkhand Scholarship',url:'https://scholarships.gov.in'},{label:'JPSC (Govt Jobs)',url:'https://jpsc.gov.in'}], seats:{'B.Tech (JCECE)':'~22,000','MBBS (NEET)':'~1,500','Polytechnic':'~18,000'} },
+  chhattisgarh: { name:'Chhattisgarh', desc:'Key exams: JEE, NEET, CGPET (state CET). NIT Raipur is a good NIT in this state. Growing IT and mining sector.', links:[{label:'CGPET Portal',url:'https://vyapam.cgstate.gov.in'},{label:'CG Scholarship',url:'https://scholarships.gov.in'},{label:'CGPSC (Govt Jobs)',url:'https://psc.cg.gov.in'}], seats:{'B.Tech (CGPET)':'~28,000','MBBS (NEET)':'~1,800','Polytechnic':'~22,000'} },
+  assam: { name:'Assam', desc:'Key exams: JEE, NEET, SEBA/AHSEC boards. IIT Guwahati is a top-8 IIT located in this state. Tea industry and growing IT sector.', links:[{label:'IIT Guwahati',url:'https://iitg.ac.in'},{label:'Assam Scholarship',url:'https://scholarships.gov.in'},{label:'APSC (Govt Jobs)',url:'https://apsc.nic.in'}], seats:{'B.Tech (Assam)':'~18,000','MBBS (NEET)':'~1,200','Polytechnic':'~15,000'} },
+  hp: { name:'Himachal Pradesh', desc:'Key exams: JEE, NEET, HPTU (HP Technical University). Low-cost engineering colleges. Beautiful study environment. Good for defence and government jobs.', links:[{label:'HPTU Portal',url:'https://himtu.ac.in'},{label:'HP Scholarship',url:'https://hpepass.cgg.gov.in'},{label:'HPPSC (Govt Jobs)',url:'https://hppsc.hp.gov.in'}], seats:{'B.Tech (HPTU)':'~15,000','MBBS (NEET)':'~900','Polytechnic':'~12,000'} },
+  uttarakhand: { name:'Uttarakhand', desc:'Key exams: JEE, NEET, UKPSC. IIT Roorkee is in Uttarakhand — one of India\'s oldest and top engineering institutes. Defence forces opportunities.', links:[{label:'IIT Roorkee',url:'https://iitr.ac.in'},{label:'UK Scholarship',url:'https://scholarships.gov.in'},{label:'UKPSC (Govt Jobs)',url:'https://psc.uk.gov.in'}], seats:{'B.Tech (Uttarakhand)':'~18,000','MBBS (NEET)':'~1,100','Polytechnic':'~14,000'} },
+  goa: { name:'Goa', desc:'Key exams: JEE, NEET, GGCET (Goa CET). NIT Goa is a well-regarded NIT. Tourism industry + IT sector emerging. Low student population, easy admissions.', links:[{label:'GGCET Portal',url:'https://dtegoa.gov.in'},{label:'Goa Scholarship',url:'https://scholarships.gov.in'},{label:'Goa PSC',url:'https://gpsc-goa.in'}], seats:{'B.Tech (GGCET)':'~3,500','MBBS (NEET)':'~300','Polytechnic':'~2,500'} }
+};
+
+const degreeData = {
+  btech_cse: { name:'B.Tech — Computer Science (CSE)', exam:'JEE Mains / EAMCET / State CET', duration:'4 Years', avg:'₹6–25 LPA', scope:'Software Development, AI/ML, Web Dev, Cloud, Data Science, Cybersecurity', top:'IITs, NITs, IIIT-H, BITS Pilani, VIT' },
+  btech_ece: { name:'B.Tech — Electronics & Comm (ECE)', exam:'JEE Mains / EAMCET / State CET', duration:'4 Years', avg:'₹4–15 LPA', scope:'VLSI Design, Embedded Systems, Telecom, Signal Processing, IoT', top:'IIT Madras, IIT Delhi, NIT Trichy, BITS Pilani' },
+  btech_mech: { name:'B.Tech — Mechanical Engineering', exam:'JEE Mains / EAMCET / State CET', duration:'4 Years', avg:'₹3–8 LPA', scope:'Automobile, Aerospace, Manufacturing, HVAC, Oil & Gas, GATE → PSU', top:'IIT Bombay, IIT Kharagpur, NIT Trichy, COEP' },
+  btech_civil: { name:'B.Tech — Civil Engineering', exam:'JEE Mains / EAMCET / State CET', duration:'4 Years', avg:'₹3–7 LPA', scope:'Construction, Infrastructure, Government JE, UPSC (IES), Real Estate', top:'IIT Roorkee, IIT Madras, NIT Calicut, VNIT' },
+  btech_eee: { name:'B.Tech — Electrical Engineering (EEE)', exam:'JEE Mains / EAMCET / State CET', duration:'4 Years', avg:'₹3.5–10 LPA', scope:'Power sector, BHEL, NTPC, ONGC, State DISCOMs, GATE → PSU', top:'IIT Kanpur, IIT Bombay, NIT Warangal, JNTU' },
+  btech_it: { name:'B.Tech — Information Technology (IT)', exam:'JEE Mains / EAMCET / State CET', duration:'4 Years', avg:'₹5–20 LPA', scope:'Software, Networking, Database, Cloud Computing, DevOps, Cybersecurity', top:'NITs, VIT, SRM, Amrita, Thapar' },
+  btech_ds: { name:'B.Tech — Data Science / AI & ML', exam:'JEE Mains / EAMCET / State CET', duration:'4 Years', avg:'₹7–30 LPA', scope:'Data Analyst, ML Engineer, AI Researcher, Business Intelligence, FinTech', top:'IIT Hyderabad, IIIT Bangalore, BITS Pilani, Manipal' },
+  btech_chem: { name:'B.Tech — Chemical Engineering', exam:'JEE Mains / EAMCET / State CET', duration:'4 Years', avg:'₹4–12 LPA', scope:'Pharma, Petroleum, Polymer, Food Processing, GATE → ONGC/IOCL', top:'IIT Bombay, IIT Madras, NIT Rourkela, BITS Pilani' },
+  mbbs: { name:'MBBS — Bachelor of Medicine', exam:'NEET UG (NTA)', duration:'4.5 Years + 1 Year Internship', avg:'Govt Doctor ₹8–20 LPA, Specialist ₹20–80 LPA', scope:'Government Doctor, Private Practice, MD/MS Specialist, Research', top:'AIIMS Delhi, JIPMER, Osmania Medical, Andhra Medical' },
+  bpharm: { name:'B.Pharm — Bachelor of Pharmacy', exam:'NEET / EAMCET (BiPC stream)', duration:'4 Years', avg:'₹3–8 LPA', scope:'Pharma Industry, Medical Representative, Own Medical Store, M.Pharm', top:'JSS Mysuru, Manipal, LPU, Andhra University' },
+  mba: { name:'MBA — Master of Business Administration', exam:'CAT / MAT / GMAT (after any degree)', duration:'2 Years (PG)', avg:'₹10–40 LPA', scope:'Marketing, Finance, HR, Operations, Consulting, Entrepreneurship', top:'IIM Ahmedabad, IIM Bangalore, IIM Calcutta, XLRI' },
+  bcom: { name:'B.Com — Bachelor of Commerce', exam:'CUET / State CET / Merit-based', duration:'3 Years', avg:'₹2.5–6 LPA (₹8–25 LPA after CA)', scope:'CA, CMA, MBA, Banking, Finance, Taxation, Accountant', top:'Narsee Monjee, SRCC Delhi, Loyola Chennai, Christ Bangalore' },
+  bca: { name:'BCA — Bachelor of Computer Applications', exam:'CUET / State CET / Merit-based', duration:'3 Years', avg:'₹3–8 LPA', scope:'Web Development, Software, Database, MCA after BCA for better package', top:'Manipal, VIT, Symbiosis, Amity, Christ' },
+  bsc: { name:'B.Sc — Bachelor of Science', exam:'CUET / State Board Merit', duration:'3 Years', avg:'₹2–5 LPA (₹6–15 LPA after M.Sc/PhD)', scope:'Research, Teaching, M.Sc, IFS, DRDO, CSIR, Biotech companies', top:'IISc Bangalore, IIT (BS), Central Universities, BHU' },
+  diploma: { name:'Polytechnic Diploma (3-Year)', exam:'POLYCET / DECE (state specific)', duration:'3 Years', avg:'₹1.5–4 LPA (₹4–8 LPA after Lateral B.Tech)', scope:'Junior Engineer, Technician, Govt JE, Lateral entry B.Tech', top:'RGUKT, State Govt Polytechnics, Board of Technical Education' },
+  iti: { name:'ITI — Industrial Training (1-2 Years)', exam:'ITI admission via 10th marks', duration:'1–2 Years', avg:'₹1.5–3 LPA private; Govt ₹18k–₹35k/month', scope:'Indian Railways, Army Technical, SSC, State Govt DISCOM, Private sector', top:'Government ITI Colleges (all states), CITS instructor training' }
+};
+
+function showStateInfo() {
+  const stateKey = document.getElementById('stateSelect').value;
+  const degreeKey = document.getElementById('degreeSelect').value;
+  const box = document.getElementById('stateInfoBox');
+  const degBox = document.getElementById('degreeInfoBox');
+  
+  if (!stateKey && !degreeKey) { alert('Please select at least a State or a Degree Course!'); return; }
+
+  box.classList.add('visible');
+
+  if (stateKey && stateData[stateKey]) {
+    const s = stateData[stateKey];
+    document.getElementById('stateInfoTitle').textContent = s.name + ' — State Guide';
+    document.getElementById('stateInfoDesc').textContent = s.desc;
+    const linksDiv = document.getElementById('stateInfoLinks');
+    linksDiv.innerHTML = s.links.map(l => `<a href="${l.url}" target="_blank" rel="noopener" class="state-link">${l.label} →</a>`).join('');
+
+    // Seats
+    if (s.seats) {
+      const seatsBox = document.getElementById('degreeSeatsBox');
+      seatsBox.innerHTML = `<div class="seats-box"><h4>🪑 Approximate Seat Availability in ${s.name}</h4><table class="seats-table"><thead><tr><th>Course</th><th>Approx Seats</th></tr></thead><tbody>${Object.entries(s.seats).map(([k,v])=>`<tr><td>${k}</td><td>${v}</td></tr>`).join('')}</tbody></table></div>`;
+    }
+  } else {
+    document.getElementById('stateInfoTitle').textContent = 'Degree Course Information';
+    document.getElementById('stateInfoDesc').textContent = '';
+    document.getElementById('stateInfoLinks').innerHTML = '';
+  }
+
+  if (degreeKey && degreeData[degreeKey]) {
+    const d = degreeData[degreeKey];
+    degBox.style.display = 'block';
+    document.getElementById('degreeInfoTitle').textContent = '🎓 ' + d.name;
+    document.getElementById('degreeInfoText').textContent = '';
+    document.getElementById('degreeSeatsBox').innerHTML = `
+      <div class="seats-box"><h4>📋 Course Details</h4>
+      <table class="seats-table"><thead><tr><th>Details</th><th>Info</th></tr></thead><tbody>
+      <tr><td>Entrance Exam</td><td>${d.exam}</td></tr>
+      <tr><td>Duration</td><td>${d.duration}</td></tr>
+      <tr><td>Average Salary</td><td>${d.avg}</td></tr>
+      <tr><td>Career Scope</td><td>${d.scope}</td></tr>
+      <tr><td>Top Colleges</td><td>${d.top}</td></tr>
+      </tbody></table></div>`;
+  } else if (stateKey && stateData[stateKey] && stateData[stateKey].seats) {
+    const s = stateData[stateKey];
+    document.getElementById('degreeInfoBox').style.display = 'block';
+    document.getElementById('degreeInfoTitle').textContent = '🪑 Seat Availability — ' + s.name;
+    document.getElementById('degreeInfoText').textContent = '';
+    document.getElementById('degreeSeatsBox').innerHTML = `<div class="seats-box"><table class="seats-table"><thead><tr><th>Course</th><th>Approx Seats</th></tr></thead><tbody>${Object.entries(s.seats).map(([k,v])=>`<tr><td>${k}</td><td>${v}</td></tr>`).join('')}</tbody></table></div>`;
+  } else {
+    degBox.style.display = 'none';
+  }
+}
+
+// ============== TABS ==============
+function switchTab(e, id) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  e.target.classList.add('active');
+  document.getElementById('tab-' + id).classList.add('active');
+}
+
+// ============== RESOURCE CATEGORIES ==============
+function showResCat(id, btn) {
+  document.querySelectorAll('.res-cat-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.res-category').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('res-' + id).classList.add('active');
+}
+
+// ============== AI CHAT ==============
+let chatHistory = [];
+const systemPrompt = `You are PathWise AI Mentor — India's best free career guidance assistant for students. You know the complete Indian education system: all state boards, entrance exams (JEE, NEET, EAMCET, POLYCET, MHT-CET, KCET, TNEA, WBJEE, KEAM, GUJCET etc), B.Tech branches, top colleges (IITs, NITs, IIIT-H, BITS Pilani, VIT), scholarships (ePass, NSP, AICTE Pragati), polytechnic routes, ITI, MBBS, pharmacy, commerce, CA, law, MBA, government jobs. You understand all 28 states. You can reply in English, Telugu, or Hindi. Always be encouraging, practical, and honest. Keep responses concise but helpful. Mention costs (fees), timelines (years), and realistic salary expectations. For rural/poor students, highlight free options like RGUKT, scholarships.`;
+
+async function callClaudeAPI(userMessage) {
+  chatHistory.push({ role: 'user', content: userMessage });
+  const msgs = chatHistory.map(m => ({ role: m.role, content: m.content }));
+  const response = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      model: 'claude-sonnet-4-6',
+      max_tokens: 1000,
+      system: systemPrompt,
+      messages: msgs
+    })
+  });
+  const data = await response.json();
+  const reply = data.content?.[0]?.text || 'Sorry, I had trouble responding. Please try again.';
+  chatHistory.push({ role: 'assistant', content: reply });
+  return reply;
+}
+
+function addMsg(role, text) {
+  const msgs = document.getElementById('chatMessages');
+  const d = document.createElement('div');
+  d.className = 'msg ' + role;
+  d.innerHTML = `<div class="msg-avatar">${role === 'bot' ? 'PW' : 'ME'}</div><div><div class="msg-bubble">${text.replace(/\n/g,'<br>')}</div></div>`;
+  msgs.appendChild(d);
+  msgs.scrollTop = msgs.scrollHeight;
+  return d;
+}
+
+function addThinking() {
+  const msgs = document.getElementById('chatMessages');
+  const d = document.createElement('div');
+  d.className = 'msg bot';
+  d.innerHTML = '<div class="msg-avatar">PW</div><div><div class="msg-bubble thinking"><span></span><span></span><span></span></div></div>';
+  msgs.appendChild(d);
+  msgs.scrollTop = msgs.scrollHeight;
+  return d;
+}
+
+async function sendChatMessage() {
+  const input = document.getElementById('chatInput');
+  const msg = input.value.trim();
+  if (!msg) return;
+  input.value = '';
+  input.style.height = 'auto';
+  addMsg('user', msg);
+  const thinking = addThinking();
+  try {
+    const reply = await callClaudeAPI(msg);
+    thinking.remove();
+    addMsg('bot', reply);
+  } catch(e) {
+    thinking.remove();
+    addMsg('bot', 'Oops! Something went wrong. Please check your internet connection and try again.');
+  }
+}
+
+async function sendQuickReply(text) {
+  document.getElementById('chatInput').value = text;
+  await sendChatMessage();
+}
+
+function handleChatKey(e) {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendChatMessage(); }
+}
+
+// Auto-resize textarea
+document.getElementById('chatInput').addEventListener('input', function() {
+  this.style.height = 'auto';
+  this.style.height = Math.min(this.scrollHeight, 120) + 'px';
+});
+
+// ============== QUIZ ==============
+function nextQuestion(n) {
+  const sel = document.querySelector(`input[name="q${n}"]:checked`);
+  if (!sel) { alert('Please select an option to continue.'); return; }
+  document.getElementById('q' + n).style.display = 'none';
+  if (n < 5) {
+    document.getElementById('q' + (n+1)).style.display = 'block';
+    document.getElementById('quizProgress').style.width = ((n+1)/5*100) + '%';
+  }
+}
+function prevQuestion(n) {
+  document.getElementById('q' + n).style.display = 'none';
+  document.getElementById('q' + (n-1)).style.display = 'block';
+  document.getElementById('quizProgress').style.width = ((n-2)/5*100) + '%';
+}
+function showQuizResult() {
+  const sel = document.querySelector('input[name="q5"]:checked');
+  if (!sel) { alert('Please select an option.'); return; }
+  document.getElementById('q5').style.display = 'none';
+  document.getElementById('qResult').style.display = 'block';
+  document.getElementById('quizProgress').style.width = '100%';
+
+  const q1 = document.querySelector('input[name="q1"]:checked')?.value;
+  const q2 = document.querySelector('input[name="q2"]:checked')?.value;
+  const q3 = document.querySelector('input[name="q3"]:checked')?.value;
+  const q4 = document.querySelector('input[name="q4"]:checked')?.value;
+
+  let path = '', reason = '', salary = '', action = '';
+
+  if (q4 === 'asap') { path = '🏭 ITI Trade Course'; reason = 'Fastest earning path — 1-2 years and you can get a government/railway job'; salary = '₹18k–₹35k/month + benefits'; action = 'Apply to nearest Government ITI after 10th'; }
+  else if (q4 === '3' && q1 === 'practical') { path = '🔧 Polytechnic Diploma'; reason = 'Hands-on 3-year course, job-ready, option to do Lateral B.Tech later'; salary = '₹1.5–4 LPA (₹4–10 LPA after B.Tech)'; action = 'Appear for POLYCET / State Diploma Entrance after 10th'; }
+  else if (q1 === 'biology' && q2 === 'doctor') { path = '🩺 MBBS / Medical'; reason = 'You love biology and want to help people — medicine is perfect for you!'; salary = '₹8–20 LPA (₹20–80 LPA as specialist)'; action = 'Take BiPC in Intermediate, prepare for NEET from 11th'; }
+  else if (q1 === 'biology') { path = '💊 B.Pharm / Nursing'; reason = 'Biology + healthcare path — pharmacy or nursing are strong careers in India'; salary = '₹3–8 LPA starting'; action = 'Take BiPC in Intermediate, appear for EAMCET / NEET'; }
+  else if (q1 === 'commerce' || q2 === 'business') { path = '📊 Commerce — CA / MBA'; reason = 'Business-minded + commerce interest = CA or MBA is a high-income path!'; salary = 'CA: ₹8–30 LPA | MBA IIM: ₹15–50 LPA'; action = 'Take MEC/CEC in Intermediate, start CA Foundation prep'; }
+  else if (q2 === 'govt') { path = '🎖️ Engineering + GATE / UPSC'; reason = 'Government job seeker — B.Tech then GATE for PSUs or UPSC for IAS'; salary = 'PSU: ₹7–15 LPA + benefits | IAS: ₹8–20 LPA + perks'; action = 'Take MPC Intermediate, appear for JEE/EAMCET for B.Tech'; }
+  else if (q3 === 'high' || q3 === 'good') { path = '🖥️ B.Tech CSE — IIT / NIT'; reason = 'Good marks + science interest = B.Tech CSE at a top college is the best investment!'; salary = '₹6–50 LPA (NIT → ₹8–25 LPA, IIT → ₹15–60 LPA)'; action = 'Take MPC Intermediate, prepare for JEE Mains / EAMCET from 11th'; }
+  else { path = '🖥️ B.Tech — State Engineering College'; reason = 'Engineering is a solid choice — even average colleges have decent placements now!'; salary = '₹3–8 LPA starting, grows to ₹8–20 LPA in 5 years'; action = 'Take MPC in Intermediate, appear for EAMCET / State CET'; }
+
+  document.getElementById('quizResultBox').innerHTML = `
+    <div style="font-size:2rem;margin-bottom:0.75rem">🎯</div>
+    <h3 style="color:var(--primary);font-size:1.3rem;margin-bottom:0.75rem">Your Best Path: ${path}</h3>
+    <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:1.25rem">${reason}</p>
+    <div class="result-cards">
+      <div class="result-card"><strong>💰 Salary</strong>${salary}</div>
+      <div class="result-card"><strong>✅ Next Step</strong>${action}</div>
+      <div class="result-card"><strong>🤖 Ask AI</strong>Get personalised details from our AI mentor below</div>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:1.25rem">
+      <a href="#chat" class="btn-primary">Ask AI Mentor for Details →</a>
+      <button class="btn-secondary" onclick="location.reload()">Retake Quiz</button>
+    </div>`;
+}
+
+// ============== MENTOR BOOKING ==============
+let _mentorPhone = '', _mentorEmail = '';
+function bookMentor(name, spec, phone, email) {
+  _mentorPhone = phone; _mentorEmail = email;
+  document.getElementById('mentorName').textContent = name;
+  document.getElementById('mentorSpecialty').textContent = spec;
+  document.getElementById('bookingModal').classList.add('open');
+  updateBookBtns();
+}
+function updateBookBtns() {
+  const name = document.getElementById('bookName').value.trim();
+  const phone = document.getElementById('bookPhone').value.trim();
+  const state = document.getElementById('bookState').value;
+  const status = document.getElementById('bookStatus').value;
+  const query = document.getElementById('bookQuery').value.trim();
+  const time = document.getElementById('bookTime').value;
+  const mentorName = document.getElementById('mentorName').textContent;
+  const msg = encodeURIComponent(`Hi ${mentorName}, I'm ${name||'a student'} from ${state||'India'}.\n\nCurrent Status: ${status}\nQuery: ${query||'I need career guidance'}\nPreferred Time: ${time}\n\nPlease help me with my career planning.\n\n- ${name||'Student'} (PathWise)`);
+  const waUrl = `https://wa.me/91${_mentorPhone}?text=${msg}`;
+  const emailUrl = `mailto:${_mentorEmail}?subject=Career Guidance Session Request — PathWise&body=${encodeURIComponent(`Hi ${mentorName},\n\nName: ${name||'Student'}\nPhone: ${phone||'Not provided'}\nState: ${state||'Not specified'}\nStatus: ${status}\nQuery: ${query||'I need career guidance'}\nPreferred Time: ${time}\n\nPlease help me with my career planning.\nThank you!`)}`;
+  document.getElementById('whatsappBookBtn').href = waUrl;
+  document.getElementById('emailBookBtn').href = emailUrl;
+}
+['bookName','bookPhone','bookState','bookStatus','bookQuery','bookTime'].forEach(id => {
+  document.getElementById(id).addEventListener('input', updateBookBtns);
+  document.getElementById(id).addEventListener('change', updateBookBtns);
+});
+function closeModal() { document.getElementById('bookingModal').classList.remove('open'); }
+
+// ============== PATH MODALS ==============
+const pathDetails = {
+  btech: { title:'🖥️ Complete B.Tech Career Path', content:`<h4 style="margin:1rem 0 0.5rem">Path Overview</h4><p style="font-size:0.875rem;color:#64748b;line-height:1.7">10th → MPC Intermediate (2yr) → JEE/EAMCET → B.Tech (4yr) → Career</p><h4 style="margin:1rem 0 0.5rem">Top B.Tech Branches by Salary</h4><ul style="font-size:0.85rem;color:#64748b;padding-left:1.25rem;line-height:2"><li>CSE / IT / AI-ML → ₹6–50 LPA (highest demand)</li><li>ECE / EEE → ₹4–15 LPA (VLSI, embedded systems)</li><li>Mechanical → ₹3–8 LPA (GATE → PSU ₹8–15 LPA)</li><li>Civil → ₹3–7 LPA (Govt JE or infrastructure)</li><li>Chemical → ₹4–12 LPA (Pharma, petroleum)</li></ul><h4 style="margin:1rem 0 0.5rem">Key Success Tips for B.Tech</h4><ul style="font-size:0.85rem;color:#64748b;padding-left:1.25rem;line-height:2"><li>Start competitive coding from 1st year (LeetCode, GFG)</li><li>Do 2+ internships — companies hire interns permanently</li><li>Build projects on GitHub — recruiters check this</li><li>CGPA above 7.5 — most companies have minimum criteria</li><li>Learn one cloud platform (AWS free tier)</li></ul><div style="margin-top:1.5rem;display:flex;gap:10px;flex-wrap:wrap"><a href="#quiz" class="btn-primary" onclick="closePathModal()">Take Career Quiz →</a><a href="#chat" class="btn-secondary" onclick="closePathModal()">Ask AI Mentor 🤖</a></div>` },
+  poly: { title:'🔧 Polytechnic Diploma Path', content:`<h4 style="margin:1rem 0 0.5rem">Path</h4><p style="font-size:0.875rem;color:#64748b">10th → POLYCET → Polytechnic (3yr) → JOB or LECET/ECET → Lateral B.Tech (3yr)</p><h4 style="margin:1rem 0 0.5rem">Branches</h4><ul style="font-size:0.85rem;color:#64748b;padding-left:1.25rem;line-height:2"><li>Computer Science — Best for software jobs</li><li>Mechanical — Manufacturing, automotive</li><li>Civil — Construction, government projects</li><li>Electrical — Power sector, maintenance</li><li>Electronics — Telecom, appliance repair</li></ul><h4 style="margin:1rem 0 0.5rem">Salary</h4><ul style="font-size:0.85rem;color:#64748b;padding-left:1.25rem;line-height:2"><li>Direct job: ₹1.5–3 LPA</li><li>After Lateral B.Tech: ₹3–8 LPA</li><li>Govt Junior Engineer: ₹4–6 LPA + benefits</li></ul><div style="margin-top:1.5rem;display:flex;gap:10px;flex-wrap:wrap"><a href="#quiz" class="btn-primary" onclick="closePathModal()">Take Quiz →</a><a href="#chat" class="btn-secondary" onclick="closePathModal()">Ask AI Mentor →</a></div>` },
+  mbbs: { title:'🩺 MBBS / Medical Career', content:`<h4 style="margin:1rem 0 0.5rem">Timeline</h4><p style="font-size:0.875rem;color:#64748b">10th → BiPC (2yr) → NEET → MBBS (4.5yr + 1yr internship) → Doctor</p><h4 style="margin:1rem 0 0.5rem">NEET Preparation</h4><ul style="font-size:0.85rem;color:#64748b;padding-left:1.25rem;line-height:2"><li>Start from 11th — don't wait for 12th</li><li>Read NCERT Biology 5+ times (most important!)</li><li>Target 650+ for government medical college</li><li>Practice previous 10 years NEET papers</li></ul><h4 style="margin:1rem 0 0.5rem">Govt MBBS Fees</h4><p style="font-size:0.85rem;color:#64748b">Government colleges: ₹20,000–₹50,000/year only. Private: ₹5–20 Lakh/year.</p><div style="margin-top:1.5rem;display:flex;gap:10px;flex-wrap:wrap"><a href="#quiz" class="btn-primary" onclick="closePathModal()">Take Quiz →</a><a href="#chat" class="btn-secondary" onclick="closePathModal()">Ask AI Mentor →</a></div>` },
+  pharma: { title:'💊 Pharmacy Career', content:`<h4 style="margin:1rem 0 0.5rem">Options After B.Pharm</h4><ul style="font-size:0.85rem;color:#64748b;padding-left:1.25rem;line-height:2"><li>Pharma Industry (QA/QC): ₹3–8 LPA</li><li>Medical Representative: ₹3–6 LPA + incentives</li><li>Hospital Pharmacist: ₹2.5–4 LPA</li><li>Drug Inspector (Govt): ₹5–8 LPA</li><li>Own Medical Store: ₹5–15 LPA</li></ul><h4 style="margin:1rem 0 0.5rem">Top Pharma Companies (Hyderabad)</h4><ul style="font-size:0.85rem;color:#64748b;padding-left:1.25rem;line-height:2"><li>Dr. Reddy's, Hetero Drugs, Aurobindo Pharma</li><li>Divi's Laboratories, Natco Pharma, Shilpa Medicare</li></ul><div style="margin-top:1.5rem;display:flex;gap:10px;flex-wrap:wrap"><a href="#quiz" class="btn-primary" onclick="closePathModal()">Take Quiz →</a><a href="#chat" class="btn-secondary" onclick="closePathModal()">Ask AI Mentor →</a></div>` },
+  arts: { title:'📖 Commerce / Arts Career', content:`<h4 style="margin:1rem 0 0.5rem">Best Routes</h4><ul style="font-size:0.85rem;color:#64748b;padding-left:1.25rem;line-height:2"><li>MEC → B.Com → CA Foundation → Chartered Accountant (₹8–30 LPA)</li><li>MEC → BBA → CAT → IIM MBA (₹12–50 LPA)</li><li>CEC → BA LLB (5yr) → Advocate / Judge</li><li>Any Inter → UPSC CSE → IAS/IPS/IFS Officer</li></ul><h4 style="margin:1rem 0 0.5rem">Key Exams</h4><ul style="font-size:0.85rem;color:#64748b;padding-left:1.25rem;line-height:2"><li>CA Foundation — ICAI (4 levels)</li><li>CAT — For IIMs (MBA)</li><li>CLAT — For law schools</li><li>CUET — Central Universities</li></ul><div style="margin-top:1.5rem;display:flex;gap:10px;flex-wrap:wrap"><a href="#quiz" class="btn-primary" onclick="closePathModal()">Take Quiz →</a><a href="#chat" class="btn-secondary" onclick="closePathModal()">Ask AI Mentor →</a></div>` },
+  iti: { title:'🏭 ITI + Government Jobs', content:`<h4 style="margin:1rem 0 0.5rem">Top ITI Trades</h4><ul style="font-size:0.85rem;color:#64748b;padding-left:1.25rem;line-height:2"><li>Electrician (2 years) — Most popular, government demand</li><li>Fitter (2 years) — Manufacturing, railways</li><li>Mechanic (2 years) — Automotive industry</li><li>COPA (1 year) — Computer operator</li><li>Welder (1 year) — Industrial work</li></ul><h4 style="margin:1rem 0 0.5rem">Government Jobs After ITI</h4><ul style="font-size:0.85rem;color:#64748b;padding-left:1.25rem;line-height:2"><li>Indian Railways (RRB) — Group D, Technician, ALP</li><li>Indian Army — Technical entry</li><li>SSC CHSL — Clerical posts</li><li>DRDO, ISRO, BEL — Technical assistant</li></ul><p style="font-size:0.85rem;color:#64748b;margin-top:0.75rem">Govt ITI job: ₹18,000–₹35,000/month + benefits + pension</p><div style="margin-top:1.5rem;display:flex;gap:10px;flex-wrap:wrap"><a href="#quiz" class="btn-primary" onclick="closePathModal()">Take Quiz →</a><a href="#chat" class="btn-secondary" onclick="closePathModal()">Ask AI Mentor →</a></div>` }
+};
+
+function openPath(key) {
+  const d = pathDetails[key];
+  if (!d) return;
+  document.getElementById('pathModalContent').innerHTML = `<h3>${d.title}</h3>${d.content}`;
+  document.getElementById('pathModal').classList.add('open');
+}
+function closePathModal() { document.getElementById('pathModal').classList.remove('open'); }
+
+document.getElementById('bookingModal').addEventListener('click', function(e) { if(e.target === this) closeModal(); });
+document.getElementById('pathModal').addEventListener('click', function(e) { if(e.target === this) closePathModal(); });
+
+document.querySelectorAll('.quiz-option input').forEach(input => {
+  input.addEventListener('change', function() {
+    document.querySelectorAll(`input[name="${this.name}"]`).forEach(i => i.closest('.quiz-option').classList.remove('selected'));
+    this.closest('.quiz-option').classList.add('selected');
+  });
+});
+</script>
+
+<footer style="text-align:center;padding:1.5rem 2rem;background:#f8faff;border-top:1px solid #e2e8f0;font-family:'Inter',sans-serif;font-size:0.9rem;color:#64748b;">
+  Made with ❤️ by <strong style="color:#1a56e8;">Pullayyagari Vinayaka</strong>
+</footer>
+
+</body>
+</html>
